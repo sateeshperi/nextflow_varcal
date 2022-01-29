@@ -1,0 +1,12 @@
+# Site navigation links
+- title: About this site
+  url: /about/
+  
+- title: All tutorials
+  url: /all_tutorials/
+
+- title: Research
+  url: /research/
+  
+- title: Home
+  url: /

@@ -1,0 +1,442 @@
+/**
+ * Site header
+ */
+.site-header {
+  border-top: 5px solid $grey-color-dark;
+  border-bottom: 1px solid $grey-color-light;
+  min-height: $spacing-unit * 1.865;
+  background-color: #ecf2f9;
+
+  // Positioning context for the mobile navigation icon
+  position: relative;
+}
+
+.site-title {
+  @include relative-font-size(2);
+  font-weight: 300;
+  line-height: $base-line-height * $base-font-size * 2.25;
+  letter-spacing: 0px;
+  margin-bottom: 0;
+  float: left;
+
+  &,
+  &:visited {
+    color: $grey-color-dark;
+  }
+  &:hover {
+    color: $text-color;
+    text-decoration: none;
+  }
+  
+  @media(max-width:750px) {
+    font-size: 1.5em;
+  }
+}
+
+.site-nav {
+    float: right;
+    margin-top: 4px;
+    line-height: $base-line-height * $base-font-size * 2.25;
+    font-size: $base-font-size * 0.5;
+    ul {
+        margin: 0;
+        padding: 0;
+        clear: both;
+        list-style-type: none;
+    }
+    li {
+        display: inline;
+        list-style-type: none;
+        @include font-rem(16);
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+        a { 
+            padding: 0px 0;
+            decoration: none;
+            color: #0047b3;
+            &:visited {
+                color: darken(#0047b3, 15%);
+            }
+            border-bottom: 0 solid transparent;
+            @include transition(all .2s);
+            @media #{$medium} {
+                display: inline;
+                padding: 0;
+            }
+            @media #{$small} {
+                display: inline;
+                padding: 0;
+            }
+        }
+    }  
+//   .nav-trigger {
+//       display: none;
+//       
+//   }
+// 
+//   .menu-icon {
+//     display: none;
+//   }
+// 
+//   .page-link {
+//     color: $text-color;
+//     line-height: $base-line-height;
+// 
+//     // Gaps between nav items, but not on the last one
+//     &:not(:last-child) {
+//       margin-right: 20px;
+//     }
+//   }
+
+
+//   @include media-query($on-palm) {
+//     position: absolute;
+//     top: 9px;
+//     right: $spacing-unit / 2;
+//     background-color: $background-color;
+//     border: 1px solid $grey-color-light;
+//     border-radius: 5px;
+//     text-align: right;
+// 
+//     label[for="nav-trigger"] {
+//       display: block;
+//       float: right;
+//       width: 36px;
+//       height: 36px;
+//       z-index: 2;
+//       cursor: pointer;
+//     }
+// 
+//     .menu-icon {
+//       display: block;
+//       float: right;
+//       width: 36px;
+//       height: 26px;
+//       line-height: 0;
+//       padding-top: 10px;
+//       text-align: center;
+// 
+//       > svg path {
+//         fill: $grey-color-dark;
+//       }
+//     }
+// 
+//     input ~ .trigger {
+//       clear: both;
+//       display: none;
+//     }
+// 
+//     input:checked ~ .trigger {
+//       display: block;
+//       padding-bottom: 5px;
+//     }
+// 
+//     .page-link {
+//       display: block;
+//       padding: 5px 10px;
+// 
+//       &:not(:last-child) {
+//         margin-right: 0;
+//       }
+//       margin-left: 20px;
+//     }
+//   }
+}
+
+
+/* Animated lines for mobile nav button */
+$button-size: 1.5rem;
+@mixin navicon-line() {
+    display: inline-block;
+    width: $button-size;
+    height: $button-size/7;
+    // line color
+    background: $white;
+    border-radius: $button-size/14;
+    transition: .3s;
+}
+.navicon-lines-button {
+    padding: $button-size/4 $button-size/2;
+    transition: .3s;
+    cursor: pointer;
+    user-select: none;
+    border-radius: $button-size/7;
+}
+.navicon-lines-button:hover {
+    opacity: 1;
+}
+.navicon-lines-button:active {
+    transition: 0;
+}
+.navicon-lines {
+    margin-right: 10px;
+    margin-bottom: $button-size/5;
+    // create middle line
+    @include navicon-line;
+    position: relative;
+    // create the upper and lower lines as pseudo-elements of the middle line
+    &:before,
+    &:after {
+        @include navicon-line;
+        position: absolute;
+        left: 0;
+        content: '';
+        -webkit-transform-origin: $button-size/14 center;
+        transform-origin: $button-size/14 center;
+    }
+    &:before { top: $button-size/4; }
+    &:after { top: -$button-size/4; }
+}
+.navicon-lines-button:hover {
+    opacity: 1;
+    .navicon-lines {
+        &:before { top: $button-size/3.5; }
+        &:after { top: -$button-size/3.5; }
+    }
+}
+.navicon-lines-button.x.active .navicon-lines {
+    // hide the middle line
+    background: transparent;
+    // overlap the lines by setting both their top values to 0
+    &:before,
+    &:after {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        top: 0;
+        width: $button-size;
+    }
+    // rotate the lines to form the x shape
+    &:before {
+        -webkit-transform: rotate3d(0,0,1,45deg);
+        transform: rotate3d(0,0,1,45deg);
+    }
+    &:after {
+        -webkit-transform: rotate3d(0,0,1,-45deg);
+        transform: rotate3d(0,0,1,-45deg);
+    }
+}
+
+
+// Style the toggle menu link and hide it
+.nav .navtoogle {    
+    @include font-rem(18);
+    font-weight: normal;
+    background-color: $black;
+    color: $white;    
+    border: none;
+    cursor: pointer;
+    @media #{$small} {
+        display: none;
+    }
+}
+.nav button {
+    border: none;
+    background: none;
+}
+.navtoogle i {
+    z-index:-1;
+}
+.icon-menu {
+    position: relative;
+    top: 3px;
+    line-height: 0;
+}
+// When JavaScript is disabled, we hide the toggle button
+.no-js .nav .navtoggle {
+    display: none;
+}
+// When JavaScript is disabled, we show the menu
+.no-js .nav ul {
+    max-height: 30em;
+    overflow: hidden;
+}
+// When JavaScript is enabled, we hide the menu
+.js .nav ul {
+    max-height: 0;
+    overflow: hidden;
+    @media #{$small} {
+        max-height: 30em;
+    }
+}
+// Displaying the menu when the user has clicked on the button
+.js .nav .active + ul {        
+    max-height: 30em;
+    overflow: hidden;
+    -webkit-transition: max-height .4s;
+    -moz-transition: max-height .4s;
+    -o-transition: max-height .4s;
+    -ms-transition: max-height .4s;
+    transition: max-height .4s;
+}
+
+
+
+
+
+/**
+ * Site footer
+ */
+.site-footer {
+  border-top: 1px solid $grey-color-dark;
+  padding: $spacing-unit 0;
+}
+
+.footer-heading {
+  @include relative-font-size(1.125);
+  margin-bottom: 10px;
+  color: #595959;
+  text-align: right;
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.contact-list {
+  margin: 0px;
+  padding: 0px;
+}
+
+.footer-col-wrapper {
+  @include relative-font-size(.9);
+  color: $grey-color-dark;
+  @extend %clearfix;
+}
+
+.footer-col-wrapper-center {
+  @include relative-font-size(.9);
+  color: $grey-color-dark;
+  margin-left: -$spacing-unit / 2;
+  @extend %clearfix;
+}
+
+.footer-col {
+  margin-bottom: 0px;
+}
+
+.footer-col-1 {
+  float: left;
+  display: inline-block;
+}
+
+.footer-col-3 {
+  float: right;
+  display: inline-block;
+}
+
+/*
+@include media-query($on-laptop) {
+  .footer-col-1,
+  .footer-col-2 {
+    width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+    width:         calc(50% - (#{$spacing-unit} / 2));
+  }
+
+  .footer-col-3 {
+    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+    width:         calc(100% - (#{$spacing-unit} / 2));
+  }
+}
+
+@include media-query($on-palm) {
+  .footer-col {
+    float: none;
+    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+    width:         calc(100% - (#{$spacing-unit} / 2));
+  }
+}
+*/
+
+
+/**
+ * Page content
+ */
+.page-content {
+  padding: $spacing-unit 0;
+  text-align: justify;
+}
+
+.page-heading {
+  @include relative-font-size(1.25);
+}
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+
+  > li {
+    margin-bottom: $spacing-unit;
+  }
+}
+
+.post-meta {
+  font-size: $small-font-size;
+  color: $grey-color;
+}
+
+.post-link {
+  display: block;
+  @include relative-font-size(1.5);
+}
+
+
+
+/**
+ * Posts
+ */
+.post-header {
+  margin-bottom: $spacing-unit;
+}
+
+.post-title {
+  @include relative-font-size(2.625);
+  letter-spacing: -1px;
+  line-height: 1;
+
+  @include media-query($on-laptop) {
+    @include relative-font-size(2.25);
+  }
+}
+
+.post-content {
+  margin-bottom: $spacing-unit;
+
+  h2 {
+    @include relative-font-size(2);
+
+    @include media-query($on-laptop) {
+      @include relative-font-size(1.75);
+    }
+  }
+
+  h3 {
+    @include relative-font-size(1.625);
+
+    @include media-query($on-laptop) {
+      @include relative-font-size(1.375);
+    }
+  }
+
+  h4 {
+    @include relative-font-size(1.25);
+
+    @include media-query($on-laptop) {
+      @include relative-font-size(1.125);
+    }
+  }
+}
+
+
+/**
+ *  Misc
+ */
+
+.clear {
+  clear: both;
+} 
+
+
+
