@@ -40,9 +40,19 @@ nextflow -v         ## check install by invoking Nextflow, getting version
 ---
 <br>
 
+## IDE
+
+IDE choice will not be discussed in this tutorial. You can use what you are comfortable with, you will need to edit text files as well as run commands from the terminal, and will need to run those commands from a cluster node at one point. Some good options are VScode, with nextflow plugins and remote-ssh module setup and working. This is beyond the scope of the tutorial at this time.
+
+*   **[Download Visual Studio Code](https://code.visualstudio.com/Download)**
+
+*   [VSCode Nextflow Plugin](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
+
+*   [VSCode Remote-SSH Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+
 ## Data Download & Setup
 
-*   **[Data Source - DataCarpentry](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html)**
+*   **[Data Source - DataCarpentry Wrangling Genomics Lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html)**
 
 ```bash
 cd ~/
@@ -68,7 +78,9 @@ do
                 ${base}_2.trim.fastq.gz ${base}_2un.trim.fastq.gz \
                 SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
 done
+```
 
+```bash
 mkdir ../trimmed_fastq
 mv *.trim* ../trimmed_fastq
 cd ../trimmed_fastq
