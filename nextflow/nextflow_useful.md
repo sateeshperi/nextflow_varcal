@@ -3,7 +3,7 @@ layout: main
 title: NextFlow Useful Links
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_useful
+permalink: /nextflow/nextflow_useful
 ---
 {% include _nextflow_nextflow_useful_toc.html %}
 
