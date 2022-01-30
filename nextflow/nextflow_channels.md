@@ -3,7 +3,7 @@ layout: main
 title: Nextflow Channels
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_channels
+permalink: /nextflow/nextflow_channels
 ---
 {% include _nextflow_nextflow_channels_toc.html %}
 
