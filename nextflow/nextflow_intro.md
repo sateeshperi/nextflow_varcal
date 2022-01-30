@@ -287,6 +287,6 @@ TIMESTAMP               DURATION        RUN NAME                STATUS  REVISION
 
 ---
 
-<h5><a href="/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
+<h5><a href="/nextflow_varcal/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
 
-<a href="/nextflow/nextflow_nfcore" style="float: right"><b>Next:</b>NF-Core</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_nfcore" style="float: right"><b>Next:</b>NF-Core</a></h5>
