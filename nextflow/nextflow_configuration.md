@@ -449,6 +449,6 @@ You can define a profile for different configurations using the profiles scope. 
 
 ---
 
-<h5><a href="/nextflow/nextflow_variant_calling" style="float: left"><b>Back to:</b>Nextflow Variant Calling</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_variant_calling" style="float: left"><b>Back to:</b>Nextflow Variant Calling</a>
 
-<a href="/nextflow/nextflow_modules" style="float: right"><b>Next:</b>NextFlow Modules</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_modules" style="float: right"><b>Next:</b>NextFlow Modules</a></h5>
