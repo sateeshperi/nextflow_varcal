@@ -613,6 +613,6 @@ Channel.of("val1\tval2\tval3\nval4\tval5\tval6\n")
 
 ---
 
-<h5><a href="/nextflow/nextflow_workflow" style="float: left"><b>Back to:</b>Nextflow Workflow</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_workflow" style="float: left"><b>Back to:</b>Nextflow Workflow</a>
 
-<a href="/nextflow/nextflow_variant_calling" style="float: right"><b>Next:</b>NextFlow Variant-Calling Pipeline</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_variant_calling" style="float: right"><b>Next:</b>NextFlow Variant-Calling Pipeline</a></h5>
