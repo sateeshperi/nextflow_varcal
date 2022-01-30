@@ -3,7 +3,7 @@ layout: main
 title: Workflow caching and checkpointing
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_caching
+permalink: /nextflow/nextflow_caching
 ---
 {% include _nextflow_nextflow_caching_toc.html %}
 
