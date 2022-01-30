@@ -118,6 +118,6 @@ conda activate varcal
 
 ---
 
-<h5><a href="/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
+<h5><a href="/nextflow_varcal/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
 
-<a href="/nextflow/nextflow_intro" style="float: right"><b>Next:</b>Nextflow Introduction</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_intro" style="float: right"><b>Next:</b>Nextflow Introduction</a></h5>
