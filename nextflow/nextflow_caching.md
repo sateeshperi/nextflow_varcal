@@ -204,6 +204,6 @@ nextflow clean -f -before gigantic_minsky
 
 ---
 
-<h5><a href="/nextflow/nextflow_modules" style="float: left"><b>Back to:</b>NextFlow Modules</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_modules" style="float: left"><b>Back to:</b>NextFlow Modules</a>
 
-<a href="/nextflow/nextflow_install" style="float: right"><b>Next:</b>NextFlow Install</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_install" style="float: right"><b>Next:</b>NextFlow Install</a></h5>
