@@ -3,7 +3,7 @@ layout: main
 title: NF-Core @ HPC
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_slurm
+permalink: /nextflow/nextflow_slurm
 ---
 {% include _nextflow_nextflow_slurm_toc.html %}
 
