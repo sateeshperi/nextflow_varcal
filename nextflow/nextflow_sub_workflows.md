@@ -3,7 +3,7 @@ layout: main
 title: NextFlow Sub-Workflows
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_sub_workflows
+permalink: /nextflow/nextflow_sub_workflows
 ---
 {% include _nextflow_nextflow_sub_workflows_toc.html %}
 
