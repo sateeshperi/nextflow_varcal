@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Install
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow/nextflow_install
+permalink: /nextflow_varcal/nextflow/nextflow_install
 ---
 {% include _nextflow_nextflow_install_toc.html %}
 
 
 <hr>
-<center>This chapter is a part of <a href="/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This chapter is a part of <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
