@@ -3,7 +3,7 @@ layout: main
 title: NextFlow Reporting
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_reporting
+permalink: /nextflow/nextflow_reporting
 ---
 {% include _nextflow_nextflow_reporting_toc.html %}
 
