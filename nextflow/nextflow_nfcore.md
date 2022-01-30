@@ -377,6 +377,6 @@ If you run into issues running your pipeline you can you the nf-core website to 
 
 ---
 
-<h5><a href="/nextflow/nextflow_intro" style="float: left"><b>Back to:</b>Introduction</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_intro" style="float: left"><b>Back to:</b>Introduction</a>
 
-<a href="/nextflow/nextflow_slurm" style="float: right"><b>Next:</b>NF-Core @ HPC</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_slurm" style="float: right"><b>Next:</b>NF-Core @ HPC</a></h5>
