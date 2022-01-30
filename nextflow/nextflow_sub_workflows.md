@@ -388,6 +388,6 @@ nextflow run variant-calling.nf -profile singularity,slurm -entry QC -with-dag r
 
 ---
 
-<h5><a href="/nextflow/nextflow_modules" style="float: left"><b>Back to:</b>NextFlow Modules</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_modules" style="float: left"><b>Back to:</b>NextFlow Modules</a>
 
-<a href="/nextflow/nextflow_reporting" style="float: right"><b>Next:</b>NextFlow Reporting</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_reporting" style="float: right"><b>Next:</b>NextFlow Reporting</a></h5>
