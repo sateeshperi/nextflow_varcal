@@ -341,6 +341,6 @@ FIXME: add few examples of complex multi map input for channels
 
 ---
 
-<h5><a href="/nextflow/nextflow_scripting" style="float: left"><b>Back to:</b>Nextflow Scripting</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_scripting" style="float: left"><b>Back to:</b>Nextflow Scripting</a>
 
-<a href="/nextflow/nextflow_processes" style="float: right"><b>Next:</b>NextFlow Processes</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_processes" style="float: right"><b>Next:</b>NextFlow Processes</a></h5>
