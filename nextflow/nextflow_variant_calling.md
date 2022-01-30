@@ -359,6 +359,6 @@ your final nextflow workflow DAG image should look something like this:
 
 ---
 
-<h5><a href="/nextflow/nextflow_operators" style="float: left"><b>Back to:</b>Nextflow Operators</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_operators" style="float: left"><b>Back to:</b>Nextflow Operators</a>
 
-<a href="/nextflow/nextflow_configuration" style="float: right"><b>Next:</b>NextFlow Configuration</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_configuration" style="float: right"><b>Next:</b>NextFlow Configuration</a></h5>
