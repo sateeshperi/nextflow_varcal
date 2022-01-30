@@ -18,7 +18,6 @@ email: perisateesh@gmail.com
 author: Sateesh Peri
 description: Nextflow Tutorial - Variant Calling Edition
 baseurl:  # the subpath of your site, e.g. /blog
-url: "https://sateeshperi.github.io"
 
 
 # Build settings
