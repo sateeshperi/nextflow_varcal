@@ -51,6 +51,6 @@ IDE choice will not be discussed in this tutorial. You can use what you are comf
 
 ---
 
-<h5><a href="/nextflow/nextflow_install" style="float: left"><b>Back to:</b>Table of Contents</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_install" style="float: left"><b>Back to:</b>Table of Contents</a>
 
-<a href="/nextflow/index" style="float: right"><b>Back to:</b>NextFlow Install</a></h5>
+<a href="/nextflow_varcal/nextflow/index" style="float: right"><b>Back to:</b>NextFlow Install</a></h5>
