@@ -3,7 +3,7 @@ layout: main
 title: Introduction to NextFlow
 categories: [nextflow]
 tags: [aspen,cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_intro
+permalink: /nextflow/nextflow_intro
 ---
 {% include _nextflow_nextflow_intro_toc.html %}
 
