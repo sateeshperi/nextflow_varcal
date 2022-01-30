@@ -1180,6 +1180,6 @@ modules
 
 ---
 
-<h5><a href="/nextflow/nextflow_configuration" style="float: left"><b>Back to:</b>NextFlow Configuration</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_configuration" style="float: left"><b>Back to:</b>NextFlow Configuration</a>
 
-<a href="/nextflow/nextflow_sub_workflows" style="float: right"><b>Next:</b>NextFlow SubWorkflows</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_sub_workflows" style="float: right"><b>Next:</b>NextFlow SubWorkflows</a></h5>
