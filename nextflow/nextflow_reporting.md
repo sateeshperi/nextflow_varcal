@@ -271,6 +271,6 @@ nextflow log elegant_descartes -t template.html > provenance.html
 
 ---
 
-<h5><a href="/nextflow/nextflow_sub_workflows" style="float: left"><b>Back to:</b>NextFlow SubWorkflows</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_sub_workflows" style="float: left"><b>Back to:</b>NextFlow SubWorkflows</a>
 
-<a href="/nextflow/nextflow_caching" style="float: right"><b>Next:</b>NextFlow Caching</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_caching" style="float: right"><b>Next:</b>NextFlow Caching</a></h5>
