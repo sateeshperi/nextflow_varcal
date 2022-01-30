@@ -16,9 +16,9 @@
 title: Nextflow Tutorial - Variant Calling Edition
 email: perisateesh@gmail.com
 author: Sateesh Peri
-description: Nextflow Tutorial to create a simple variant calling workflow
-baseurl: "https://sateeshperi.github.io/nextflow_varcal/" # the subpath of your site, e.g. /blog
-
+description: Nextflow Tutorial - Variant Calling Edition
+baseurl:  # the subpath of your site, e.g. /blog
+url: "https://sateeshperi.github.io"
 
 
 # Build settings
