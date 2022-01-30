@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Modules
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow/nextflow_modules
+permalink: /nextflow_varcal/nextflow/nextflow_modules
 ---
 {% include _nextflow_nextflow_modules_toc.html %}
 
 
 <hr>
-<center>This is part 11 of 14 of a <a href="/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 11 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
