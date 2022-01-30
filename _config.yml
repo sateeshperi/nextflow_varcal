@@ -18,6 +18,7 @@ email: perisateesh@gmail.com
 author: Sateesh Peri
 description: Nextflow Tutorial to create a simple variant calling workflow
 baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://sateeshperi.github.io/nextflow_varcal/"
 
 
 # Build settings
