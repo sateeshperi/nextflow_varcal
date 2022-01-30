@@ -3,13 +3,13 @@ layout: main
 title: Variant Calling Workflow
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow/nextflow_variant_calling
+permalink: /nextflow_varcal/nextflow/nextflow_variant_calling
 ---
 {% include _nextflow_nextflow_variant_calling_toc.html %}
 
 
 <hr>
-<center>This is part 9 of 14 of a <a href="/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 9 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
