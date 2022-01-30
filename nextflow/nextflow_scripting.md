@@ -529,6 +529,6 @@ else
 
 ---
 
-<h5><a href="/nextflow/nextflow_slurm" style="float: left"><b>Back to:</b>NF-Core @ HPC</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_slurm" style="float: left"><b>Back to:</b>NF-Core @ HPC</a>
 
-<a href="/nextflow/nextflow_channels" style="float: right"><b>Next:</b>NextFlow Channels</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_channels" style="float: right"><b>Next:</b>NextFlow Channels</a></h5>
