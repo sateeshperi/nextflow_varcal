@@ -850,6 +850,6 @@ We can now use the `tree results` command to examine the results directory.
 
 ---
 
-<h5><a href="/nextflow/nextflow_channels" style="float: left"><b>Back to:</b>Nextflow Channels</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_channels" style="float: left"><b>Back to:</b>Nextflow Channels</a>
 
-<a href="/nextflow/nextflow_workflow" style="float: right"><b>Next:</b>NextFlow Workflow</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_workflow" style="float: right"><b>Next:</b>NextFlow Workflow</a></h5>
