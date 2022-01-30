@@ -238,6 +238,6 @@ nextflow run main.nf --custom_config_base conf/nf-core-slurm -profile conda,test
 
 ---
 
-<h5><a href="/nextflow/nextflow_nfcore" style="float: left"><b>Back to:</b>NF-Core</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_nfcore" style="float: left"><b>Back to:</b>NF-Core</a>
 
-<a href="/nextflow/nextflow_scripting" style="float: right"><b>Next:</b>Nextflow Scripting</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_scripting" style="float: right"><b>Next:</b>Nextflow Scripting</a></h5>
