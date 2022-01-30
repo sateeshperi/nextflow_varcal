@@ -200,6 +200,6 @@ process BWA_ALIGN {
 
 ---
 
-<h5><a href="/nextflow/nextflow_processes" style="float: left"><b>Back to:</b>Nextflow Processes</a>
+<h5><a href="/nextflow_varcal/nextflow/nextflow_processes" style="float: left"><b>Back to:</b>Nextflow Processes</a>
 
-<a href="/nextflow/nextflow_operators" style="float: right"><b>Next:</b>NextFlow Operators</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_operators" style="float: right"><b>Next:</b>NextFlow Operators</a></h5>
