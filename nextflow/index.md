@@ -2,7 +2,7 @@
 layout: main
 title: Reproducible, scalable, and shareable analysis workflows with Nextflow
 categories: [nextflow, workflows]
-permalink: /nextflow/index
+permalink: /nextflow/
 ---
 
 <br>
