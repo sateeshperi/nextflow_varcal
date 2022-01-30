@@ -3,7 +3,7 @@ layout: main
 title: Nextflow Processes
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_processes
+permalink: /nextflow/nextflow_processes
 ---
 {% include _nextflow_nextflow_processes_toc.html %}
 
