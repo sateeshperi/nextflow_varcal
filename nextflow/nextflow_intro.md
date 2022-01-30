@@ -3,13 +3,13 @@ layout: main
 title: Introduction to NextFlow
 categories: [nextflow]
 tags: [aspen,cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow/nextflow_intro
+permalink: /nextflow_varcal/nextflow/nextflow_intro
 ---
 {% include _nextflow_nextflow_intro_toc.html %}
 
 
 <hr>
-<center>This is part 1 of 14 of a <a href="/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 1 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
