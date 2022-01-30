@@ -3,7 +3,7 @@ layout: main
 title: NF-Core
 categories: [nextflow]
 tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
-permalink: /nextflow_varcal/nextflow/nextflow_nfcore
+permalink: /nextflow/nextflow_nfcore
 ---
 {% include _nextflow_nextflow_nfcore_toc.html %}
 
