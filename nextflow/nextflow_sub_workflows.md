@@ -259,8 +259,8 @@ params {
 
   // Input parameters
 
-  genome                     = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
-  reads                      = "$HOME/nextflow_tutorial/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
+  genome                     = "${launchDir}/data/ref_genome/ecoli_rel606.fasta"
+  reads                      = "${launchDir}/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
   
   // Output options
   outdir                     = "results"
@@ -316,7 +316,7 @@ profiles {
   }
 
   conda {
-    process.conda = "$HOME/nextflow_tutorial/environment.yml"
+    process.conda = "${launchDir}/environment.yml"
   }
   
   singularity {
