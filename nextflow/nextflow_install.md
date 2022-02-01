@@ -100,6 +100,7 @@ ls
 
 
 *  Download raw data
+
 ```bash
 cd ~/
 mkdir -p nextflow_tutorial/data/untrimmed_fastq/
@@ -118,6 +119,7 @@ conda activate varcal
 ```
 
 *  Trim the reads
+
 ```bash
 cd nextflow_tutorial/data/untrimmed_fastq/
 
