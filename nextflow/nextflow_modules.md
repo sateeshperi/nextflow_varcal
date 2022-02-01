@@ -503,16 +503,16 @@ Now, let us create a shell script `varcal.sh` to submit the `nextflow run` comma
 > NOTE: change the email address to your own
 
 >```bash
->#!/bin/bash -l
->
-># Assign Job-Name instead of defauly which is the name of job-script
->#$ -N NF_Variant_Calling
-># Submit job to the default queue "short"
->#$ -q my.q
+#!/bin/bash
+#SBATCH --job-name=varcal
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --time=48:00:00
+#SBATCH --partition=
 >
 >cd ~/nextflow_tutorial
 >module load nextflow
->nextflow run variant-calling.nf -profile singularity,sge,short --output "results"
+>nextflow run variant-calling.nf -profile singularity,slurm,short --output "results"
 >```
 
 Now submit the job to cluster for execution
