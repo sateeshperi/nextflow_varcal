@@ -249,7 +249,7 @@ cd modules
 >
 >  script:
 >  """
->     bcftools mpileup -O b -o "${sample_id}_raw.bcf" -f ${genome} ${sortedbam}
+>  bcftools mpileup -O b -o "${sample_id}_raw.bcf" -f ${genome} ${sortedbam}
 >  """
 >}
 >
@@ -431,8 +431,8 @@ Let us submit this job the cluster. In order to do that we have to update our `n
 >
 >  // Input parameters
 >
->  genome                     = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
->  reads                      = "$HOME/nextflow_tutorial/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
+>  genome                     = "${launchDir}/data/ref_genome/ecoli_rel606.fasta"
+>  reads                      = "${launchDir}/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
 >  
 >  // Output options
 >  outdir                     = "results"
@@ -488,7 +488,7 @@ Let us submit this job the cluster. In order to do that we have to update our `n
 >  }
 >
 >  conda {
->    process.conda = "$HOME/nextflow_tutorial/environment.yml"
+>    process.conda = "${launchDir}/environment.yml"
 >  }
 >  
 >  singularity {
