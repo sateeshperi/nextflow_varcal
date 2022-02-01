@@ -14,7 +14,7 @@ permalink: /nextflow/nextflow_install
 
 <br>
 
-## Manual Installation
+## Nextflow Install
 
 ### Requirements
 
@@ -38,6 +38,17 @@ nextflow -v         ## check install by invoking Nextflow, getting version
 ```
 
 ---
+## NF-CORE Install
+
+```bash
+conda install nf-core
+```
+or
+
+```bash
+pip install nf-core
+```
+
 <br>
 
 ## IDE
@@ -50,10 +61,45 @@ IDE choice will not be discussed in this tutorial. You can use what you are comf
 
 *   [VSCode Remote-SSH Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
 
+## Environment Setup ()
+
+*  Create `environment.yml`
+
+```bash
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - fastqc
+  - trimmomatic
+  - bwa
+  - samtools
+  - bcftools
+  - multiqc
+  - graphviz
+```
+
+```bash
+mamba env create -n varcal -f environment.yml
+```
+
 ## Data Download & Setup
 
 *   **[Data Source - DataCarpentry Wrangling Genomics Lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html)**
 
+*  Download reference genome
+
+```bash
+cd ~/
+mkdir -p nextflow_tutorial/data/ref_genome
+cd nextflow_tutorial/data/ref_genome
+curl -L -o data/ref_genome/ecoli_rel606.fasta.gz ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/017/985/GCA_000017985.1_ASM1798v1/GCA_000017985.1_ASM1798v1_genomic.fna.gz
+gunzip data/ref_genome/ecoli_rel606.fasta.gz
+ls
+```
+
+
+*  Download raw data
 ```bash
 cd ~/
 mkdir -p nextflow_tutorial/data/untrimmed_fastq/
@@ -67,6 +113,11 @@ curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_1.fa
 curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fastq.gz
 ```
 
+```bash
+conda activate varcal
+```
+
+*  Trim the reads
 ```bash
 cd nextflow_tutorial/data/untrimmed_fastq/
 
@@ -87,34 +138,8 @@ cd ../trimmed_fastq
 ls
 ```
 
-```bash
-cd ~/nextflow_tutorial/
-mkdir -p data/ref_genome
-curl -L -o data/ref_genome/ecoli_rel606.fasta.gz ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/017/985/GCA_000017985.1_ASM1798v1/GCA_000017985.1_ASM1798v1_genomic.fna.gz
-gunzip data/ref_genome/ecoli_rel606.fasta.gz
-```
 
-## Environment Setup 
 
-`environment.yml`
-```bash
-channels:
-  - bioconda
-  - conda-forge
-dependencies:
-  - fastqc
-  - trimmomatic
-  - bwa
-  - samtools
-  - bcftools
-  - multiqc
-  - graphviz
-```
-
-```bash
-mamba env create -n varcal -f environment.yml
-conda activate varcal
-```
 
 ---
 
