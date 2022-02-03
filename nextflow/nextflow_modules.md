@@ -25,13 +25,13 @@ permalink: /nextflow/nextflow_modules
 * A module can contain the definition of a function, process and workflow definitions.
 
 ```bash
-cd ~/nextflow_tutorial/
+cd /workspace/nextflow_tutorial/
 mkdir modules
 cd modules
 ```
 
 
-*   Create a new file `fastqc.nf` in the current `~/nextflow_tutorial/modules/` directory; paste the following and save.
+*   Create a new file `fastqc.nf` in the current `/workspace/nextflow_tutorial/modules/` directory; paste the following and save.
 
 >```bash
 >/*
@@ -308,7 +308,7 @@ cd modules
 
 * The above snippets includes a process with name `BWA_INDEX` defined in the module script `bwa_index.nf` in the main execution context, as such it can be invoked in the workflow scope.
 
-* Nextflow implicitly looks for the script file `~/nextflow_tutorial/modules/bwa_index.nf` resolving the path against the including script location.
+* Nextflow implicitly looks for the script file `/workspace/nextflow_tutorial/modules/bwa_index.nf` resolving the path against the including script location.
 
 > Note: Relative paths must begin with the `./` prefix.
 
@@ -323,7 +323,7 @@ cd modules
 
 * A module script can define one or more parameters using the same syntax of a Nextflow workflow script
 
-* Create a new nextflow script called `variant-calling.nf` in the `~/nextflow_tutorial` as shown below with `include` statements.
+* Create a new nextflow script called `variant-calling.nf` in the `/workspace/nextflow_tutorial/` as shown below with `include` statements.
 
 >```groovy
 >/*
@@ -352,11 +352,11 @@ cd modules
 >========================================================================================
 >*/
 >
->include { FASTQC }                                    from "./modules/fastqc" addParams(OUTPUT: "${params.output}/fastqc")
->include { BWA_INDEX  }                                from "./modules/bwa_index" addParams(OUTPUT: "${params.output}/bwa_index")
->include { BWA_ALIGN  }                                from "./modules/bwa_align" addParams(OUTPUT: "${params.output}/bwa_align")
->include { SAMTOOLS_SORT; SAMTOOLS_INDEX }             from "./modules/samtools" addParams(OUTPUT: "${params.output}/sorted_bam")
->include { BCFTOOLS_MPILEUP; BCFTOOLS_CALL; VCFUTILS } from "./modules/bcftools" addParams(OUTPUT: "${params.output}/vcf")
+>include { FASTQC }                                    from "./modules/fastqc" addParams(OUTPUT: "${params.outdir}/fastqc")
+>include { BWA_INDEX  }                                from "./modules/bwa_index" addParams(OUTPUT: "${params.outdir}/bwa_index")
+>include { BWA_ALIGN  }                                from "./modules/bwa_align" addParams(OUTPUT: "${params.outdir}/bwa_align")
+>include { SAMTOOLS_SORT; SAMTOOLS_INDEX }             from "./modules/samtools" addParams(OUTPUT: "${params.outdir}/sorted_bam")
+>include { BCFTOOLS_MPILEUP; BCFTOOLS_CALL; VCFUTILS } from "./modules/bcftools" addParams(OUTPUT: "${params.outdir}/vcf")
 >
 >/*
 >========================================================================================
@@ -425,7 +425,7 @@ Let us submit this job the cluster. In order to do that we have to update our `n
 >
 >params {
 >
->  config_profile_description = ''
+>  config_profile_description = 'gitpod compliant config'
 >  config_profile_contact     = ''
 >  config_profile_url         = ''
 >
@@ -476,7 +476,7 @@ Let us submit this job the cluster. In order to do that we have to update our `n
 >*/
 >
 >profiles {
->  sge {
+>  slurm {
 >    process {
 >      executor     = 'slurm'
 >      queue        = 'my.q'
@@ -491,6 +491,10 @@ Let us submit this job the cluster. In order to do that we have to update our `n
 >    process.conda = "${launchDir}/environment.yml"
 >  }
 >  
+>  docker {
+>    docker.enabled = true
+>  }
+>  
 >  singularity {
 >    singularity.enabled = true
 >  }
@@ -498,7 +502,13 @@ Let us submit this job the cluster. In order to do that we have to update our `n
 >}
 >```
 
-Now, let us create a shell script `varcal.sh` to submit the `nextflow run` command as shown below:
+To run the workflow using Docker profile on GitPod
+
+```bash
+nextflow run varcal.nf -profile docker
+```
+
+If submitting to slurm, you can create a shell script `varcal.sh` to submit the `nextflow run` command as shown below:
 
 > NOTE: change the email address to your own
 
@@ -512,7 +522,7 @@ Now, let us create a shell script `varcal.sh` to submit the `nextflow run` comma
 >
 >cd ~/nextflow_tutorial
 >module load nextflow
->nextflow run variant-calling.nf -profile singularity,slurm,short --output "results"
+>nextflow run variant-calling.nf -profile singularity,slurm --outdir "results-slurm"
 >```
 
 Now submit the job to cluster for execution
