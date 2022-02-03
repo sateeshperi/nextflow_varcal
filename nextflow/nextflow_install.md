@@ -14,16 +14,40 @@ permalink: /nextflow/nextflow_install
 
 <br>
 
-## Nextflow Install
+## GITPOD Setup
 
-### Requirements
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git)
+
+* **The GitPod comes with Nextflow, Conda and Docker pre-installed**
+
+Once the pod launches, it will present a VS-Code interface
+
+* To install Mamba and create `varcal` environment based on yml file
+```bash
+bash envconfig.sh
+```
+
+* To download reference genome and raw reads
+```bash
+bash data/fetch_raw_data.sh
+```
+
+* To trim the reads using trimmomatic
+```bash
+conda activate varcal
+bash data/trim.sh
+```
+
+---
+<br>
+
+## Manual Install Instructions
+
+### Nextflow Requirements
 
 * Nextflow can be used on any POSIX compatible system (Linux, OS X, etc). It requires Bash 3.2 (or later) and [Java 8 (or later, up to 15)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) to be installed.
-
 * For the execution in a cluster of computers the use a shared file system is required to allow the sharing of tasks input/output files.
-
 * Windows system is supported through WSL.
-
 * Nextflow is distributed as a self-installing package, which means that it does not require any special installation procedure. Installation instructions can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation)
 
 
@@ -38,6 +62,7 @@ nextflow -v         ## check install by invoking Nextflow, getting version
 ```
 
 ---
+
 ## NF-CORE Install
 
 ```bash
