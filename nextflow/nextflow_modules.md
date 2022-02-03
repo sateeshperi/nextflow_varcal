@@ -25,13 +25,12 @@ permalink: /nextflow/nextflow_modules
 * A module can contain the definition of a function, process and workflow definitions.
 
 ```bash
-cd /workspace/nextflow_tutorial/
 mkdir modules
 cd modules
 ```
 
 
-*   Create a new file `fastqc.nf` in the current `/workspace/nextflow_tutorial/modules/` directory; paste the following and save.
+*   Create a new file `fastqc.nf` in the current modules directory; paste the following and save.
 
 >```bash
 >/*
@@ -70,7 +69,7 @@ cd modules
 >}
 >```
 
-*   Create a new file `bwa_index.nf` in the current `~/nextflow_tutorial/modules/` directory; paste the following and save.
+*   Create a new file `bwa_index.nf` in the current modules directory; paste the following and save.
 
 >```bash
 >/*
@@ -109,7 +108,7 @@ cd modules
 >}
 >```
 
-*   Create a new file `bwa_align.nf` in the current `~/nextflow_tutorial/modules/` directory; paste the following and save.
+*   Create a new file `bwa_align.nf` in the current modules directory; paste the following and save.
 
 >```bash
 >/*
@@ -150,7 +149,7 @@ cd modules
 >}
 >```
 
-*   Create a new file `samtools.nf` in the current `~/nextflow_tutorial/modules/` directory; paste the following and save.
+*   Create a new file `samtools.nf` in the current modules directory; paste the following and save.
 
 >```bash
 >/*
@@ -215,7 +214,7 @@ cd modules
 >}
 >```
 
-*   Create a new file `bcftools.nf` in the current `~/nextflow_tutorial/modules/` directory; paste the following and save.
+*   Create a new file `bcftools.nf` in the current modules directory; paste the following and save.
 
 >```bash
 >/*
@@ -308,7 +307,7 @@ cd modules
 
 * The above snippets includes a process with name `BWA_INDEX` defined in the module script `bwa_index.nf` in the main execution context, as such it can be invoked in the workflow scope.
 
-* Nextflow implicitly looks for the script file `/workspace/nextflow_tutorial/modules/bwa_index.nf` resolving the path against the including script location.
+* Nextflow implicitly looks for the script file `nextflow_tutorial/modules/bwa_index.nf` resolving the path against the including script location.
 
 > Note: Relative paths must begin with the `./` prefix.
 
@@ -410,7 +409,7 @@ cd modules
 >*/
 >```
 
-Let us submit this job the cluster. In order to do that we have to update our `nextflow.config` in `~/nextflow_tutorial` directory. Add the following cluster specifications to `nextflow.config` and save. 
+Update the `nextflow.config` to add the following specifications and save. 
 
 >```bash
 >/*
