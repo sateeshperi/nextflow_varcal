@@ -27,8 +27,9 @@ permalink: /nextflow/
 | Chapter | Learning Objectives |
 | --- | --- |
 | **Session - 1** | **3 hours** |
-|0. [Setup](/nextflow_varcal/nextflow/nextflow_install) | How to install Nextflow? |
-|                                                  | Data & Environment Setup |
+|0. [Setup](/nextflow_varcal/nextflow/nextflow_install) | GitPod Setup |
+|                                                       | How to install Nextflow? |
+|                                                       | Data & Environment Setup |
 |1. [Nextflow Introduction](/nextflow_varcal/nextflow/nextflow_intro) | What is a workflow and what are workflow management systems? |
 |                                                     | Why should I use a workflow management system? |
 |                                                     | What is Nextflow? |
