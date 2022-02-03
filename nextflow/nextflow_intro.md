@@ -100,38 +100,57 @@ Nextflow workflows have three main parts; **`processes`**, **`channels`**, and *
 
 ## Your first Nextflow script
 
-*   Change directory to `~/nextflow_tutorial`:
-
-```bash
-cd ~/nextflow_tutorial
-```
-
 We are now going to create a nextflow script that counts the number of lines in a file.
 
-**Create the file `word_count.nf`  in the current directory using `nano word_count.nf` or your favourite text editor and copy-paste the following code.**
+**Create the file `word_count.nf`  in the current directory using `code word_count.nf` or your favourite text editor and copy-paste the following code.**
 
 ```groovy
 #!/usr/bin/env nextflow
 
 nextflow.enable.dsl=2
 
-/*  Comments are uninterpreted text included with the script.
-    They are useful for describing complex parts of the workflow
-    or providing useful information such as workflow usage.
+/*
+========================================================================================
+    Workflow parameters are written as params.<parameter>
+    and can be initialised using the `=` operator.
+========================================================================================
+*/
 
-    Usage:
-       nextflow run word_count.nf --input <input_file>
-
-    Multi-line comments start with a slash asterisk /* and finish with an asterisk slash. */
-//  Single line comments start with a double slash // and finish on the same line
-
-/*  Workflow parameters are written as params.<parameter>
-    and can be initialised using the `=` operator. */
 params.input = "data/untrimmed_fastq/SRR2584863_1.fastq.gz"
 
-/*  A Nextflow process block
-    Process names are written, by convention, in uppercase.
-    This convention is used to enhance workflow readability. */
+/*
+========================================================================================
+    Input data is received through channels
+========================================================================================
+*/
+
+input_ch = Channel.fromPath(params.input)
+
+/*
+========================================================================================
+   Main Workflow
+========================================================================================
+*/
+
+workflow {
+    //  The script to execute is called by it's process name, and input is provided between brackets.
+    
+    NUM_LINES(input_ch)
+
+    /*  Process output is accessed using the `out` channel.
+        The channel operator view() is used to print process output to the terminal. */
+        
+    NUM_LINES.out.view()
+    
+}
+
+/*
+========================================================================================
+    A Nextflow process block. Process names are written, by convention, in uppercase.
+    This convention is used to enhance workflow readability.
+========================================================================================
+*/
+
 process NUM_LINES {
 
     input:
@@ -142,22 +161,12 @@ process NUM_LINES {
 
     script:
     """
+    # Print reads
     printf '${read}'
+    
+    # Unzip file and count number of lines 
     gunzip -c ${read} | wc -l
     """
-}
-
-//  Input data is received through channels
-input_ch = Channel.fromPath(params.input)
-
-//  The default workflow
-workflow {
-    /*  The script to execute is called by it's process name, and input is provided between brackets. */
-    NUM_LINES(input_ch)
-
-    /*  Process output is accessed using the `out` channel.
-        The channel operator view() is used to print process output to the terminal. */
-    NUM_LINES.out.view()
 }
 ```
 
