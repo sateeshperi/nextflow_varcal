@@ -35,6 +35,8 @@ bash data/fetch_raw_data.sh
 * To trim the reads using trimmomatic
 ```bash
 conda activate varcal
+```
+```bash
 bash data/trim.sh
 ```
 
