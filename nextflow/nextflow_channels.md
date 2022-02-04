@@ -245,13 +245,13 @@ The value channel `value_ch` will print one line.
 
 ```groovy
 println("Single File")
-read_ch = Channel.fromPath("${launchDir}/data/untrimmed_fastq/SRR2584863_1.fastq.gz")
+read_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584863_1.fastq.gz")
 read_ch.view()
 
 println("Glob Syntax")
 
 // We can change the default options for the `fromPath` method to give an error if the file doesn’t exist using the `checkIfExists` parameter.
-read_ch = Channel.fromPath( "${launchDir}/data/untrimmed_fastq/*.fastq.gz", checkIfExists: true )
+read_ch = Channel.fromPath( "/workspace/nextflow_tutorial/data/untrimmed_fastq/*.fastq.gz", checkIfExists: true )
 read_ch.view()
 
 // **Note The pattern must contain at least a star wildcard character.**
@@ -278,7 +278,7 @@ read_ch.view()
 
 *   We have seen how to process files individually using `fromPath`. In Bioinformatics we often want to process files in pairs or larger groups, such as read pairs in sequencing.
 
-For example in the `${launchDir}/data/untrimmed_fastq` directory we have three groups of read pairs:
+For example in the `/workspace/nextflow_tutorial/data/untrimmed_fastq` directory we have three groups of read pairs:
 
 | Sample_ID | read1 |	read2 |
 | --- | --- | --- |
@@ -295,7 +295,7 @@ For example in the `${launchDir}/data/untrimmed_fastq` directory we have three g
 **Create a new `queue_pairs.nf`; add the following and `nextflow run queue_pairs.nf`:**
 
 ```groovy
-read_pair_ch = Channel.fromFilePairs("${launchDir}/data/untrimmed_fastq/*_{1,2}.fastq.gz", checkIfExists: true)
+read_pair_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/untrimmed_fastq/*_{1,2}.fastq.gz", checkIfExists: true)
 read_pair_ch.view()
 ```
 
@@ -312,7 +312,7 @@ This will produce a queue channel, `read_pair_ch` , containing three elements:
 
 *   Each element is a tuple that has:
     1. string value (the file prefix matched, e.g `SRR2584866`)
-    2. and a list with the two files e,g. [`nextflow_tutorial/data/untrimmed_fastq/SRR2584866_1.fastq.gz, nextflow_tutorial/data/untrimmed_fastq/SRR2584866_2.fastq.gz`] .
+    2. and a list with the two files e,g. [`/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584866_1.fastq.gz, /workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584866_2.fastq.gz`] .
 
 *   The asterisk character `*`, matches any number of characters (including none), and the `{}` braces specify a collection of subpatterns. 
 *   Therefore the `*_{1,2}.fastq.gz` pattern matches any file name ending in `_1.fastq.gz` or `_2.fastq.gz`.
