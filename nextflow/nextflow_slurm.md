@@ -39,7 +39,7 @@ permalink: /nextflow/nextflow_slurm
 * Navigate to your `nextflow_tutorial` directory and make sure you have downloaded the nf-core/bactmap pipeline (`nf-core download nf-core/bactmap -r 1.0.0`)
 
 ```bash
-cd nextflow_tutorial/nf-core-bactmap-1.0.0/workflow/
+cd /workspace/nextflow_tutorial/nf-core-bactmap-1.0.0/workflow/
 ```
 
 * Lets create a `nfcore_custom_config` profile to submit jobs to HPC cluster which uses `slurm` scheduler. 
@@ -105,7 +105,7 @@ executor {
 
 /*
 ========================================================================================
-    Profiles - slurm,singularity,conda
+    Profiles - slurm,singularity,conda,docker
 ========================================================================================
 */
 
@@ -124,8 +124,13 @@ profiles {
   singularity {
     singularity.enabled = true
   }
+  
   conda {
     conda.enabled = true
+  }
+  
+  docker {
+    docker.enabled = true
   }
 
 }
@@ -134,7 +139,7 @@ profiles {
 * Now run the pipeline with following options to submit the nextflow job to the cluster.
 
 ```bash
-nextflow run main.nf --custom_config_base conf/nf-core-slurm -profile test,singularity,slurm --outdir results-slurm
+nextflow run main.nf --custom_config_base conf/nf-core-slurm -profile test,docker --outdir results
 ```
 
 * You should output similar to below in the directory `results-slurm`.
@@ -233,7 +238,7 @@ Succeeded   : 47
 * To use conda 
 
 ```bash
-nextflow run main.nf --custom_config_base conf/nf-core-slurm -profile conda,test --outdir results-slurm
+nextflow run main.nf --custom_config_base conf/nf-core-slurm -profile conda,test --outdir results-conda
 ```
 
 ---
