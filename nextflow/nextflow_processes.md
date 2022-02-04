@@ -15,7 +15,6 @@ permalink: /nextflow/nextflow_processes
 <br>
 
 ```bash
-cd ~/nextflow_tutorial
 mkdir processes
 cd processes
 ```
@@ -32,7 +31,7 @@ We now know how to create and use Channels to send data around a workflow. We wi
 For example, below is the command line you would run on a terminal to create a index for the *ecoli* genome to be used with the [BWA](https://github.com/lh3/bwa) aligner:
 
 >```bash
->bwa index ~/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
+>bwa index data/ref_genome/ecoli_rel606.fasta
 >```
 
 * In Nextflow The process definition starts with keyword the `process`, followed by process name and finally the process body delimited by curly brackets `{}`.
@@ -42,7 +41,7 @@ For example, below is the command line you would run on a terminal to create a i
 >process BWA_INDEX {
 >  script:
 >  """
->  bwa index ~/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
+>  bwa index data/ref_genome/ecoli_rel606.fasta
 >  """
 >}
 >```
@@ -60,7 +59,7 @@ process BWA_INDEX {
 
   script:
   """
-  bwa index "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+  bwa index "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
   """
 }
 
@@ -119,7 +118,7 @@ Example we have seen before:
 >
 >  script:
 >  """
->  bwa index "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+>  bwa index "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
 >  """
 >}
 >
@@ -219,7 +218,7 @@ workflow {
 //process_index.nf
 nextflow.enable.dsl=2
 
-params.genome = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+params.genome = "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
 
 process BWA_INDEX {
 
@@ -246,7 +245,7 @@ workflow {
 //process_escape_bash.nf
 nextflow.enable.dsl=2
 
-params.genome = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+params.genome = "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
 
 process BWA_INDEX {
 
@@ -416,7 +415,7 @@ process BWA_INDEX {
   """
 }
 
-ref_ch = Channel.fromPath("$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
+ref_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
 
 workflow {
   BWA_INDEX( ref_ch )
@@ -479,7 +478,7 @@ process BWA_INDEX {
   """
 }
 
-ref_ch = Channel.fromPath("$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
+ref_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
 
 workflow {
   BWA_INDEX(ref_ch)
@@ -530,7 +529,7 @@ process TUPLEINPUT{
   """
 }
 
-reads_ch = Channel.fromFilePairs("$HOME/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz")
+reads_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz")
 
 workflow {
   TUPLEINPUT(reads_ch)
@@ -571,7 +570,7 @@ process FASTQC {
 
 }
 
-reads_ch = Channel.fromFilePairs("$HOME/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz", checkIfExists: true)
+reads_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz", checkIfExists: true)
 
 workflow {
   FASTQC( reads_ch )
@@ -678,7 +677,7 @@ process BWA_INDEX {
   """
 }
 
-ref_ch = Channel.fromPath("$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
+ref_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
 
 workflow {
   BWA_INDEX( ref_ch )
@@ -739,7 +738,7 @@ process BWA_INDEX {
   """
 }
 
-ref_ch = Channel.fromPath("$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
+ref_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
 
 workflow {
   BWA_INDEX(ref_ch)
@@ -810,7 +809,7 @@ process FASTQC {
 
 }
 
-reads_ch = Channel.fromFilePairs("$HOME/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz", checkIfExists: true)
+reads_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz", checkIfExists: true)
 
 workflow {
   FASTQC( reads_ch )
