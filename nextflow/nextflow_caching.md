@@ -23,7 +23,7 @@ To restart from the last successfully executed process we add the command line o
 For example, the command below would resume the wc.nf script from the last successful process.
 
 ```bash
-cd ~/nextflow_tutorial
+cd /workspace/nextflow_tutorial
 nextflow run word_count.nf --input 'data/untrimmed_fastq/*.fastq.gz' -resume
 ```
 We can see in the output that the results from the process NUM_LINES has been retrieved from the cache.
