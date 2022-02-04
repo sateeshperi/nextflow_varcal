@@ -80,7 +80,7 @@ process MULTIQC {
 
     script:
     """
-         multiqc .
+    multiqc .
     """
 }
 ```
@@ -89,7 +89,7 @@ process MULTIQC {
 
 
 ```bash
-cd ~/nextflow_tutorial/
+cd /workspace/nextflow_tutorial
 mkdir subworkflows
 cd subworkflows
 ```
@@ -299,7 +299,7 @@ executor {
 
 /*
 ========================================================================================
-    Profiles - slurm,singularity,conda
+    Profiles - slurm,singularity,conda,docker
 ========================================================================================
 */
 
@@ -322,6 +322,10 @@ profiles {
   singularity {
     singularity.enabled = true
   }
+  
+   docker {
+    docker.enabled = true
+  }
 
 }
 ```
@@ -333,7 +337,7 @@ By default, the unnamed workflow is assumed to be the main entry point for the s
 For example:
 
 ```bash
-nextflow run variant-calling.nf -profile singularity,slurm -entry QC -with-dag read_qc_dag.png
+nextflow run variant-calling.nf -profile docker -entry QC -with-dag read_qc_dag.png
 ```
 
 >Output
