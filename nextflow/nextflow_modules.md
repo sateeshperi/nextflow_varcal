@@ -409,7 +409,7 @@ cd modules
 >*/
 >```
 
-Update the `nextflow.config` to add the following specifications and save. 
+Update the `nextflow.config` in the `/workspace/nextflow_tutorial/` directory to add the following specifications and save. 
 
 >```bash
 >/*
