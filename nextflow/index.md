@@ -8,14 +8,14 @@ permalink: /nextflow/
 <br>
 
 *   **Nextflow** is workflow management software which enables the writing of scalable and reproducible scientific workflows. 
-*   It can integrate various software package and environment management systems such as **Docker**, **Singularity**, and **Conda**. It allows for existing pipelines written in common scripting languages, such as R and Python, to be seamlessly coupled together. 
+*   It can integrate various software package and environment management systems such as **Docker**, **Singularity**, and **Conda**. It allows for existing pipelines written in common scripting languages, such as BASH, R and Python, to be seamlessly coupled together. 
 *   Nextflow simplifies the implementation and running of workflows on cloud or high-performance computing (HPC) infrastructures.
 *   Nextflow is backed by **nf-core**: a community-driven platform, which provides **peer-reviewed** best practice analysis pipelines.
 
 ![](images/state-of-nextflow-2021.png)
 
 >**Pre-Requisites**
->*  This lesson assumes a working understanding of the command line and a familiarity with running jobs on HPC cluster.
+>*  This lesson assumes a working understanding of the command line, familiarity with Conda, Docker/Singularity and running jobs on HPC cluster.
 >
 >*  This lesson also assumes some familiarity with biological concepts, including the structure of DNA, nucleotide abbreviations, and the concept of genomic variation within a population.
 
@@ -27,7 +27,7 @@ permalink: /nextflow/
 | Chapter | Learning Objectives |
 | --- | --- |
 | **Session - 1** | **3 hours** |
-|0. [Setup](/nextflow_varcal/nextflow/nextflow_install) | GitPod Setup |
+|0. [Setup](/nextflow_varcal/nextflow/nextflow_install) | GitPod Link & Setup |
 |                                                       | How to install Nextflow? |
 |                                                       | Data & Environment Setup |
 |1. [Nextflow Introduction](/nextflow_varcal/nextflow/nextflow_intro) | What is a workflow and what are workflow management systems? |
