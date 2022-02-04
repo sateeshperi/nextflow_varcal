@@ -30,6 +30,7 @@ bash envconfig.sh
 >
 >```bash
 >conda init bash
+>
 >source ~/.bashrc
 >```
 >**Close terminal and open a new terminal. You should be able to see `(base)` at the beginning of terminal indicating active conda base environment.**
@@ -50,7 +51,7 @@ bash data/trim.sh
 
 ---
 
->If `Unable to initialize nextflow environment` error:
+>When executing nextflow if you see `Unable to initialize nextflow environment` error:
 >
 >```bash
 >unset JAVA_TOOL_OPTIONS
