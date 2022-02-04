@@ -26,8 +26,7 @@ permalink: /nextflow/nextflow_configuration
 We have been using an activated conda environment `varcal` to provide tools for our nextflow scripts. However we can create profiles which allows you to control the creation of a Conda environment by the Conda package manager and Singularity containers.
 
 ```bash
-cd ~/nextflow_tutorial
-touch nextflow.config
+code nextflow.config
 ```
 
 Paste the following
@@ -36,8 +35,13 @@ Paste the following
 //nextflow.config
 profiles {
   conda {
-    process.conda = "$HOME/nextflow_tutorial/environment.yml"
+    process.conda = "/workspace/nextflow_tutorial/environment.yml"
   }
+  
+   docker {
+    docker.enabled = true
+  }
+  
   singularity {
     singularity.enabled = true
   }
@@ -58,8 +62,8 @@ nextflow run variant-calling.nf -profile conda
 >Launching `variant-calling.nf` [backstabbing_yonath] - revision: 119a92be39
 >V A R I A N T-C A L L I N G - N F   P I P E L I N E
 >===================================
->genome       : nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
->reads        : nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz
+>genome       : /workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
+>reads        : /workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz
 >outdir       : results
 >
 >[-        ] process > FASTQC           -
@@ -426,12 +430,12 @@ profiles {
 *   You can use the command nextflow config to print the resolved configuration of a workflow. This allows you to see what settings Nextflow will use to run a workflow.
 
 ```bash
-nextflow config variant-calling.nf -profile singularity
+nextflow config variant-calling.nf -profile docker
 ```
 
 >Output
 >```bash
->singularity {
+>docker {
 >   enabled = true
 >}
 >```
