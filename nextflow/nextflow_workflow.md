@@ -15,7 +15,6 @@ permalink: /nextflow/nextflow_workflow
 <br>
 
 ```bash
-cd ~/nextflow_tutorial
 mkdir workflow
 cd workflow
 conda activate varcal
@@ -48,8 +47,8 @@ nextflow.enable.dsl=2
 
 // Initialize required parameters
 params.outdir = 'results'
-params.genome = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
-params.reads = "$HOME/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz"
+params.genome = "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+params.reads = "/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz"
 
 workflow {
     
@@ -130,8 +129,8 @@ nextflow.enable.dsl=2
 
 // Initialize required parameters
 params.outdir = 'results'
-params.genome = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
-params.reads = "$HOME/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz"
+params.genome = "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+params.reads = "/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz"
 
 workflow {
     
