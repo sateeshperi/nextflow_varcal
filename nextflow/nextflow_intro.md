@@ -100,6 +100,10 @@ Nextflow workflows have three main parts; **`processes`**, **`channels`**, and *
 
 ## Your first Nextflow script
 
+```bash
+cd /workspace/nextflow_tutorial
+```
+
 We are now going to create a nextflow script that counts the number of lines in a file.
 
 **Create the file `word_count.nf`  in the current directory using `code word_count.nf` or your favourite text editor and copy-paste the following code.**
