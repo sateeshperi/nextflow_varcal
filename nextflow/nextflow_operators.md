@@ -260,7 +260,7 @@ In the example below we use the `map` operator to transform a channel containing
 We can change the default name of the closure parameter keyword from `it` to a more meaningful name `file` using `->`. When we have multiple parameters we can specify the keywords at the start of the closure, e.g. `file, numreads ->`.
 
 ```groovy
-fq_ch = channel.fromPath("$HOME/nextflow_tutorial/data/untrimmed_fastq/*.fastq.gz")
+fq_ch = channel.fromPath("/workspace/nextflow_tutorial/data/untrimmed_fastq/*.fastq.gz")
                .map ({ file -> [file, file.countFastq()] })
                .view ({ file, numreads -> "file $file contains $numreads reads" })
 ```
@@ -280,7 +280,7 @@ fq_ch = channel.fromPath("$HOME/nextflow_tutorial/data/untrimmed_fastq/*.fastq.g
 We can then add a `filter` operator to only retain thoses fastq files with more than 25000 reads.
 
 ```groovy
-channel.fromPath("$HOME/nextflow_tutorial/data/untrimmed_fastq/*.fastq.gz")
+channel.fromPath("/workspace/nextflow_tutorial/data/untrimmed_fastq/*.fastq.gz")
        .map ({ file -> [file, file.countFastq()] })
        .filter({ file, numreads -> numreads > 25000})
        .view ({ file, numreads -> "file $file contains $numreads reads" })
@@ -510,10 +510,10 @@ In the simplest case just apply the `splitCsv` operator to a channel emitting a 
 Create a CSV file `samples.csv` of all files in `untrimmed_fastq` folder.
 
 ```bash
-nano $HOME/nextflow_tutorial/data/untrimmed_fastq/samples.csv
+code /workspace/nextflow_tutorial/data/untrimmed_fastq/samples.csv
 ```
 
-and paste the following:
+and paste the following and save:
 
 ```bash
 sample_id,fastq_1,fastq_2
@@ -525,7 +525,7 @@ SRR2589044,nextflow_tutorial/data/untrimmed_fastq/SRR2589044_1.fastq.gz,nextflow
 We can use the `splitCsv()` operator to split the channel contaning a CSV file into three elements.
 
 ```groovy
-csv_ch = channel.fromPath("$HOME/nextflow_tutorial/data/untrimmed_fastq/samples.csv")
+csv_ch = channel.fromPath("/workspace/nextflow_tutorial/data/untrimmed_fastq/samples.csv")
                 .splitCsv()
 
 csv_ch.view()
@@ -547,7 +547,7 @@ The above example shows hows the CSV file `samples.csv` is parsed and is split i
 Values can be accessed by its positional index using the square brackets syntax `[index]`. So to access the first column you would use `[0]` as shown in the following example:
 
 ```groovy
-csv_ch=channel.fromPath("$HOME/nextflow_tutorial/data/untrimmed_fastq/samples.csv")
+csv_ch=channel.fromPath("/workspace/nextflow_tutorial/data/untrimmed_fastq/samples.csv")
               .splitCsv()
 
 csv_ch.view({it[0]})
@@ -568,7 +568,7 @@ csv_ch.view({it[0]})
 When the CSV begins with a header line defining the column names, you can specify the parameter `header: true` which allows you to reference each value by its name, as shown in the following example:
 
 ```groovy
-csv_ch=channel.fromPath("$HOME/nextflow_tutorial/data/untrimmed_fastq/samples.csv")
+csv_ch=channel.fromPath("/workspace/nextflow_tutorial/data/untrimmed_fastq/samples.csv")
               .splitCsv(header:true)
 
 csv_ch.view({it.fastq_1})
