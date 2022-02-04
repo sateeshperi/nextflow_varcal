@@ -216,7 +216,7 @@ nextflow run nf-core/bactmap -r 1.0.0 --help
 *   The `test` config profile specifies URLs for test data and all required parameters. With this, you can test any nf-core pipeline with the following command:
 
 ```bash
-nextflow run nf-core/bactmap -r 1.0.0 -profile test,singularity
+nextflow run nf-core/bactmap -r 1.0.0 -profile test,docker
 ```
 
 ---
