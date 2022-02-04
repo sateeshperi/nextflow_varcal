@@ -30,7 +30,9 @@ bash envconfig.sh
 >
 >```bash
 >conda init bash
+>```
 >
+>```bash
 >source ~/.bashrc
 >```
 >**Close terminal and open a new terminal. You should be able to see `(base)` at the beginning of terminal indicating active conda base environment.**
