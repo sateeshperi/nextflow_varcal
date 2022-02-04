@@ -17,6 +17,7 @@ permalink: /nextflow/nextflow_processes
 ```bash
 mkdir processes
 cd processes
+conda activate varcal
 ```
 
 We now know how to create and use Channels to send data around a workflow. We will now see how to run tasks within a workflow using processes.
@@ -532,7 +533,9 @@ process TUPLEINPUT{
 reads_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz")
 
 workflow {
+  
   TUPLEINPUT(reads_ch)
+  
 }
 ```
 
@@ -573,8 +576,10 @@ process FASTQC {
 reads_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz", checkIfExists: true)
 
 workflow {
+  
   FASTQC( reads_ch )
   FASTQC.out.view()
+  
 }
 ```
 
@@ -680,7 +685,9 @@ process BWA_INDEX {
 ref_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
 
 workflow {
+  
   BWA_INDEX( ref_ch )
+  
 }
 ```
 
@@ -741,7 +748,9 @@ process BWA_INDEX {
 ref_ch = Channel.fromPath("/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta")  
 
 workflow {
+  
   BWA_INDEX(ref_ch)
+  
 }
 ```
 
@@ -812,7 +821,9 @@ process FASTQC {
 reads_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/trimmed_fastq/SRR2584863_{1,2}.trim.fastq.gz", checkIfExists: true)
 
 workflow {
+  
   FASTQC( reads_ch )
+  
 }
 ```
 
