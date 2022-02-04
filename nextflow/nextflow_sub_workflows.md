@@ -46,7 +46,7 @@ permalink: /nextflow/nextflow_sub_workflows
 
 Let's create a sub-workflow for read qc using `fastqc` and `multiqc` modules.
 
-*    First, we need to create a new file `multiqc.nf` in the `~/nextflow_tutorial/modules/` directory; paste the following and save.
+*    First, we need to create a new file `multiqc.nf` in the `/workspace/nextflow_tutorial/modules/` directory; paste the following and save.
 
 ```groovy
 /*
@@ -94,7 +94,7 @@ mkdir subworkflows
 cd subworkflows
 ```
 
-*   Create a new file `fastmultiqc.nf` in `~/nextflow_tutorial/subworkflows` directory; paste the following and save.
+*   Create a new file `fastmultiqc.nf` in `/workspace/nextflow_tutorial/subworkflows` directory; paste the following and save.
 
 ```groovy
 /*
@@ -135,7 +135,7 @@ workflow READ_QC {
 *   Move to parent directory
 
 ```bash
-cd ~/nextflow_tutorial/
+cd /workspace/nextflow_tutorial
 ```
 
 * Replace your `variant-calling.nf` script as shown below to include the `QC` sub-workflow
