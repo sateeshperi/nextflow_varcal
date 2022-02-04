@@ -22,10 +22,18 @@ permalink: /nextflow/nextflow_install
 
 Once the pod launches, it will present a VS-Code interface
 
-* To install Mamba and create `varcal` environment based on yml file
+* To create `varcal` environment based on yml file
 ```bash
 bash envconfig.sh
 ```
+>If conda is not available in PATH:
+>
+>```bash
+>conda init bash
+>source ~/.bashrc
+>```
+>**Close terminal and open a new terminal. You should be able to see `(base)` at the beginning of terminal indicating active conda base environment.**
+
 
 * To download reference genome and raw reads
 ```bash
@@ -39,6 +47,15 @@ conda activate varcal
 ```bash
 bash data/trim.sh
 ```
+
+---
+
+>If `Unable to initialize nextflow environment` error:
+>
+>```bash
+>unset JAVA_TOOL_OPTIONS
+>export NFX_OPTS=$JAVA_TOOL_OPTIONS
+>```
 
 ---
 <br>
