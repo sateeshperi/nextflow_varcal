@@ -504,37 +504,30 @@ Update the `nextflow.config` to add the following specifications and save.
 To run the workflow using Docker profile on GitPod
 
 ```bash
-nextflow run varcal.nf -profile docker
+nextflow run variant-calling.nf -profile docker
 ```
 
-If submitting to slurm, you can create a shell script `varcal.sh` to submit the `nextflow run` command as shown below:
+---
+<details>
+  <summary><b>CLICK HERE for SLURM submit script</b></summary>
 
-> NOTE: change the email address to your own
-
->```bash
+<pre>
 #!/bin/bash
 #SBATCH --job-name=varcal
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --time=48:00:00
 #SBATCH --partition=
->
->cd ~/nextflow_tutorial
->module load nextflow
->nextflow run variant-calling.nf -profile singularity,slurm --outdir "results-slurm"
->```
 
-Now submit the job to cluster for execution
+cd nextflow_tutorial/
+module load nextflow
+nextflow run variant-calling.nf -profile singularity,slurm --outdir "results-slurm"
+</pre>
 
-```bash
-sbatch varcal.sh
-```
+</details>
+---
+<br>
 
-To check the status of job 
-
-```bash
-squeue
-```
 
 ### Module aliases
 
@@ -579,7 +572,7 @@ workflow {
 * **[Click Here for nf-core/modules github](https://github.com/nf-core/modules/tree/master/modules)**
 
 ```bash
-cd ~/nextflow_tutorial
+cd /workspace/nextflow_tutorial
 ```
 
 To initiaite a nextflow pipeline in nf-core style and pre-loaded templates and configuration, we can use `nf-core create` command:
