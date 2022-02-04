@@ -42,18 +42,18 @@ bash data/trim.sh
 
 ---
 <br>
-
-## Manual Install Instructions
+---
+<details>
+  <summary><b>CLICK HERE for Manual Install Instructions</b></summary>
 
 ### Nextflow Requirements
 
 * Nextflow can be used on any POSIX compatible system (Linux, OS X, etc). It requires Bash 3.2 (or later) and [Java 8 (or later, up to 15)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) to be installed.
 * For the execution in a cluster of computers the use a shared file system is required to allow the sharing of tasks input/output files.
 * Windows system is supported through WSL.
-* Nextflow is distributed as a self-installing package, which means that it does not require any special installation procedure. Installation instructions can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation)
-
-
-```bash
+* Nextflow is distributed as a self-installing package, which means that it does not require any special installation procedure. Installation instructions can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation)  
+  
+<pre>
 mkdir -p ~/bin/
 cd ~/bin/
 curl -s https://get.nextflow.io | bash
@@ -61,38 +61,19 @@ chmod +x nextflow
 echo 'PATH=~/bin:$PATH' >> ~/.bashrc
 which nextflow      ## should point back to ~/bin
 nextflow -v         ## check install by invoking Nextflow, getting version
-```
-
----
-
-## NF-CORE Install
-
-```bash
+</pre>
+  
+## NF-CORE Install  
+<pre>
 conda install nf-core
-```
-or
-
-```bash
+# or
 pip install nf-core
-```
-
-<br>
-
-## IDE
-
-IDE choice will not be discussed in this tutorial. You can use what you are comfortable with, you will need to edit text files as well as run commands from the terminal, and will need to run those commands from a cluster node at one point. Some good options are VScode, with nextflow plugins and remote-ssh module setup and working. This is beyond the scope of the tutorial at this time.
-
-*   **[Download Visual Studio Code](https://code.visualstudio.com/Download)**
-
-*   [VSCode Nextflow Plugin](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
-
-*   [VSCode Remote-SSH Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
-
-## Environment Setup ()
+</pre>
+  
+## Environment Setup
 
 *  Create `environment.yml`
-
-```bash
+<pre>
 channels:
   - bioconda
   - conda-forge
@@ -104,31 +85,29 @@ dependencies:
   - bcftools
   - multiqc
   - graphviz
-```
-
-```bash
+</pre>
+  
+<pre>
 mamba env create -n varcal -f environment.yml
-```
-
+</pre>
+  
+  
 ## Data Download & Setup
 
 *   **[Data Source - DataCarpentry Wrangling Genomics Lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html)**
 
-*  Download reference genome
-
-```bash
+*  Download reference genome  
+<pre>
 cd ~/
 mkdir -p nextflow_tutorial/data/ref_genome
 cd nextflow_tutorial/data/ref_genome
 curl -L -o data/ref_genome/ecoli_rel606.fasta.gz ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/017/985/GCA_000017985.1_ASM1798v1/GCA_000017985.1_ASM1798v1_genomic.fna.gz
 gunzip data/ref_genome/ecoli_rel606.fasta.gz
 ls
-```
-
-
+</pre>
+  
 *  Download raw data
-
-```bash
+<pre>
 cd ~/
 mkdir -p nextflow_tutorial/data/untrimmed_fastq/
 cd nextflow_tutorial/data/untrimmed_fastq/
@@ -139,15 +118,15 @@ curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_1.fa
 curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_2.fastq.gz
 curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_1.fastq.gz
 curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fastq.gz
-```
-
-```bash
-conda activate varcal
-```
-
+</pre>  
+  
 *  Trim the reads
-
-```bash
+<pre>
+conda activate varcal
+</pre>
+  
+  
+<pre>
 cd nextflow_tutorial/data/untrimmed_fastq/
 
 for infile in *_1.fastq.gz
@@ -158,17 +137,28 @@ do
                 ${base}_2.trim.fastq.gz ${base}_2un.trim.fastq.gz \
                 SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
 done
-```
-
-```bash
+</pre>  
+  
+<pre>
 mkdir ../trimmed_fastq
 mv *.trim* ../trimmed_fastq
 cd ../trimmed_fastq
 ls
-```
+</pre>
+    
+## IDE
 
+IDE choice will not be discussed in this tutorial. You can use what you are comfortable with, you will need to edit text files as well as run commands from the terminal, and will need to run those commands from a cluster node at one point. Some good options are VScode, with nextflow plugins and remote-ssh module setup and working. This is beyond the scope of the tutorial at this time.
 
+*   **[Download Visual Studio Code](https://code.visualstudio.com/Download)**
 
+*   [VSCode Nextflow Plugin](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
+
+*   [VSCode Remote-SSH Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)  
+
+</details>
+---
+<br>
 
 ---
 
