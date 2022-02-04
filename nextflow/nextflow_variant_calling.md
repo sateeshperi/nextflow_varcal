@@ -15,7 +15,7 @@ permalink: /nextflow/nextflow_variant_calling
 <br>
 
 ```bash
-cd ~/nextflow_tutorial
+mkdir workflow
 cd workflow
 ```
 
@@ -37,26 +37,29 @@ Our variant calling workflow has the following steps:
 
 ![](images/variant_calling_workflow.png)
 
+## Variant-Calling BASH script
+
 ```bash
 set -e
-cd ~/nextflow_tutorial/results
+mkdir /workspace/nextflow_tutorial/bash-results
+cd /workspace/nextflow_tutorial/bash-results
 
-genome=~/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
+genome=/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
 
 bwa index $genome
 
 mkdir -p sam bam bcf vcf
 
-for fq1 in ~/nextflow_tutorial/data/trimmed_fastq/*_1.trim.fastq.gz; do echo "working with file $fq1"; base=$(basename $fq1 _1.trim.fastq.gz);  echo "base name is $base" \
+for fq1 in /workspace/nextflow_tutorial/data/trimmed_fastq/*_1.trim.fastq.gz; do echo "working with file $fq1"; base=$(basename $fq1 _1.trim.fastq.gz);  echo "base name is $base" \
 
-    fq1=~/nextflow_tutorial/data/trimmed_fastq/${base}_1.trim.fastq.gz
-   fq2=~/nextflow_tutorial/data/trimmed_fastq/${base}_2.trim.fastq.gz
-    sam=~/nextflow_tutorial/results/sam/${base}.aligned.sam
-    bam=~/nextflow_tutorial/results/bam/${base}.aligned.bam
-    sorted_bam=~/nextflow_tutorial/results/bam/${base}.aligned.sorted.bam
-    raw_bcf=~/nextflow_tutorial/results/bcf/${base}_raw.bcf
-    variants=~/nextflow_tutorial/results/vcf/${base}_variants.vcf
-    final_variants=~/nextflow_tutorial/results/vcf/${base}_final_variants.vcf 
+    fq1=/workspace/nextflow_tutorial/data/trimmed_fastq/${base}_1.trim.fastq.gz
+   fq2=/workspace/nextflow_tutorial/data/trimmed_fastq/${base}_2.trim.fastq.gz
+    sam=/workspace/nextflow_tutorial/results/sam/${base}.aligned.sam
+    bam=/workspace/nextflow_tutorial/results/bam/${base}.aligned.bam
+    sorted_bam=/workspace/nextflow_tutorial/results/bam/${base}.aligned.sorted.bam
+    raw_bcf=/workspace/nextflow_tutorial/results/bcf/${base}_raw.bcf
+    variants=/workspace/nextflow_tutorial/results/vcf/${base}_variants.vcf
+    final_variants=/workspace/nextflow_tutorial/results/vcf/${base}_final_variants.vcf 
 
     bwa mem $genome $fq1 $fq2 > $sam
     samtools view -S -b $sam > $bam
@@ -72,7 +75,6 @@ for fq1 in ~/nextflow_tutorial/data/trimmed_fastq/*_1.trim.fastq.gz; do echo "wo
 ## Variant Calling Nextflow Pipeline
 
 ```bash
-cd ~/nextflow_tutorial
 conda activate varcal
 ```
 
@@ -81,7 +83,7 @@ conda activate varcal
 ## Finish the Variant-Calling Nextflow Workflow
 
 ```bash
-nano variant-calling.nf
+code variant-calling.nf
 ```
 
 ```groovy
@@ -99,8 +101,8 @@ nextflow.enable.dsl=2
 // Pipeline Input parameters
 
 params.outdir = 'results'
-params.genome = "$HOME/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
-params.reads = "$HOME/nextflow_tutorial/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
+params.genome = "/workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta"
+params.reads = "/workspace/nextflow_tutorial/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
 
 println """\
          V A R I A N T-C A L L I N G - N F   P I P E L I N E
