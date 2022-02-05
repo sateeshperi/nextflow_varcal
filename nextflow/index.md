@@ -7,12 +7,12 @@ permalink: /nextflow/
 
 <br>
 
-*   **Nextflow** is workflow management software which enables the writing of scalable and reproducible scientific workflows. 
+*   **Nextflow** is a workflow management system that enables the writing of scalable and reproducible scientific workflows. 
 *   It can integrate various software package and environment management systems such as **Docker**, **Singularity**, and **Conda**. It allows for existing pipelines written in common scripting languages, such as BASH, R and Python, to be seamlessly coupled together. 
 *   Nextflow simplifies the implementation and running of workflows on cloud or high-performance computing (HPC) infrastructures.
 *   Nextflow is backed by **nf-core**: a community-driven platform, which provides **peer-reviewed** best practice analysis pipelines.
 
-![](images/state-of-nextflow-2021.png)
+![](images/what_is_nextflow.png)
 
 >**Pre-Requisites**
 >*  This lesson assumes a working understanding of the command line, familiarity with Conda, Docker/Singularity and running jobs on HPC cluster.
@@ -23,6 +23,9 @@ permalink: /nextflow/
 <hr style="height:10px; visibility:hidden;" />
 
 ## Schedule & Learning Objectives
+
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git)
 
 | Chapter | Learning Objectives |
 | --- | --- |
