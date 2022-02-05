@@ -15,7 +15,6 @@ permalink: /nextflow/nextflow_scripting
 <br>
 
 ```bash
-cd ~/nextflow_tutorial
 mkdir scripting
 cd scripting/
 ```
