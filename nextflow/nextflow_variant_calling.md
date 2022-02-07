@@ -74,13 +74,7 @@ done
 
 ## Variant Calling Nextflow Pipeline
 
-```bash
-conda activate varcal
-```
-
----
-
-## Finish the Variant-Calling Nextflow Workflow
+### Finish the Variant-Calling Nextflow Workflow
 
 ```bash
 code variant-calling.nf
