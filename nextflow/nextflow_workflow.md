@@ -17,7 +17,6 @@ permalink: /nextflow/nextflow_workflow
 ```bash
 mkdir workflow
 cd workflow
-conda activate varcal
 ```
 
 Our previous episodes have shown us how to parameterise workflows using `params`, move data around a workflow using `channels` and define individual tasks using `processes`. In this episode we will cover how connect multiple processes to create a workflow.
