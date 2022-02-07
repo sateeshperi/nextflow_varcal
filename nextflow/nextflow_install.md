@@ -24,7 +24,7 @@ Once the pod launches, it will present a VS-Code interface
 
 * To create `varcal` environment based on yml file
 ```bash
-mamba env create -n varcal -f environment.yml
+mamba env update -n base -f environment.yml
 ```
 
 * To download reference genome and raw reads
@@ -33,9 +33,6 @@ bash data/fetch_raw_data.sh
 ```
 
 * To trim the reads using trimmomatic
-```bash
-conda activate varcal
-```
 ```bash
 bash data/trim.sh
 ```
