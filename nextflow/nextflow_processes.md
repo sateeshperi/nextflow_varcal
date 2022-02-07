@@ -17,7 +17,6 @@ permalink: /nextflow/nextflow_processes
 ```bash
 mkdir processes
 cd processes
-conda activate varcal
 ```
 
 We now know how to create and use Channels to send data around a workflow. We will now see how to run tasks within a workflow using processes.
