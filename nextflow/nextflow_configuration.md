@@ -36,6 +36,7 @@ Paste the following
 profiles {
   conda {
     process.conda = "/workspace/nextflow_tutorial/environment.yml"
+    conda.useMamba = true
   }
   
    docker {
@@ -48,9 +49,7 @@ profiles {
 }
 ```
 
-Now make sure you have deactivated the conda environment using `conda deactivate` 
-
-To run the variant_calling.nf using conda
+To run the variant_calling.nf using conda profile
 
 ```bash
 nextflow run variant-calling.nf -profile conda 
