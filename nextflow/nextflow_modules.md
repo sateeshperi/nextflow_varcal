@@ -16,6 +16,10 @@ permalink: /nextflow/nextflow_modules
 
 ## Modules
 
+The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. 
+
+> **MODULE** - A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. At present, this repository has been created to only host atomic module files that should be added to the [modules/](https://github.com/nf-core/modules/tree/master/modules) directory of `nf-core/modules` along with the required documentation and tests.
+
 * In most programming languages there is the concept of creating code blocks/modules that can be reused.
 
 * Nextflow (DSL2) allows the definition of module scripts that can be included and shared across workflow pipelines.
@@ -567,13 +571,12 @@ workflow {
 
 ---
 
-## Using nf-core modules
+## NF-Core Pipelines & Modules
 
-* **[Click Here for nf-core/modules github](https://github.com/nf-core/modules/tree/master/modules)**
+## Using the nf-core template
 
-```bash
-cd /workspace/nextflow_tutorial
-```
+* The heart of nf-core is the standardisation of pipeline code structure. To achieve this, all pipelines adhere to a generalised pipeline template. 
+* The best way to build an nf-core pipeline is to start by using this template via the `nf-core create` command. This launches an interactive prompt on the command line which asks for things such as pipeline name, a short description and the author's name. These values are then propagated throughout the template files automatically.
 
 To initiaite a nextflow pipeline in nf-core style and pre-loaded templates and configuration, we can use `nf-core create` command:
 
@@ -591,7 +594,7 @@ You will prompted to enter `Workflow Name`, `Description`, `Author`. This will I
 >INFO     Creating new nf-core pipeline: 'nf-core/variantcalling'                                                                    create.py:67
 >INFO     Initialising pipeline git repository                                                                                      create.py:168
 >INFO     Done. Remember to add a remote and push to GitHub:                                                                        create.py:175
->          cd nextflow_tutorial/nf-core-variantcalling                                                                   
+>          cd /scicomp/home-pure/rrx8/nextflow_tutorial/nf-core-variantcalling                                                                   
 >          git remote add origin git@github.com:USERNAME/REPO_NAME.git                                                                           
 >          git push --all origin                                                                                                                 
 >INFO     This will also push your newly created dev branch and the TEMPLATE branch for syncing.                                    create.py:181
@@ -604,480 +607,37 @@ You will prompted to enter `Workflow Name`, `Description`, `Author`. This will I
 >```
 
 
-```bash
-tree nf-core-variantcalling/
-```
+## NF-Core Modules
 
-```bash
-nf-core-variantcalling/
-├── assets
-│   ├── email_template.html
-│   ├── email_template.txt
-│   ├── multiqc_config.yaml
-│   ├── nf-core-variantcalling_logo.png
-│   ├── samplesheet.csv
-│   ├── schema_input.json
-│   └── sendmail_template.txt
-├── bin
-│   ├── check_samplesheet.py
-│   └── scrape_software_versions.py
-├── CHANGELOG.md
-├── CITATIONS.md
-├── CODE_OF_CONDUCT.md
-├── conf
-│   ├── base.config
-│   ├── igenomes.config
-│   ├── modules.config
-│   ├── test.config
-│   └── test_full.config
-├── docs
-│   ├── images
-│   │   ├── mqc_fastqc_adapter.png
-│   │   ├── mqc_fastqc_counts.png
-│   │   ├── mqc_fastqc_quality.png
-│   │   └── nf-core-variantcalling_logo.png
-│   ├── output.md
-│   ├── README.md
-│   └── usage.md
-├── lib
-│   ├── nfcore_external_java_deps.jar
-│   ├── NfcoreSchema.groovy
-│   ├── NfcoreTemplate.groovy
-│   ├── Utils.groovy
-│   ├── WorkflowMain.groovy
-│   └── WorkflowVariantcalling.groovy
-├── LICENSE
-├── main.nf
-├── modules
-│   ├── local
-│   │   ├── functions.nf
-│   │   ├── get_software_versions.nf
-│   │   └── samplesheet_check.nf
-│   └── nf-core
-│       └── modules
-│           ├── fastqc
-│           │   ├── functions.nf
-│           │   ├── main.nf
-│           │   └── meta.yml
-│           └── multiqc
-│               ├── functions.nf
-│               ├── main.nf
-│               └── meta.yml
-├── modules.json
-├── nextflow.config
-├── nextflow_schema.json
-├── README.md
-├── subworkflows
-│   └── local
-│       └── input_check.nf
-└── workflows
-    └── variantcalling.nf
+* **[NF-Core Modules](https://nf-co.re/modules)**
+* The Nextflow DSL2 syntax allows the modularizing of Nextflow pipelines, so workflows, subworkflows and modules can be defined and imported into a pipeline. This allows for the sharing of pipeline processes (modules, and also routine subworkflows) among nf-core pipelines.
+* Shared modules are stored in the **[nf-core/modules](https://github.com/nf-core/modules)** repository. 
+  * Modules on this repository are as atomic as possible, in general calling each one tool only.
+  * If a tool consists of several subtools (e.g. `bwa index` and `bwa mem`), these will be stored in individual modules with the naming convention `tool/subtool`.
+  * Each module defines the input and output channels, the process script, as well as the software packaging for a specific process.
+  * Conda environments, docker or singularity containers are defined within each module. We mostly rely on the [biocontainers](https://biocontainers.pro/) project for providing single-tool containers for each module.
 
-15 directories, 47 files
-```
 
-```bash
-cd nf-core-variantcalling/
-```
+* The `nf-core/modules` repository also includes defined tests for each module which run on tiny test data on the `nf-core/test-datasets` repository (modules branch). The modules tests run in a similar way as pipeline tests on GitHub actions and ensure that modules are always functional and produce the desired results.
+
+* nf-core tools have a series of subcommands to work with nf-core modules. You can list all the modules that are available in the nf-core/modules repository with the following command:
 
 
 ```bash
 nf-core modules list remote
 ```
 
----
-<details>
-  <summary><b>CLICK HERE for currently available modules</b></summary>
+You can filter the search by typing the name of a tool or part of it.
 
-<pre>
+## Adding nf-core modules to a pipeline
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+Adding nf-core modules to a pipeline, if the modules already exist in the nf-core modules repository, can be done with the following command (executing it in the main pipeline directory):
 
-    nf-core/tools version 2.1
+```bash
+nf-core modules install <module name>
+```
 
-
-                                                                                 INFO     Modules available from nf-core/modules (master):               list.py:122
-
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ Module Name                          ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ abacas                               │
-│ adapterremoval                       │
-│ agrvate                              │
-│ allelecounter                        │
-│ amps                                 │
-│ arriba                               │
-│ artic/guppyplex                      │
-│ artic/minion                         │
-│ assemblyscan                         │
-│ ataqv/ataqv                          │
-│ bakta                                │
-│ bamaligncleaner                      │
-│ bamtools/split                       │
-│ bamutil/trimbam                      │
-│ bandage/image                        │
-│ bbmap/align                          │
-│ bbmap/bbduk                          │
-│ bbmap/bbsplit                        │
-│ bbmap/index                          │
-│ bcftools/concat                      │
-│ bcftools/consensus                   │
-│ bcftools/filter                      │
-│ bcftools/index                       │
-│ bcftools/isec                        │
-│ bcftools/merge                       │
-│ bcftools/mpileup                     │
-│ bcftools/norm                        │
-│ bcftools/query                       │
-│ bcftools/reheader                    │
-│ bcftools/stats                       │
-│ bcftools/view                        │
-│ bedtools/bamtobed                    │
-│ bedtools/complement                  │
-│ bedtools/genomecov                   │
-│ bedtools/getfasta                    │
-│ bedtools/intersect                   │
-│ bedtools/makewindows                 │
-│ bedtools/maskfasta                   │
-│ bedtools/merge                       │
-│ bedtools/slop                        │
-│ bedtools/sort                        │
-│ bedtools/subtract                    │
-│ bismark/align                        │
-│ bismark/deduplicate                  │
-│ bismark/genomepreparation            │
-│ bismark/methylationextractor         │
-│ bismark/report                       │
-│ bismark/summary                      │
-│ blast/blastn                         │
-│ blast/makeblastdb                    │
-│ bowtie/align                         │
-│ bowtie/build                         │
-│ bowtie2/align                        │
-│ bowtie2/build                        │
-│ bwa/aln                              │
-│ bwa/index                            │
-│ bwa/mem                              │
-│ bwa/sampe                            │
-│ bwa/samse                            │
-│ bwamem2/index                        │
-│ bwamem2/mem                          │
-│ bwameth/align                        │
-│ bwameth/index                        │
-│ cat/cat                              │
-│ cat/fastq                            │
-│ cellranger/count                     │
-│ cellranger/mkfastq                   │
-│ cellranger/mkgtf                     │
-│ cellranger/mkref                     │
-│ checkm/lineagewf                     │
-│ chromap/chromap                      │
-│ chromap/index                        │
-│ clonalframeml                        │
-│ cmseq/polymut                        │
-│ cnvkit/batch                         │
-│ cooler/cload                         │
-│ cooler/digest                        │
-│ cooler/dump                          │
-│ cooler/merge                         │
-│ cooler/zoomify                       │
-│ csvtk/concat                         │
-│ csvtk/split                          │
-│ custom/dumpsoftwareversions          │
-│ custom/getchromsizes                 │
-│ cutadapt                             │
-│ damageprofiler                       │
-│ dastool/dastool                      │
-│ dastool/scaffolds2bin                │
-│ dedup                                │
-│ deeptools/computematrix              │
-│ deeptools/plotfingerprint            │
-│ deeptools/plotheatmap                │
-│ deeptools/plotprofile                │
-│ delly/call                           │
-│ diamond/blastp                       │
-│ diamond/blastx                       │
-│ diamond/makedb                       │
-│ dragmap/align                        │
-│ dragmap/hashtable                    │
-│ dragonflye                           │
-│ dshbio/exportsegments                │
-│ dshbio/filterbed                     │
-│ dshbio/filtergff3                    │
-│ dshbio/splitbed                      │
-│ dshbio/splitgff3                     │
-│ ectyper                              │
-│ emmtyper                             │
-│ ensemblvep                           │
-│ expansionhunter                      │
-│ fargene                              │
-│ fastani                              │
-│ fastp                                │
-│ fastqc                               │
-│ fastqscan                            │
-│ fasttree                             │
-│ fgbio/callmolecularconsensusreads    │
-│ fgbio/fastqtobam                     │
-│ fgbio/groupreadsbyumi                │
-│ fgbio/sortbam                        │
-│ filtlong                             │
-│ flash                                │
-│ freebayes                            │
-│ gatk4/applybqsr                      │
-│ gatk4/baserecalibrator               │
-│ gatk4/bedtointervallist              │
-│ gatk4/calculatecontamination         │
-│ gatk4/createsequencedictionary       │
-│ gatk4/createsomaticpanelofnormals    │
-│ gatk4/estimatelibrarycomplexity      │
-│ gatk4/fastqtosam                     │
-│ gatk4/filtermutectcalls              │
-│ gatk4/gatherbqsrreports              │
-│ gatk4/genomicsdbimport               │
-│ gatk4/genotypegvcfs                  │
-│ gatk4/getpileupsummaries             │
-│ gatk4/haplotypecaller                │
-│ gatk4/indexfeaturefile               │
-│ gatk4/intervallisttools              │
-│ gatk4/learnreadorientationmodel      │
-│ gatk4/markduplicates                 │
-│ gatk4/mergebamalignment              │
-│ gatk4/mergevcfs                      │
-│ gatk4/mutect2                        │
-│ gatk4/revertsam                      │
-│ gatk4/samtofastq                     │
-│ gatk4/splitncigarreads               │
-│ gatk4/variantfiltration              │
-│ genmap/index                         │
-│ genmap/mappability                   │
-│ genrich                              │
-│ gffread                              │
-│ glnexus                              │
-│ graphmap2/align                      │
-│ graphmap2/index                      │
-│ gstama/collapse                      │
-│ gstama/merge                         │
-│ gtdbtk/classifywf                    │
-│ gubbins                              │
-│ gunc/downloaddb                      │
-│ gunc/run                             │
-│ gunzip                               │
-│ hicap                                │
-│ hifiasm                              │
-│ hisat2/align                         │
-│ hisat2/build                         │
-│ hisat2/extractsplicesites            │
-│ hmmcopy/gccounter                    │
-│ hmmcopy/readcounter                  │
-│ hmmer/hmmalign                       │
-│ homer/annotatepeaks                  │
-│ homer/findpeaks                      │
-│ homer/maketagdirectory               │
-│ homer/makeucscfile                   │
-│ idr                                  │
-│ imputeme/vcftoprs                    │
-│ iqtree                               │
-│ ismapper                             │
-│ isoseq3/cluster                      │
-│ isoseq3/refine                       │
-│ ivar/consensus                       │
-│ ivar/trim                            │
-│ ivar/variants                        │
-│ jupyternotebook                      │
-│ kallisto/index                       │
-│ kallistobustools/count               │
-│ kallistobustools/ref                 │
-│ khmer/normalizebymedian              │
-│ kleborate                            │
-│ kraken2/kraken2                      │
-│ krona/kronadb                        │
-│ krona/ktimporttaxonomy               │
-│ last/dotplot                         │
-│ last/lastal                          │
-│ last/lastdb                          │
-│ last/mafconvert                      │
-│ last/mafswap                         │
-│ last/postmask                        │
-│ last/split                           │
-│ last/train                           │
-│ leehom                               │
-│ lima                                 │
-│ lissero                              │
-│ lofreq/call                          │
-│ lofreq/callparallel                  │
-│ lofreq/filter                        │
-│ lofreq/indelqual                     │
-│ macrel/contigs                       │
-│ macs2/callpeak                       │
-│ malt/build                           │
-│ malt/run                             │
-│ maltextract                          │
-│ manta/germline                       │
-│ manta/somatic                        │
-│ manta/tumoronly                      │
-│ mapdamage2                           │
-│ mash/sketch                          │
-│ mashtree                             │
-│ maxbin2                              │
-│ medaka                               │
-│ megahit                              │
-│ meningotype                          │
-│ metabat2/jgisummarizebamcontigdepths │
-│ metabat2/metabat2                    │
-│ metaphlan3                           │
-│ methyldackel/extract                 │
-│ methyldackel/mbias                   │
-│ minia                                │
-│ miniasm                              │
-│ minimap2/align                       │
-│ minimap2/index                       │
-│ mlst                                 │
-│ mosdepth                             │
-│ msisensor/msi                        │
-│ msisensor/scan                       │
-│ mtnucratio                           │
-│ multiqc                              │
-│ mummer                               │
-│ muscle                               │
-│ nanolyse                             │
-│ nanoplot                             │
-│ ncbigenomedownload                   │
-│ nextclade                            │
-│ ngmaster                             │
-│ nucmer                               │
-│ optitype                             │
-│ pairix                               │
-│ pairtools/dedup                      │
-│ pairtools/flip                       │
-│ pairtools/parse                      │
-│ pairtools/restrict                   │
-│ pairtools/select                     │
-│ pairtools/sort                       │
-│ pangolin                             │
-│ paraclu                              │
-│ pbbam/pbmerge                        │
-│ pbccs                                │
-│ peddy                                │
-│ phantompeakqualtools                 │
-│ phyloflash                           │
-│ picard/collecthsmetrics              │
-│ picard/collectmultiplemetrics        │
-│ picard/collectwgsmetrics             │
-│ picard/filtersamreads                │
-│ picard/markduplicates                │
-│ picard/mergesamfiles                 │
-│ picard/sortsam                       │
-│ pirate                               │
-│ plasmidid                            │
-│ plink/extract                        │
-│ plink/vcf                            │
-│ plink2/vcf                           │
-│ pmdtools/filter                      │
-│ porechop                             │
-│ preseq/lcextrap                      │
-│ prodigal                             │
-│ prokka                               │
-│ pycoqc                               │
-│ pydamage/analyze                     │
-│ pydamage/filter                      │
-│ qcat                                 │
-│ qualimap/bamqc                       │
-│ qualimap/rnaseq                      │
-│ quast                                │
-│ racon                                │
-│ rapidnj                              │
-│ rasusa                               │
-│ raxmlng                              │
-│ rmarkdownnotebook                    │
-│ roary                                │
-│ rsem/calculateexpression             │
-│ rsem/preparereference                │
-│ rseqc/bamstat                        │
-│ rseqc/inferexperiment                │
-│ rseqc/innerdistance                  │
-│ rseqc/junctionannotation             │
-│ rseqc/junctionsaturation             │
-│ rseqc/readdistribution               │
-│ rseqc/readduplication                │
-│ salmon/index                         │
-│ salmon/quant                         │
-│ samblaster                           │
-│ samtools/ampliconclip                │
-│ samtools/bam2fq                      │
-│ samtools/depth                       │
-│ samtools/faidx                       │
-│ samtools/fastq                       │
-│ samtools/fixmate                     │
-│ samtools/flagstat                    │
-│ samtools/idxstats                    │
-│ samtools/index                       │
-│ samtools/merge                       │
-│ samtools/mpileup                     │
-│ samtools/sort                        │
-│ samtools/stats                       │
-│ samtools/view                        │
-│ scoary                               │
-│ seacr/callpeak                       │
-│ seqkit/split2                        │
-│ seqsero2                             │
-│ seqtk/mergepe                        │
-│ seqtk/sample                         │
-│ seqtk/subseq                         │
-│ sequenzautils/bam2seqz               │
-│ sequenzautils/gcwiggle               │
-│ seqwish/induce                       │
-│ shovill                              │
-│ snpdists                             │
-│ snpeff                               │
-│ snpsites                             │
-│ sortmerna                            │
-│ spades                               │
-│ spatyper                             │
-│ sratools/fasterqdump                 │
-│ sratools/prefetch                    │
-│ staphopiasccmec                      │
-│ star/align                           │
-│ star/genomegenerate                  │
-│ strelka/germline                     │
-│ strelka/somatic                      │
-│ stringtie/merge                      │
-│ stringtie/stringtie                  │
-│ subread/featurecounts                │
-│ tabix/bgzip                          │
-│ tabix/bgziptabix                     │
-│ tabix/tabix                          │
-│ tbprofiler/profile                   │
-│ tiddit/cov                           │
-│ tiddit/sv                            │
-│ trimgalore                           │
-│ ucsc/bed12tobigbed                   │
-│ ucsc/bedclip                         │
-│ ucsc/bedgraphtobigwig                │
-│ ucsc/bigwigaverageoverbed            │
-│ ucsc/liftover                        │
-│ ucsc/wigtobigwig                     │
-│ ultra/pipeline                       │
-│ umitools/dedup                       │
-│ umitools/extract                     │
-│ unicycler                            │
-│ untar                                │
-│ unzip                                │
-│ variantbam                           │
-│ vcftools                             │
-│ yara/index                           │
-│ yara/mapper                          │
-└──────────────────────────────────────┘
-</pre>
-
-</details>
----
-<br>
-
-
+![](images/nfcore_bwa_index.PNG)
 
 ```bash
 nf-core modules install bwa/index
@@ -1098,6 +658,15 @@ nf-core modules install bwa/index
 INFO     Installing 'bwa/index'                                                                                                   install.py:127
 INFO     Downloaded 2 files to ./modules/nf-core/modules/bwa/index                                                        modules_command.py:268
 ```
+
+The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as workflows/<pipeline-name>.nf) or a sub-workflow, an include statement needs to be added in the corresponding Nextflow file:
+
+```bash
+include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
+```
+
+Tool options or other options that should be passed to the module can be defined in the `modules.config` configuration file.
+
 
 ```bash
 nf-core modules install bwa/mem
@@ -1134,42 +703,6 @@ nf-core modules install bcftools/mpileup
 INFO     Installing 'bcftools/mpileup'                                                                                            install.py:127
 INFO     Downloaded 2 files to ./modules/nf-core/modules/bcftools/mpileup                                                 modules_command.py:268
 ```
-
-```bash
-tree modules
-```
-
-```bash
-modules
-├── local
-│   ├── functions.nf
-│   ├── get_software_versions.nf
-│   └── samplesheet_check.nf
-└── nf-core
-    └── modules
-        ├── bwa
-        │   ├── index
-        │   │   ├── main.nf
-        │   │   └── meta.yml
-        │   └── mem
-        │       ├── main.nf
-        │       └── meta.yml
-        ├── fastqc
-        │   ├── functions.nf
-        │   ├── main.nf
-        │   └── meta.yml
-        └── multiqc
-            ├── functions.nf
-            ├── main.nf
-            └── meta.yml
-
-<truncated>
-```
-
-* Every module folder will have
-  1. `main.nf`  -
-  2. `meta.yml` -
-
 
 
 
