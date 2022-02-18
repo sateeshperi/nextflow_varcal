@@ -16,6 +16,8 @@ permalink: /nextflow/nextflow_sub_workflows
 
 ## Sub-workflows
 
+> A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+
 * We have seen previously the Nextflow DSL2 syntax allows for the definition of reusable processes (modules).
 
 * Nextflow DSL2 also allow the definition reusable sub-workflow libraries.
