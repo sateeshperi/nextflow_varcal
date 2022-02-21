@@ -645,6 +645,91 @@ nf-core modules list local
 ```
 
 > The template pipeline comes with `fastqc`, `multiqc` and `custom/dumpsoftwareversions` pre-installed
+>```groovy
+>//
+>// MODULE: Installed directly from nf-core/modules
+>//
+>include { FASTQC                      } from '../modules/nf-core/modules/fastqc/main'
+>include { MULTIQC                     } from '../modules/nf-core/modules/multiqc/main'
+>include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/modules/custom/dumpsoftwareversions/main'
+>```
+
+
+* Create a samplesheet from untrimmed-reads: `code samplesheet.csv` paste the following and save
+
+
+```bash
+sample,fastq_1,fastq_2
+SRR2584863,/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584863_1.fastq.gz,/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584863_2.fastq.gz
+SRR2584866,/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584866_1.fastq.gz,/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584866_2.fastq.gz
+SRR2589044,/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2589044_1.fastq.gz,/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2589044_2.fastq.gz
+```
+
+* To run the workflow with `fastqc`, `multiqc` and `dumpsoftwareversions` processes
+
+```bash
+nextflow run main.nf --input samplesheet.csv --fasta /workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta -profile docker
+```
+
+
+>```bash
+>N E X T F L O W  ~  version 21.10.6
+>Launching `main.nf` [admiring_torvalds] - revision: 55a600f0ab
+>
+>
+>------------------------------------------------------
+>                                        ,--./,-.
+>        ___     __   __   __   ___     /,-._.--~'
+>  |\ | |__  __ /  ` /  \ |__) |__         }  {
+>  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+>                                        `._,._,'
+>  nf-core/variantcall v1.0dev
+>------------------------------------------------------
+>Core Nextflow options
+>  runName        : admiring_torvalds
+>  containerEngine: docker
+>  launchDir      : /workspace/nextflow_tutorial/nf-core-variantcall
+>  workDir        : /workspace/nextflow_tutorial/nf-core-variantcall/work
+>  projectDir     : /workspace/nextflow_tutorial/nf-core-variantcall
+>  userName       : gitpod
+>  profile        : docker
+>  configFiles    : /workspace/nextflow_tutorial/nf-core-variantcall/nextflow.config
+>
+>Input/output options
+>  input          : samplesheet.csv
+>
+>Reference genome options
+>  fasta          : /workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
+>
+>Max job request options
+>  max_cpus       : 4
+>  max_memory     : 12.GB
+>
+>!! Only displaying parameters that differ from the pipeline defaults !!
+>------------------------------------------------------
+>If you use nf-core/variantcall for your analysis please cite:
+>
+>* The nf-core framework
+>  https://doi.org/10.1038/s41587-020-0439-x
+>
+>* Software dependencies
+>  https://github.com/nf-core/variantcall/blob/master/CITATIONS.md
+>------------------------------------------------------
+>executor >  local (6)
+>[60/43ab20] process > NFCORE_VARIANTCALL:VARIANTCALL:INPUT_CHECK:SAMPLESHEET_CHECK (samplesheet.csv) [100%] 1 of 1 ✔
+>[27/2aadda] process > NFCORE_VARIANTCALL:VARIANTCALL:FASTQC (SRR2589044_T1)                          [100%] 3 of 3 ✔
+>[26/e03e88] process > NFCORE_VARIANTCALL:VARIANTCALL:CUSTOM_DUMPSOFTWAREVERSIONS (1)                 [100%] 1 of 1 ✔
+>[de/019672] process > NFCORE_VARIANTCALL:VARIANTCALL:MULTIQC                                         [100%] 1 of 1 ✔
+>-[nf-core/variantcall] Pipeline completed successfully-
+>WARN: To render the execution DAG in the required format it is required to install Graphviz -- See http://www.graphviz.org for more info.
+>Completed at: 21-Feb-2022 14:46:30
+>Duration    : 1m 55s
+>CPU hours   : 0.1
+>Succeeded   : 6
+>```
+
+
+## Adding nf-core modules to a pipeline
 
 To filter the search:
 
@@ -653,8 +738,6 @@ nf-core modules list remote | grep bwa
 nf-core modules list remote | grep samtools
 nf-core modules list remote | grep bcftools
 ```
-
-## Adding nf-core modules to a pipeline
 
 Adding nf-core modules to a pipeline, if the modules already exist in the nf-core modules repository, can be done with the following command (executing it in the main pipeline directory):
 
@@ -704,10 +787,57 @@ nf-core modules install bcftools/mpileup
 include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
 ```
 
-* Tool options or other options that should be passed to the module can be defined in the `modules.config` configuration file.
+*  Add the following to `nf-core-variantcall/workflows/variantcall.nf`
+
+```groovy
+include { FASTQC                      } from '../modules/nf-core/modules/fastqc/main'
+include { MULTIQC                     } from '../modules/nf-core/modules/multiqc/main'
+include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/modules/custom/dumpsoftwareversions/main'
+include { BWA_INDEX                   } from '../modules/nf-core/modules/bwa/index/main'
+include { BWA_MEM                     } from '../modules/nf-core/modules/bwa/mem/main'
+include { SAMTOOLS_SORT               } from '../modules/nf-core/modules/samtools/sort/main'
+include { SAMTOOLS_INDEX              } from '../modules/nf-core/modules/samtools/index/main'
+include { BCFTOOLS_MPILEUP            } from '../modules/nf-core/modules/bcftools/mpileup/main'
+```
+
+```groovy
+    //
+    // MODULE: Run BWA-INDEX
+    //
+
+    BWA_INDEX(params.fasta)
+
+    //
+    // MODULE: Run BWA-ALIGN
+    //
+
+    BWA_MEM(INPUT_CHECK.out.reads, BWA_INDEX.out.index, "view")
+
+    //
+    // MODULE: Run SAMTOOLS-SORT
+    //
+
+    SAMTOOLS_SORT(BWA_MEM.out.bam)
+
+    //
+    // MODULE: Run SAMTOOLS-INDEX
+    //
+
+    SAMTOOLS_INDEX(SAMTOOLS_SORT.out.bam)
+```
 
 
+* Tool options or other options that should be passed to the module can be defined in the `nf-core-variantcall/conf/modules.config` configuration file.
 
+```bash
+withName: SAMTOOLS_SORT {
+  ext.prefix = "sorted"
+}
+```
+
+```bash
+nextflow run main.nf --input samplesheet.csv --fasta /workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta -profile docker
+```
 
 ---
 
