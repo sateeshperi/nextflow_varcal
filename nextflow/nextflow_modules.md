@@ -576,9 +576,8 @@ workflow {
 ## Using the nf-core template
 
 * The heart of nf-core is the standardisation of pipeline code structure. To achieve this, all pipelines adhere to a generalised pipeline template. 
-* The best way to build an nf-core pipeline is to start by using this template via the `nf-core create` command. This launches an interactive prompt on the command line which asks for things such as pipeline name, a short description and the author's name. These values are then propagated throughout the template files automatically.
-
-To initiaite a nextflow pipeline in nf-core style and pre-loaded templates and configuration, we can use `nf-core create` command:
+* The best way to build an nf-core pipeline is to start by using this template via the `nf-core create` command.
+* To initiaite a nextflow pipeline in nf-core style and pre-loaded templates and configuration, we can use `nf-core create` command:
 
 ```bash
 nf-core create
@@ -586,30 +585,41 @@ nf-core create
 
 You will prompted to enter `Workflow Name`, `Description`, `Author`. This will Initialise a pipeline git repository in your current directory. 
 
->Output
 >```bash
->Workflow Name: variantcalling
->Description: simple variant calling pipeline
+>
+>                                          ,--./,-.
+>          ___     __   __   __   ___     /,-._.--~\
+>    |\ | |__  __ /  ` /  \ |__) |__         }  {
+>    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+>                                          `._,._,'
+>
+>    nf-core/tools version 2.2
+>
+>
+>
+>Workflow Name: variantcall
+>Description: simple variant calling workflow
 >Author: Sateesh Peri
->INFO     Creating new nf-core pipeline: 'nf-core/variantcalling'                                                                    create.py:67
->INFO     Initialising pipeline git repository                                                                                      create.py:168
->INFO     Done. Remember to add a remote and push to GitHub:                                                                        create.py:175
->          cd /scicomp/home-pure/rrx8/nextflow_tutorial/nf-core-variantcalling                                                                   
->          git remote add origin git@github.com:USERNAME/REPO_NAME.git                                                                           
->          git push --all origin                                                                                                                 
->INFO     This will also push your newly created dev branch and the TEMPLATE branch for syncing.                                    create.py:181
->INFO     !!!!!! IMPORTANT !!!!!!                                                                                                    create.py:58
->                                                                                                                                                
->         If you are interested in adding your pipeline to the nf-core community,                                                                
->         PLEASE COME AND TALK TO US IN THE NF-CORE SLACK BEFORE WRITING ANY CODE!                                                               
->                                                                                                                                                
->         Please read: https://nf-co.re/developers/adding_pipelines#join-the-community
+>INFO     Creating new nf-core pipeline: 'nf-core/variantcall'                                                                                                 create.py:67
+>INFO     Initialising pipeline git repository                                                                                                                create.py:167
+>INFO     Done. Remember to add a remote and push to GitHub:                                                                                                  create.py:174
+          >cd /workspace/nextflow_tutorial/nf-core-variantcall                                                                                                             
+          >git remote add origin git@github.com:USERNAME/REPO_NAME.git                                                                                                     
+          >git push --all origin                                                                                                                                           
+>INFO     This will also push your newly created dev branch and the TEMPLATE branch for syncing.                                                              create.py:180
+>INFO     !!!!!! IMPORTANT !!!!!!                                                                                                                              create.py:58
+                                                                                                                                                           >               
+         >If you are interested in adding your pipeline to the nf-core community,                                                                                          
+         >PLEASE COME AND TALK TO US IN THE NF-CORE SLACK BEFORE WRITING ANY CODE!                                                                                         
 >```
 
 
 ## NF-Core Modules
 
 * **[NF-Core Modules](https://nf-co.re/modules)**
+
+![](images/nfcore_bwa_index.PNG)
+
 * The Nextflow DSL2 syntax allows the modularizing of Nextflow pipelines, so workflows, subworkflows and modules can be defined and imported into a pipeline. This allows for the sharing of pipeline processes (modules, and also routine subworkflows) among nf-core pipelines.
 * Shared modules are stored in the **[nf-core/modules](https://github.com/nf-core/modules)** repository. 
   * Modules on this repository are as atomic as possible, in general calling each one tool only.
@@ -620,14 +630,29 @@ You will prompted to enter `Workflow Name`, `Description`, `Author`. This will I
 
 * The `nf-core/modules` repository also includes defined tests for each module which run on tiny test data on the `nf-core/test-datasets` repository (modules branch). The modules tests run in a similar way as pipeline tests on GitHub actions and ensure that modules are always functional and produce the desired results.
 
-* nf-core tools have a series of subcommands to work with nf-core modules. You can list all the modules that are available in the nf-core/modules repository with the following command:
+* nf-core tools have a series of subcommands to work with nf-core modules. 
 
+* To list all the modules that are available in the `nf-core/modules` repository with the following command:
 
 ```bash
 nf-core modules list remote
 ```
 
-You can filter the search by typing the name of a tool or part of it.
+* To list all the currently installed modules in the pipeline:
+
+```bash
+nf-core modules list local
+```
+
+> The template pipeline comes with `fastqc`, `multiqc` and `custom/dumpsoftwareversions` pre-installed
+
+To filter the search:
+
+```bash
+nf-core modules list remote | grep bwa
+nf-core modules list remote | grep samtools
+nf-core modules list remote | grep bcftools
+```
 
 ## Adding nf-core modules to a pipeline
 
@@ -636,8 +661,6 @@ Adding nf-core modules to a pipeline, if the modules already exist in the nf-cor
 ```bash
 nf-core modules install <module name>
 ```
-
-![](images/nfcore_bwa_index.PNG)
 
 ```bash
 nf-core modules install bwa/index
@@ -659,22 +682,8 @@ INFO     Installing 'bwa/index'                                                 
 INFO     Downloaded 2 files to ./modules/nf-core/modules/bwa/index                                                        modules_command.py:268
 ```
 
-The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as workflows/<pipeline-name>.nf) or a sub-workflow, an include statement needs to be added in the corresponding Nextflow file:
-
-```bash
-include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
-```
-
-Tool options or other options that should be passed to the module can be defined in the `modules.config` configuration file.
-
-
 ```bash
 nf-core modules install bwa/mem
-```
-
-```bash
-INFO     Installing 'bwa/index'                                                                                                   install.py:127
-INFO     Downloaded 2 files to ./modules/nf-core/modules/bwa/index                                                        modules_command.py:268
 ```
 
 ```bash
@@ -682,33 +691,20 @@ nf-core modules install samtools/sort
 ```
 
 ```bash
-INFO     Installing 'samtools/sort'                                                                                               install.py:127
-INFO     Downloaded 2 files to ./modules/nf-core/modules/samtools/sort                                                    modules_command.py:268
-```
-
-```bash
 nf-core modules install samtools/index
-```
-
-```bash
-INFO     Installing 'samtools/index'                                                                                              install.py:127
-INFO     Downloaded 2 files to ./modules/nf-core/modules/samtools/index                                                   modules_command.py:268
 ```
 
 ```bash
 nf-core modules install bcftools/mpileup
 ```
 
+* The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as workflows/<pipeline-name>.nf) or a sub-workflow, an include statement needs to be added in the corresponding Nextflow file:
+
 ```bash
-INFO     Installing 'bcftools/mpileup'                                                                                            install.py:127
-INFO     Downloaded 2 files to ./modules/nf-core/modules/bcftools/mpileup                                                 modules_command.py:268
+include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
 ```
 
-
-
-
-
-
+* Tool options or other options that should be passed to the module can be defined in the `modules.config` configuration file.
 
 
 
