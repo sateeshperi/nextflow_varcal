@@ -93,6 +93,8 @@ permalink: /nextflow/
 |14. [Workflow caching and checkpointing](/nextflow_varcal/nextflow/nextflow_caching) | How can I restart a Nextflow workflow after an error? |
 |                                                                     | How can I add new data to a workflow? |
 |                                                                     | Where can I find intermediate data and results? |
+|15. [nf-core/variantcall](/nextflow_varcal/nextflow/nextflow_nfcore_variantcall) | Assembling the variant-calling workflow nf-core style  |
+|                                                                     | How can I add nf-core modules? |
 | --- | --- |
 | [Nextflow Useful Links](/nextflow_varcal/nextflow/nextflow_useful) |   |
 
