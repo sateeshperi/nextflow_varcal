@@ -254,15 +254,14 @@ nf-core modules install bcftools/mpileup
 *  Add the following to `nf-core-variantcall/workflows/variantcall.nf`
 
 ```groovy
-include { FASTQC                      } from '../modules/nf-core/modules/fastqc/main'
-include { MULTIQC                     } from '../modules/nf-core/modules/multiqc/main'
-include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/modules/custom/dumpsoftwareversions/main'
 include { BWA_INDEX                   } from '../modules/nf-core/modules/bwa/index/main'
 include { BWA_MEM                     } from '../modules/nf-core/modules/bwa/mem/main'
 include { SAMTOOLS_SORT               } from '../modules/nf-core/modules/samtools/sort/main'
 include { SAMTOOLS_INDEX              } from '../modules/nf-core/modules/samtools/index/main'
 include { BCFTOOLS_MPILEUP            } from '../modules/nf-core/modules/bcftools/mpileup/main'
 ```
+
+*  Add the following to `nf-core-variantcall/workflows/variantcall.nf` within workflow scope
 
 ```groovy
     //
@@ -292,6 +291,7 @@ include { BCFTOOLS_MPILEUP            } from '../modules/nf-core/modules/bcftool
 
 
 * Tool options or other options that should be passed to the module can be defined in the `nf-core-variantcall/conf/modules.config` configuration file.
+* Append the following to `nf-core-variantcall/conf/modules.config` within process scope:
 
 ```bash
 withName: SAMTOOLS_SORT {
@@ -302,7 +302,69 @@ withName: SAMTOOLS_SORT {
 ```bash
 nextflow run main.nf --input samplesheet.csv --fasta /workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta -profile docker
 ```
-
+ 
+>Output
+>```bash
+>N E X T F L O W  ~  version 21.10.6
+>Launching `main.nf` [magical_einstein] - revision: 55a600f0ab
+>
+>
+>------------------------------------------------------
+>                                        ,--./,-.
+>        ___     __   __   __   ___     /,-._.--~'
+>  |\ | |__  __ /  ` /  \ |__) |__         }  {
+>  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+>                                        `._,._,'
+>  nf-core/variantcall v1.0dev
+>------------------------------------------------------
+>Core Nextflow options
+>  runName        : magical_einstein
+>  containerEngine: docker
+>  launchDir      : /workspace/nextflow_tutorial/nf-core-variantcall
+>  workDir        : /workspace/nextflow_tutorial/nf-core-variantcall/work
+>  projectDir     : /workspace/nextflow_tutorial/nf-core-variantcall
+>  userName       : gitpod
+>  profile        : docker
+>  configFiles    : /workspace/nextflow_tutorial/nf-core-variantcall/nextflow.config
+>
+>Input/output options
+>  input          : samplesheet.csv
+>
+>Reference genome options
+>  fasta          : /workspace/nextflow_tutorial/data/ref_genome/ecoli_rel606.fasta
+>
+>Max job request options
+>  max_cpus       : 4
+>  max_memory     : 6.GB
+>
+>!! Only displaying parameters that differ from the pipeline defaults !!
+>------------------------------------------------------
+>If you use nf-core/variantcall for your analysis please cite:
+>
+>* The nf-core framework
+>  https://doi.org/10.1038/s41587-020-0439-x
+>
+>* Software dependencies
+>  https://github.com/nf-core/variantcall/blob/master/CITATIONS.md
+>------------------------------------------------------
+>executor >  local (16)
+>[3f/2fccb5] process > NFCORE_VARIANTCALL:VARIANTCALL:INPUT_CHECK:SAMPLESHEET_CHECK (samplesheet.csv) [100%] 1 of 1 ✔
+>[23/776fe6] process > NFCORE_VARIANTCALL:VARIANTCALL:FASTQC (SRR2584863_T1)                          [100%] 3 of 3 ✔
+>[2e/2d108b] process > NFCORE_VARIANTCALL:VARIANTCALL:CUSTOM_DUMPSOFTWAREVERSIONS (1)                 [100%] 1 of 1 ✔
+>[59/7e75bb] process > NFCORE_VARIANTCALL:VARIANTCALL:BWA_INDEX (ecoli_rel606.fasta)                  [100%] 1 of 1 ✔
+>[ce/50d7ee] process > NFCORE_VARIANTCALL:VARIANTCALL:BWA_MEM (SRR2584866_T1)                         [100%] 3 of 3 ✔
+>[56/dae396] process > NFCORE_VARIANTCALL:VARIANTCALL:SAMTOOLS_SORT (SRR2584866_T1)                   [100%] 3 of 3 ✔
+>[90/5ac8a9] process > NFCORE_VARIANTCALL:VARIANTCALL:SAMTOOLS_INDEX (SRR2584866_T1)                  [100%] 3 of 3 ✔
+>[40/2df600] process > NFCORE_VARIANTCALL:VARIANTCALL:MULTIQC                                         [100%] 1 of 1 ✔
+>-[nf-core/variantcall] Pipeline completed successfully-
+>WARN: To render the execution DAG in the required format it is required to install Graphviz -- See http://www.graphviz.org for more info.
+>Completed at: 04-Mar-2022 01:57:43
+>Duration    : 5m 30s
+>CPU hours   : 0.3
+>Succeeded   : 16          
+>```
+    
+          
 ---
 
 <h5><a href="/nextflow_varcal/nextflow/nextflow_caching" style="float: left"><b>Back to:</b>NextFlow Caching</a>
