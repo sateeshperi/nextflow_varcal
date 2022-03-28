@@ -118,7 +118,9 @@ https://github.com/carpentries-incubator/workflows-nextflow 2021.
 Version 2017.11.0, November 2017,
 http://www.datacarpentry.org/wrangling-genomics/, doi: 10.5281/zenodo.1064254
 
+*   **[Happy Belly Bioinformatics](https://astrobiomike.github.io/)** (Jekyll site template and inspiration!)
 
+> Lee, (2019). Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics. Journal of Open Source Education, 4(41), 53, https://doi.org/10.21105/jose.00053
 
 <hr style="height:10px; visibility:hidden;" />
 
