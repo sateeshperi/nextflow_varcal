@@ -42,7 +42,7 @@ OR
 
 3) Install the Gitpod browser extension, following the instructions **[here](https://www.gitpod.io/docs/browser-extension)**. This will add a green Gitpod button to each Git repository for easy access to the environment. Then go to the git repository for the training (https://github.com/sateeshperi/nextflow_tutorial.git), and click the green button.
 
-<img src="images/gitpodbutton.png" alt="drawing" width="300"/>
+<img src="images/gitpodbutton.png" alt="drawing" width="800"/>
 
 
 * Login to your Github account (and allow authorization).
@@ -51,7 +51,7 @@ OR
 
 Once you have signed in, gitpod will load (skip prebuild, if asked):
 
-<img src="images/gitpod.png" alt="drawing" width="300"/>
+<img src="images/gitpod.png" alt="drawing" width="500"/>
 
 * Gitpod gives you 50 hours per month to run the environment, with up to 4 parallel workspaces at a time. So feel free to come back at any time and try the course at your own pace.
 
@@ -61,7 +61,7 @@ Once you have signed in, gitpod will load (skip prebuild, if asked):
 
 You should see something similar to the following:
 
-<img src="images/gitpod_startup.png" alt="drawing" width="300"/>
+<img src="images/gitpod_startup.png" alt="drawing" width="800"/>
 
 * The sidebar allows you to customize your Gitpod environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.) Click the **Explorer** button to see which files are in this repository.
 
