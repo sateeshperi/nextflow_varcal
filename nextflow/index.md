@@ -7,10 +7,10 @@ permalink: /nextflow/
 
 <br>
 
-*   **Nextflow** is a workflow management system that enables the writing of scalable and reproducible scientific workflows. 
+*   **Nextflow** is an incredibly powerful and flexible workflow language that enables the development of scalable and reproducible scientific workflows. 
 *   It can integrate various software package and environment management systems such as **Docker**, **Singularity**, and **Conda**. It allows for existing pipelines written in common scripting languages, such as BASH, R and Python, to be seamlessly coupled together. 
 *   Nextflow simplifies the implementation and running of workflows on cloud or high-performance computing (HPC) infrastructures.
-*   Nextflow is backed by **nf-core**: a community-driven platform, which provides **peer-reviewed** best practice analysis pipelines.
+*   Nextflow is backed by **nf-core**: A community effort to collect a curated set of analysis pipelines built using Nextflow.
 
 ![](images/what_is_nextflow.png)
 
