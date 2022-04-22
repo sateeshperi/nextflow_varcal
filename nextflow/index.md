@@ -106,6 +106,8 @@ permalink: /nextflow/
 
 ## Credits
 
+*   **[Seqera Labs - Nextflow Training](https://training.seqera.io/)**
+
 *   **[Introduction to Bioinformatics workflows with Nextflow and nf-core](https://carpentries-incubator.github.io/workflows-nextflow/index.html)**
 
 > Graeme R. Grimes, Evan Floden, Paolo Di Tommaso, Phil Ewels and Maxime Garcia 
