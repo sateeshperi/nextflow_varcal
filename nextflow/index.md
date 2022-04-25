@@ -95,14 +95,16 @@ permalink: /nextflow/
 |                                                                     | Where can I find intermediate data and results? |
 |15. [nf-core/variantcall](/nextflow_varcal/nextflow/nextflow_nfcore_variantcall) | Assembling the variant-calling workflow nf-core style  |
 |                                                                     | How can I add nf-core modules? |
+|16. [Contributing to nf-core/modules](/nextflow_varcal/nextflow/nextflow_nfcore_module_create) | How can i add a new module to nf-core?  |
 | --- | --- |
 | [Nextflow Useful Links](/nextflow_varcal/nextflow/nextflow_useful) |   |
 
 
 ## Editors
 
-*   `Sateesh Peri`
-*   `Michael Cipriano`
+*   [`Sateesh Peri`](https://github.com/sateeshperi)
+*   [`Michael Cipriano`](https://github.com/mjcipriano)
+*   [`Matthew Hunter Seabolt`](https://github.com/hseabolt)
 
 ## Credits
 
