@@ -17,14 +17,14 @@ permalink: /nextflow/nextflow_nfcore_module_create
 
 ## Overview
 
-1) Initial Environment Setup (`conda`)
-2) Initialize a new `nf-core` pipeline
-3) Install or create `nf-core` modules needed for the pipeline
-4) Create subworkflows for different pipeline steps/phases
-5) Create a primary workflow
-6) Modify `config` files for the pipeline components
-7) Test the pipeline
-8) Deployment, distribution, and support
+* Initial Environment Setup (`conda`)
+* Initialize a new `nf-core` pipeline
+* Install or create `nf-core` modules needed for the pipeline
+* Create subworkflows for different pipeline steps/phases
+* Create a primary workflow
+* Modify `config` files for the pipeline components
+* Test the pipeline
+* Deployment, distribution, and support
 
 <br>
 
@@ -145,25 +145,26 @@ git push origin master
 ```
 
 
-# `nf-core` Modules 101
+# nf-core Modules 101
 
-`nf-core` has many modules already available for a variety of bioinformatics software, which can be downloaded and installed directly into the new pipeline with `nf-core` tools.  To check which modules are already created (and peer-reviewed!), use the following command(s):
+* nf-core has many modules already available for a variety of bioinformatics software, which can be downloaded and installed directly into the new pipeline with `nf-core` tools.  To check which modules are already created (and peer-reviewed!), use the following command(s):
 
 <br>
 
-## Checking which modules are available in all of `nf-core`
+## Checking which modules are available in all of nf-core
+
 ```Bash
 # Can scroll thru this on the terminal or pipe to grep to check a specific module
 nf-core modules list remote
 
 # Grep example
-nf-core modules list remote | grep "fastqc"
+nf-core modules list remote | grep "bwa/align"
 ```
 <br>
 
-## Install an available module direct from `nf-core`
+## Install an available module direct from nf-core
 
-`nf-core` provides an easy interface for module installs. Most softwares consist of a single command plus command-line parameter arguments -- for these, the modules can be installed directly.  However, some softwares have multiple sub-commands, eg. `bwa index`, `bwa align`, `bwa mem`, etc.  In these cases, `nf-core` requires that each sub-command be created as a standalone module within the parent module, which can also be directly installed.  Beware that just installing the parent module (ie. `bwa` in this case) through `nf-core` does not give you direct access to sub-modules.
+* nf-core provides an easy interface for module installs. Most softwares consist of a single command plus command-line parameter arguments -- for these, the modules can be installed directly.  However, some softwares have multiple sub-commands, eg. `bwa index`, `bwa align`, `bwa mem`, etc.  In these cases, `nf-core` requires that each sub-command be created as a standalone module within the parent module, which can also be directly installed.  Beware that just installing the parent module (ie. `bwa` in this case) through `nf-core` does not give you direct access to sub-modules.
 
 ```bash
 # Install nf-core modules from nf-core remote (master) repo
@@ -172,22 +173,19 @@ nf-core modules install samtools_stats
 # Install modules that have specific sub-modules 
 nf-core modules install bwa/index
 ```
-<br>
 
-# Creating new modules for `nf-core`
-
-
+# Creating new modules for nf-core
 ## TL;DR i just want to write code
 
-* Join nf-core Slack (https://nf-co.re/join)
-* `Fork` the `nf-core/modules` repo (https://github.com/nf-core/modules) to your own Github repos, then `git clone` it down locally from your `fork`. 
-* Create a new `branch` for the new module within your local clone of `nf-core/modules`
-* Raise an issue on the main nf-core Github (https://github.com/nf-core) for the new module to alert others that you are working on this module (`Issues` --> `New Module`.  Add yourself to the `Assignees`)  
+* Join nf-core Slack (https://nf-co.re/join).
+* `Fork` the `nf-core/modules` repo (https://github.com/nf-core/modules) to your own Github repos, then `git clone` it down locally from your `fork`.
+* Create a new `branch` for the new module within your local clone of `nf-core/modules`.
+* Raise an issue on the main nf-core Github (https://github.com/nf-core) for the new module to alert others that you are working on this module (`Issues` --> `New Module`.  Add yourself to the `Assignees`).
 * Check that a `conda` recipe, or `Docker`/`Singularity` image already available in `Bioconda`, `Biocontainers`, `quay.io`, or similar for the software you want to create a module for.
-* Use `nf-core` tools to create, edit, and test the module
-* `git push` your module's `branch` to your `nf-core/modules` fork
-* Open a `pull request` on the main `nf-core/modules` repo
-* Request in the `nf-core` Slack (channel `request-review` ) that someone review the `pull request` and approve the `merge`.  
+* Use `nf-core` tools to create, edit, and test the module.
+* `git push` your module's `branch` to your `nf-core/modules` fork.
+* Open a `pull request` on the main `nf-core/modules` repo.
+* Request in the `nf-core` Slack (channel `request-review` ) that someone review the `pull request` and approve the `merge`.
 
 <br>
 
@@ -197,7 +195,6 @@ Navigate to https://github.com/nf-core/modules and click `Fork` in the top right
 
 Next, we need to let other `nf-core` developers know that we are working on creating new modules so that we do not duplicate efforts or step over the work of others.  To do this, in the main `nf-core/modules` Github repo, open an `Issue` (https://github.com/nf-core/modules/issues) with `New Issue` --> `New Module`.  
 
-<br>
 
 *(Don't forget to search the open modules to see if someone is already working on the module you want to add!)*
 
@@ -362,16 +359,14 @@ authors:
   - "@hseabolt"
 ```
 
-<br><br>
-
 ### How do I locally test my module?
 
 <br>
 
-Once the module code `main.nf` and `meta.yml` have been written and you are happy with it, it is time to test our module code locally.
+* Once the module code `main.nf` and `meta.yml` have been written and you are happy with it, it is time to test our module code locally.
 
-Next, identify some suitable testing data for your module.  `nf-core` has a sizable set of available data in multiple common formats used in bioinformatics available in the `nf-core/test-datasets` repo on their main Github. These can be easily inserted into `nf-core` module testing using a meta map without having to download any data directly. 
-* Check the list of available data in the file `./modules/tests/config/test_data.config`. 
+* Next, identify some suitable testing data for your module.  `nf-core` has a sizable set of available data in multiple common formats used in bioinformatics available in the `nf-core/test-datasets` repo on their main Github. These can be easily inserted into `nf-core` module testing using a meta map without having to download any data directly.
+* Check the list of available data in the file `./modules/tests/config/test_data.config`.
 
 <br>
  
@@ -405,7 +400,6 @@ workflow test_seqtk_sample_paired_end {
 }
 ```
 
-<br>
 
 If you want to include/test any optional parameter arguments for the module, these can be specified in the `./modules/tests/modules/nonpareil/nextflow.config` file:  An example of this using an arg `-T kmer` and setting the `prefix` parameter that is fed into the main code might look something like this:
 
@@ -424,7 +418,6 @@ process {
 }
 ```
 
-<br>
 
 Now you are ready to begin testing your module for `nf-core`. 
 
@@ -451,20 +444,20 @@ git push -u origin nonpareil
 
 If you want to manually check the testing output files for correctness (eg. FASTA files created by the module), `cd` into the `work` directory specified in the terminal output from `create-test-yml` and verify the output files are what you expect.
 
-<br><br>
+<br>
 
 ### How do I merge my local module code with the main `nf-core` repo for others to use?
 
 <br>
 
-From here, you will need to create a `Pull Request` (`PR`) across forks with your local copy of `nf-core/modules`.
+* From here, you will need to create a `Pull Request` (`PR`) across forks with your local copy of `nf-core/modules`.
 
-On the `nf-core/modules` Github page, navigate to the `Pull requests` tab, then choose `New pull request`.  Fill out the dialogue box for the new pull request, get the `Issue Number` from the original `New Module Issue` that you opened previously, and include this to let others know which `Issue` you are closing out.  Double check that you are merging `hseabolt/modules`->`nonpareil` into `nf-core/modules`->`master`.  
+* On the `nf-core/modules` Github page, navigate to the `Pull requests` tab, then choose `New pull request`.  Fill out the dialogue box for the new pull request, get the `Issue Number` from the original `New Module Issue` that you opened previously, and include this to let others know which `Issue` you are closing out.  Double check that you are merging `hseabolt/modules`->`nonpareil` into `nf-core/modules`->`master`.  
 
 *  Once a new `PR` is created, `nf-core` Github kicks off some automated integration and testing functionality. You must wait for all of these checks to complete and pass prior to proceeding.     
     * If any tests do not pass, you must address these before your new code will be merged.  Most often this is small things like whitespace or minor formatting issues.  ( As you address these, you must re-run `git add`, `git commit`, `git push` to your local `fork`, which will automatically feed to the open `PR` with `nf-core` and automatically re-trigger the integration tests.  
     * You do not need to create a new `PR`.  
-    * Once module tests pass, add `Labels` (`New Module`, `Ready_For_Review`) on the right side of the `PR` dahsboard in Git).
+    * Once module tests pass, add `Labels` (`New Module`, `Ready_For_Review`) on the right side of the `PR` dashboard in Git).
 
 <br>
 
@@ -472,7 +465,7 @@ On the `nf-core/modules` Github page, navigate to the `Pull requests` tab, then 
 
 <br>
 
-Copy the `PR`'s URL link and paste in the `nf-core` Slack channel `request-review` and politely request someone to peer-review your new module.  Once a reviewer agrees to review, they will be able to make comments or ask questions through Github that you must address satisfactorily.  This may require updates to the code or simple responses to questions.  Once this is done and the reviewer(s) are satisfied, they will approve the `pull request` and that's a wrap.  Your module is officially included in `nf-core/modules`!  
+* Copy the `PR`'s URL link and paste in the `nf-core` Slack channel `request-review` and politely request someone to peer-review your new module.  Once a reviewer agrees to review, they will be able to make comments or ask questions through Github that you must address satisfactorily.  This may require updates to the code or simple responses to questions.  Once this is done and the reviewer(s) are satisfied, they will approve the `pull request` and that's a wrap.  Your module is officially included in `nf-core/modules`!  
 
 <br>
 
