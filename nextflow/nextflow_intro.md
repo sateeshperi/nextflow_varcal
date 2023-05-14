@@ -25,29 +25,30 @@ permalink: /nextflow/nextflow_intro
 
 ## Workflows
 
-*   Analysing data involves a sequence of tasks, including gathering, cleaning, and processing data. These sequence of tasks are called a workflow or a pipeline.
+* Data analysis involves a series of tasks, such as gathering, cleaning, and processing data. These sequences of tasks are referred to as workflows or pipelines.
 
-*   These workflows typically require executing multiple software packages, sometimes running on different computing environments, such as a desktop or a compute cluster.
+* Workflows often require executing multiple software packages, which may run on various computing environments, such as desktops or compute clusters.
 
-*   Traditionally these workflows have been joined together in scripts using general purpose programming languages such as Bash or Python.
+* Traditionally, these workflows have been linked together using scripts in general-purpose programming languages, like Bash or Python.
 
-    <img src="images/analysis_workflow.PNG" alt="drawing" width="300"/>
+  <img src="images/analysis_workflow.PNG" alt="drawing" width="300"/>
 
 ---
-**However, as workflows become larger and more complex, the management of the programming logic and software becomes difficult.**
+**However, managing programming logic and software becomes challenging as workflows grow larger and more complex.**
 
 <br>
 
-## Workflow management systems
+## Workflow Management Systems
 
-Recently Workflow Management Systems (WfMS), such as **[Snakemake](https://snakemake.readthedocs.io/en/stable/)**, **[Galaxy](https://usegalaxy.org/)**, and **[Nextflow](https://nextflow.io/)** have emerged specifically to manage computational data-analysis workflows.
+Recently, Workflow Management Systems (WfMS), such as **[Snakemake](https://snakemake.readthedocs.io/en/stable/)**, **[Galaxy](https://usegalaxy.org/)**, and **[Nextflow](https://nextflow.io/)**, have emerged to specifically manage computational data-analysis workflows.
 
-These Workflow management systems contain multiple features that simplify the development, monitoring, execution and sharing of pipelines:
-*   **Run time management**
-*   **Software management**
-*   **Portability & Interoperability**
-*   **Reproducibility**
-*   **Re-entrancy**
+These Workflow Management Systems offer multiple features that simplify the development, monitoring, execution, and sharing of pipelines:
+
+* **Run time management**
+* **Software management**
+* **Portability & Interoperability**
+* **Reproducibility**
+* **Re-entrancy**
 
 <img src="images/bioinfo_workflows.PNG" alt="drawing" width="800"/>
 
@@ -59,54 +60,53 @@ These Workflow management systems contain multiple features that simplify the de
 
 <img src="images/what_is_nextflow.PNG" alt="drawing" width="800"/>
 
-## Nextflow core features are:
+## Core Features of Nextflow:
 
-*   **Fast prototyping**: A simple syntax for writing pipelines that enables you to reuse existing scripts and tools for fast prototyping.
+* **Fast Prototyping**: Nextflow's simple syntax allows for the reuse of existing scripts and tools, enabling rapid pipeline development.
 
-*   **Reproducibility**: Nextflow supports several container technologies, such as **Docker** and **Singularity**, as well as the package manager **conda**. This, along with the integration of the **GitHub/GitLab** code sharing platform, allows you to write self-contained pipelines, manage versions and to reproduce any former configuration.
+* **Reproducibility**: With support for various container technologies like Docker and Singularity, as well as the package manager Conda, Nextflow facilitates the creation of self-contained pipelines. Integration with GitHub/GitLab enables efficient version management and the reproduction of any previous configuration.
 
-*   **Portability**: Nextflow’s syntax separates the functional logic (the steps of the workflow) from the execution settings (how the workflow is executed). This allows the pipeline to be run on multiple platforms, e.g. local compute vs. a HPC cluster or a cloud service like AWS, without changing the steps of the workflow.
+* **Portability**: Nextflow's syntax separates functional logic (workflow steps) from execution settings (how the workflow runs), allowing the pipeline to be executed on multiple platforms (e.g., local compute, HPC clusters, or cloud services like AWS) without altering workflow steps.
 
-*   **Simple parallelism**: Nextflow is based on the dataflow programming model which greatly simplifies the splitting of tasks that can be run at the same time (parallelisation).
+* **Simple Parallelism**: Built on the dataflow programming model, Nextflow greatly simplifies parallel task execution.
 
-*   **Continuous checkpoints**: All the intermediate results produced during the pipeline execution are automatically tracked. This allows you to resume its execution from the last successfully executed step, no matter what the reason was for it stopping.
+* **Continuous Checkpoints**: Nextflow automatically tracks all intermediate results produced during pipeline execution. This feature allows users to resume execution from the last successfully executed step, regardless of the cause of interruption.
 
 <br>
 
-## Nextflow Basic concepts
+## Nextflow Basic Concepts
 ### Processes, Channels, and Workflows
 
-Nextflow workflows have three main parts; **`processes`**, **`channels`**, and **`workflows`**. 
+Nextflow workflows consist of three primary components: **`processes`**, **`channels`**, and **`workflows`**.
 
-*   **`Processes` describe a task to be run**. A process script can be written in any scripting language that can be executed by the Linux platform (Bash, Perl, Ruby, Python, etc.). Processes spawn a task for each complete input set. Each task is executed independently, and cannot interact with another task. **The only way data can be passed between process tasks is via asynchronous queues, called `Channels`**.
+* **`Processes` define tasks to be executed**. Process scripts can be written in any scripting language compatible with the Linux platform (Bash, Perl, Ruby, Python, etc.). Processes create a task for each complete input set, with each task executing independently and without interaction with other tasks. **Data can only be passed between process tasks via asynchronous queues called `Channels`**.
 
-* Processes define `inputs` and `outputs` for a task. Channels are then used to manipulate the flow of data from one process to the next. The interaction between processes, and ultimately the **pipeline execution flow itself, is then explicitly defined in a `workflow` section**.
+* Processes specify `inputs` and `outputs` for a task. Channels manipulate the flow of data between processes. The interaction between processes, and ultimately the **pipeline execution flow, is explicitly defined in a `workflow` section**.
 
-*   In the following example we have a channel containing three elements, e.g., 3 data files. We have a process that takes the channel as input. Since the channel has three elements, three independent instances (tasks) of that process are run in parallel. Each task generates an output, that is passed to another channel, which is used as input for the next process.
+* In the example below, a channel contains three elements, such as three data files. A process receives the channel as input. Since the channel contains three elements, three independent instances (tasks) of the process run in parallel. Each task generates an output, which is passed to another channel and serves as input for the next process.
 
-<img src="images/channel-process_fqc.png" alt="drawing" width="1000"/>
+  <img src="images/channel-process_fqc.png" alt="drawing" width="1000"/>
 
 ### Workflow Execution
 
-*   While a process defines what command or script has to be executed, the executor determines how that script is actually run in the target system.
+* While a process determines the command or script to be executed, the executor defines how that script is run on the target system.
 
-*   **If not otherwise specified, processes are executed on the local computer**. The local executor is very useful for pipeline development, testing, and small scale workflows, but for large scale computational pipelines, a High Performance Cluster (HPC) or Cloud platform is often required.
+* **By default, processes execute on the local computer**. The local executor is useful for pipeline development, testing, and small-scale workflows. However, large-scale computational pipelines often require High Performance Clusters (HPC) or Cloud platforms.
 
-<img src="images/executor.png" alt="drawing" width="400"/>
+  <img src="images/executor.png" alt="drawing" width="400"/>
 
-*   Nextflow provides a separation between the pipeline’s functional logic and the underlying execution platform. This makes it possible to write a pipeline once, and then run it on your computer, compute cluster, or the cloud, without modifying the workflow, by defining the target execution platform in a configuration file.
+* Nextflow separates the pipeline's functional logic from the underlying execution platform. This allows a pipeline to be written once and executed on a local computer, compute cluster, or the cloud without modifying the workflow. The target execution platform can be defined in a configuration file.
 
-*   Nextflow provides out-of-the-box support for major batch schedulers and cloud platforms such as Sun Grid Engine, SLURM job scheduler, AWS Batch service and Kubernetes. A full list can be found [here](https://www.nextflow.io/docs/latest/executor.html).
+* Nextflow offers out-of-the-box support for major batch schedulers and cloud platforms, such as Sun Grid Engine, SLURM job scheduler, AWS Batch service, and Kubernetes. A comprehensive list can be found [here](https://www.nextflow.io/docs/latest/executor.html).
+## Your First Nextflow Script
 
-## Your first Nextflow script
+Navigate to the Nextflow tutorial directory:
 
 ```bash
 cd /workspace/nextflow_tutorial
 ```
 
-We are now going to create a nextflow script that counts the number of lines in a file.
-
-**Create the file `word_count.nf`  in the current directory using `code word_count.nf` or your favourite text editor and copy-paste the following code.**
+Now, create a Nextflow script that counts the number of lines in a file. To do this, create the file `word_count.nf` in the current directory using `code word_count.nf` or your preferred text editor and copy-paste the following code:
 
 ```groovy
 #!/usr/bin/env nextflow
@@ -137,12 +137,12 @@ input_ch = Channel.fromPath(params.input)
 */
 
 workflow {
-    //  The script to execute is called by it's process name, and input is provided between brackets.
-    
+    // The script to execute is called by its process name, and input is provided between brackets.
+
     NUM_LINES(input_ch)
 
-    /*  Process output is accessed using the `out` channel.
-        The channel operator view() is used to print process output to the terminal. */
+    /* Process output is accessed using the `out` channel.
+       The channel operator view() is used to print process output to the terminal. */
         
     NUM_LINES.out.view()
     
@@ -167,59 +167,58 @@ process NUM_LINES {
     """
     # Print reads
     printf '${read}\t'
-    
-    # Unzip file and count number of lines 
+
+    # Unzip file and count number of lines
     gunzip -c ${read} | wc -l
     """
 }
 ```
 
-> This is a Nextflow script. It contains;
->1.  An optional interpreter directive (“`Shebang`”) line, specifying the location of the Nextflow interpreter.
->2.  `nextflow.enable.dsl=2` to enable DSL2 syntax.
->3.  A multi-line Nextflow comment, written using C style block comments, followed by a single line comment.
->4.  A pipeline parameter `params.input` which is given a default value, of the relative path to the location of a compressed fastq file, as a string.
->5.  A Nextflow process block named `NUM_LINES`, which defines what the process does.
->10. An `input` definition block that assigns the `input` to the variable `read`, and declares that it should be interpreted as a file path.
->11. An `output` definition block that uses the Linux/Unix standard output stream `stdout` from the script block.
->12. A script block that contains the bash commands `printf '${read}'` and `gunzip -c ${read} | wc -l`
->6.  A Nextflow channel `input_ch` used to read in data to the workflow.
->6.  An unnamed `workflow` execution block, which is the default workflow to run.
->7.  A call to the process `NUM_LINES` with input channel `input_ch`.
->8.  An operation on the process output, using the channel operator `.view()`.
+This Nextflow script includes:
+1. An optional interpreter directive ("`Shebang`") line, specifying the location of the Nextflow interpreter.
+2. `nextflow.enable.dsl=2` to enable DSL2 syntax.
+3. A multi-line Nextflow comment, written using C-style block comments, followed by a single-line comment.
+4. A pipeline parameter `params.input` with a default value, which is the relative path to the location of a compressed fastq file, as a string.
+5. A Nextflow process block named `NUM_LINES`, which defines what the process does.
+6. An `input` definition block that assigns the `input` to the variable `read`, and declares that it should be interpreted as a file path.
+7. An `output` definition block that uses the Linux/Unix standard output stream `stdout` from the script block.
+8. A script block containing the bash commands `printf '${read}'` and `gunzip -c ${read} | wc -l`.
+9. A Nextflow channel `input_ch` used to read in data for the workflow.
+10. An unnamed `workflow` execution block, which is the default workflow to run.
+11. A call to the process `NUM_LINES` with the input channel `input_ch`.
+12. An operation on the process output, using the channel operator `.view()`.
 
-## Run a Nextflow script
+## Run a Nextflow Script
 
-Run the script by entering the following command in your terminal:
+To run the script, enter the following command in your terminal:
 
 ```bash
 nextflow run word_count.nf
 ```
 
-You should see output similar to the text shown below:
+The output should resemble the text shown below:
 
-> ```bash
->N E X T F L O W  ~  version 21.04.3
->Launching `word_count.nf` [marvelous_mestorf] - revision: c09ee14ad4
->executor >  local (1)
->[81/92e3e9] process > NUM_LINES (1) [100%] 1 of 1 ✔
->SRR2584863_1.fastq.gz 6213036
-> ```
+```bash
+N E X T F L O W  ~  version 21.04.3
+Launching `word_count.nf` [marvelous_mestorf] - revision: c09ee14ad4
+executor >  local (1)
+[81/92e3e9] process > NUM_LINES (1) [100%] 1 of 1 ✔
+SRR2584863_1.fastq.gz 6213036
+```
 
-> * The first line shows the Nextflow version number.
-> * The second line shows the run name **marvelous_mestorf** (adjective and scientist name) and revision id c54a707593.
-> * The third line tells you the process has been executed locally (executor > local).
-> * The next line shows the process id `4b/a97f8a`, process name, number of cpus, percentage task completion, and how many instances of the process have been run.
-> * The final line is the standard output of the process seen using the `.view` operator.
+* The first line shows the Nextflow version number.
+* The second line displays the run name **marvelous_mestorf** (adjective and scientist name) and revision id c09ee14ad4.
+* The third line indicates that the process has been executed locally (executor > local).
+* The following line shows the process id `81/92e3e9`, process name, percentage task completion, and the number of instances of the process that have been run.
+* The final line is the standard output of the process displayed using the `.view` operator.
+## Pipeline Parameters
 
-## Pipeline parameters
+*   In the Nextflow `word_count.nf` script, a pipeline parameter `params.input` is defined. Pipeline parameters allow you to modify the workflow input at runtime, through the command line or a configuration file, so it's not hard-coded into the script.
 
-*   The Nextflow `word_count.nf` script defines a pipeline parameter `params.input`. Pipeline parameters enable you to change the input to the workflow at runtime, via the command line or a configuration file, so they are not hard-coded into the script.
+*   Pipeline parameters are declared in the workflow by appending the `params` prefix, separated by a dot character, to a variable name, e.g., `params.input`. You can specify their value on the command line by prefixing the parameter name with a double dash character, e.g., `--input`.
 
-*   Pipeline parameters are declared in the workflow by prepending the prefix `params`, separated by dot character, to a variable name e.g., `params.input`. Their value can be specified on the command line by prefixing the parameter name with a double dash character, e.g., `--input`.
+*   Wildcards can also be used to specify multiple input files. In the example below, the `*` is used to match any sequence of characters with `.fastq.gz`. **Note: When using wildcard characters on the command line, you must enclose the value in quotes**. 
 
-*   We can also use wild cards to specify multiple input files. In the example below we use the `*` to match any sequence of characters with `.fastq.gz`. **Note: If you use wild card characters on the command line you must enclose the value in quotes**. 
-   
 **Re-run the Nextflow script by entering the following command in your terminal:**
 
 ```bash
@@ -281,7 +280,6 @@ Type the following on the command line to display an output similar as below
 ```bash
 nextflow log
 ```
-
 ```bash
 TIMESTAMP               DURATION        RUN NAME                STATUS  REVISION ID     SESSION ID                              COMMAND                                                                
 2021-11-16 07:17:23     5.9s            irreverent_leakey       OK      bf77afb9d7      17d06cd0-3bb9-4d32-9d75-48bfdf5401a9    nextflow run word_count.nf                                             
