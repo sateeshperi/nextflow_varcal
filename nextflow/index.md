@@ -106,7 +106,7 @@ permalink: /nextflow/
 
 ## Credits
 
-- **[Seqera Labs - Nextflow Training](https://training.seqera.io/)**
+- **[Seqera Labs - Nextflow Training](https://training.nextflow.io/)**
 
 - **[Introduction to Bioinformatics workflows with Nextflow and nf-core](https://carpentries-incubator.github.io/workflows-nextflow/index.html)**
 
