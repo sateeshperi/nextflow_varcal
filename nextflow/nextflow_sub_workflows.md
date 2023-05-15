@@ -2,11 +2,11 @@
 layout: main
 title: NextFlow Sub-Workflows
 categories: [nextflow]
-tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
+tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
 permalink: /nextflow/nextflow_sub_workflows
 ---
-{% include _nextflow_nextflow_sub_workflows_toc.html %}
 
+{% include _nextflow_nextflow_sub_workflows_toc.html %}
 
 <hr>
 <center>This is part 12 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
@@ -14,41 +14,35 @@ permalink: /nextflow/nextflow_sub_workflows
 
 <br>
 
-## Sub-workflows
+## Sub-workflows in Nextflow
 
-> A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+Sub-workflows are a chain of multiple modules providing a higher-level of functionality within a pipeline context. For instance, you could have a sub-workflow running multiple QC tools with FastQ files as input. These sub-workflows should ideally be bundled with the pipeline implementation and shared among different pipelines as needed.
 
-* We have seen previously the Nextflow DSL2 syntax allows for the definition of reusable processes (modules).
+Nextflow DSL2 not only allows for the definition of reusable processes (modules), but also enables the creation of reusable sub-workflow libraries.
 
-* Nextflow DSL2 also allow the definition reusable sub-workflow libraries.
+### Workflow Definition
 
-### Workflow definition
+The `workflow` keyword enables the definition of workflow components that enclose one or more processes and operators.
 
-*   The `workflow` keyword allows the definition of workflow components that enclose the invocation of one or more processes and operators.
+An **Implicit workflow** is a workflow definition that does not declare any name and is assumed to be the main workflow. It is implicitly executed, serving as the entry point of the workflow application.
 
-> **Implicit workflow** : A workflow definition which does not declare any name is assumed to be the main workflow, and it is implicitly executed. Therefore it’s the entry point of the workflow application.
+A workflow component can access any variable and parameter defined in the outer scope. It can also declare one or more input channels using the `take` keyword.
 
-* A workflow component can access any variable and parameter defined in the outer scope.
+> **Warning**: When using the `take` keyword, the beginning of the workflow body needs to be identified with the `main` keyword. Then, the input can be specified as an argument in the workflow invocation statement.
 
-* A workflow component can declare one or more input channels using the `take` keyword.
+These input channels can be passed to the workflow as parameters inside the parentheses `()`. Multiple parameters are separated by a comma `,` and must be specified in the order they appear under `take:`.
 
-> Warning: When the `take` keyword is used, the beginning of the workflow body needs to be identified with the `main` keyword. Then, the input can be specified as an argument in the workflow invocation statement:
+> **Note**: Workflow inputs are by definition channel data structures. If a basic data type is provided instead (i.e., number, string, list, etc.), it's implicitly converted to a channel value (i.e., non-consumable).
 
-*   These input channels can then be passed to the workflow as parameters inside the `()`. Multiple parameters are separated by a comma `,` and must be specified in the order they appear under `take:`
+A workflow component can declare one or more output channels using the `emit` keyword.
 
-> Note: Workflow inputs are by definition channel data structures. If a basic data type is provided instead, ie. number, string, list, etc. it’s implicitly converted to a channel value (ie. non-consumable).
+> **Note**: Implicit workflow definition is ignored when a script is included as a module. This allows the writing of a workflow script that can be used either as a library module or as an application script.
 
-*   A workflow component can declare one or more output channels using the `emit` keyword.
-
-> Note: Implicit workflow definition is ignored when a script is included as module. This allows the writing a workflow script that can be used either as a library module and as application script.
-
-*   As with modules workflows components can be defined within your script or imported by a `include` statment. After which thet can then be invoked and composed as any other workflow component or process in your script.
-
-
+Like modules, workflow components can be defined within your script or imported by an `include` statement. After which, they can then be invoked and composed as any other workflow component or process in your script.
 
 Let's create a sub-workflow for read qc using `fastqc` and `multiqc` modules.
 
-*    First, we need to create a new file `multiqc.nf` in the `/workspace/nextflow_tutorial/modules/` directory; paste the following and save.
+- First, we need to create a new file `multiqc.nf` in the `/workspace/nextflow_tutorial/modules/` directory; paste the following and save.
 
 ```groovy
 /*
@@ -70,7 +64,7 @@ process MULTIQC {
 
     // indicates to use as a container the value indicated in the parameter
     container( params.CONTAINER )
-    
+
     // show in the log which input file is analysed
     tag( "${inputfiles}" )
 
@@ -87,8 +81,7 @@ process MULTIQC {
 }
 ```
 
-*   Now, let's create a new directory for subworkflows
-
+- Now, let's create a new directory for subworkflows
 
 ```bash
 cd /workspace/nextflow_tutorial
@@ -96,7 +89,7 @@ mkdir subworkflows
 cd subworkflows
 ```
 
-*   Create a new file `fastmultiqc.nf` in `/workspace/nextflow_tutorial/subworkflows` directory; paste the following and save.
+- Create a new file `fastmultiqc.nf` in `/workspace/nextflow_tutorial/subworkflows` directory; paste the following and save.
 
 ```groovy
 /*
@@ -134,21 +127,21 @@ workflow READ_QC {
 }
 ```
 
-*   Move to parent directory
+- Move to parent directory
 
 ```bash
 cd /workspace/nextflow_tutorial
 ```
 
-* Replace your `variant-calling.nf` script as shown below to include the `QC` sub-workflow
+- Replace your `variant-calling.nf` script as shown below to include the `QC` sub-workflow
 
 ```groovy
 /*
 ========================================================================================
     Variant-Calling Nextflow Workflow
 ========================================================================================
-    Github   : 
-    Contact  :     
+    Github   :
+    Contact  :
 ----------------------------------------------------------------------------------------
 */
 
@@ -188,8 +181,8 @@ include { READ_QC } from "./subworkflows/fastmultiqc" addParams(OUTPUT: "${param
 ========================================================================================
 */
 
-ref_ch = Channel.fromPath( params.genome, checkIfExists: true  )  
-reads_ch = Channel.fromFilePairs( params.reads, checkIfExists: true ) 
+ref_ch = Channel.fromPath( params.genome, checkIfExists: true  )
+reads_ch = Channel.fromFilePairs( params.reads, checkIfExists: true )
 
 /*
 ========================================================================================
@@ -200,7 +193,7 @@ reads_ch = Channel.fromFilePairs( params.reads, checkIfExists: true )
 workflow QC {
 
     READ_QC( reads_ch )
-    
+
 }
 
 workflow {
@@ -240,7 +233,7 @@ workflow.onComplete {
 */
 ```
 
-*   Make sure your `nextflow.config` matches below to be able to submit to the cluster
+- Make sure your `nextflow.config` matches below to be able to submit to the cluster
 
 ```groovy
 /*
@@ -263,7 +256,7 @@ params {
 
   genome                     = "${launchDir}/data/ref_genome/ecoli_rel606.fasta"
   reads                      = "${launchDir}/data/trimmed_fastq/*_{1,2}.trim.fastq.gz"
-  
+
   // Output options
   outdir                     = "results"
 }
@@ -320,11 +313,11 @@ profiles {
   conda {
     process.conda = "${launchDir}/environment.yml"
   }
-  
+
   singularity {
     singularity.enabled = true
   }
-  
+
    docker {
     docker.enabled = true
   }
@@ -342,11 +335,12 @@ For example:
 nextflow run variant-calling.nf -profile docker -entry QC -with-dag read_qc_dag.png
 ```
 
->Output
->```bash
->executor >  slurm (6)
->[a5/272a18] process > QC:READ_QC:FASTQC ([SRR2584866_1.trim.fastq.gz, SRR2584866_2.tri... [100%] 3 of 3 ✔
->[af/1182f5] process > QC:READ_QC:MULTIQC ([SRR2584866_1.trim_fastqc.html, SRR2584866_1... [100%] 3 of 3 ✔
+> Output
+>
+> ```bash
+> executor >  slurm (6)
+> [a5/272a18] process > QC:READ_QC:FASTQC ([SRR2584866_1.trim.fastq.gz, SRR2584866_2.tri... [100%] 3 of 3 ✔
+> [af/1182f5] process > QC:READ_QC:MULTIQC ([SRR2584866_1.trim_fastqc.html, SRR2584866_1... [100%] 3 of 3 ✔
 >
 >        Pipeline execution summary
 >        ---------------------------
@@ -355,42 +349,42 @@ nextflow run variant-calling.nf -profile docker -entry QC -with-dag read_qc_dag.
 >        Success     : true
 >        workDir     : nextflow_tutorial/work
 >
->```
+> ```
 
 ![](images/read_qc_subworkflow.PNG)
 
-
 > `tree results/`
->```bash
->results/
->├── read_qc
->│   ├── multiqc_report.html
->│   ├── SRR2584863_1.trim_fastqc.html
->│   ├── SRR2584863_1.trim_fastqc.zip
->│   ├── SRR2584863_2.trim_fastqc.html
->│   ├── SRR2584863_2.trim_fastqc.zip
->│   ├── SRR2584866_1.trim_fastqc.html
->│   ├── SRR2584866_1.trim_fastqc.zip
->│   ├── SRR2584866_2.trim_fastqc.html
->│   ├── SRR2584866_2.trim_fastqc.zip
->│   ├── SRR2589044_1.trim_fastqc.html
->│   ├── SRR2589044_1.trim_fastqc.zip
->│   ├── SRR2589044_2.trim_fastqc.html
->│   └── SRR2589044_2.trim_fastqc.zip
->├── report.html
->├── timeline.html
->└── trace.txt
 >
->1 directory, 16 files
->```
+> ```bash
+> results/
+> ├── read_qc
+> │   ├── multiqc_report.html
+> │   ├── SRR2584863_1.trim_fastqc.html
+> │   ├── SRR2584863_1.trim_fastqc.zip
+> │   ├── SRR2584863_2.trim_fastqc.html
+> │   ├── SRR2584863_2.trim_fastqc.zip
+> │   ├── SRR2584866_1.trim_fastqc.html
+> │   ├── SRR2584866_1.trim_fastqc.zip
+> │   ├── SRR2584866_2.trim_fastqc.html
+> │   ├── SRR2584866_2.trim_fastqc.zip
+> │   ├── SRR2589044_1.trim_fastqc.html
+> │   ├── SRR2589044_1.trim_fastqc.zip
+> │   ├── SRR2589044_2.trim_fastqc.html
+> │   └── SRR2589044_2.trim_fastqc.zip
+> ├── report.html
+> ├── timeline.html
+> └── trace.txt
+>
+> 1 directory, 16 files
+> ```
 
 > **[Click here for another good example on using sub-workflows](https://nextflow-io.github.io/elixir-workshop-21/docs/fourth.html#bowtie)**
 
-> Quick Recap
->*  Nextflow allows for definition of reusable sub-workflow libraries.
->*  Sub-workflow allows the definition of workflow processes that can be included from any other script and invoked as a custom function within the new workflow scope. This enables reuse of workflow components
->*  The `-entry` option of the nextflow run command specifies the workflow name to be executed
+## Quick Recap
 
+- Nextflow DSL2 provides the capability to define reusable sub-workflow libraries, which enhances code modularity and reuse.
+- Sub-workflows enable the encapsulation of a chain of processes that can be imported from other scripts and invoked as custom functions within a new workflow scope. This promotes reuse and manageability of workflow components.
+- When running a Nextflow script, the `-entry` option of the `nextflow run` command can be used to specify the name of the workflow to be executed. This is especially useful when a script contains multiple workflow definitions.
 
 ---
 

@@ -2,11 +2,11 @@
 layout: main
 title: NextFlow Install
 categories: [nextflow]
-tags: [cluster,nextflow,workflow,bioinformatics,tutorial]
+tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
 permalink: /nextflow/nextflow_install
 ---
-{% include _nextflow_nextflow_install_toc.html %}
 
+{% include _nextflow_nextflow_install_toc.html %}
 
 <hr>
 <center>This chapter is a part of <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
@@ -14,104 +14,83 @@ permalink: /nextflow/nextflow_install
 
 <br>
 
-## GITPOD 
+## Using Gitpod for a Preconfigured Nextflow Development Environment
 
-Use a preconfigured Nextflow development environment using Gitpod.
+Gitpod provides a cloud-based development environment that can be accessed through your web browser. This environment is ideal for running Nextflow and is preconfigured for your convenience.
 
->Requirements:
->* A GitHub, GitLab or BitBucket account (gives you 50 hours usage per month)
->* Web browser (Google Chrome, Firefox)
+**Requirements:**
 
-## Gitpod environment
+- A GitHub, GitLab, or BitBucket account (provides 50 hours of usage per month)
+- A web browser (Google Chrome or Firefox)
 
-To run Gitpod:
+## Accessing the Gitpod Environment
 
-1) click the following URL:
+To access the Gitpod environment:
 
-gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git
+1. Prefix the Github repository URL with `gitpod.io/#`. For example:
 
-(which is our Github repository URL, prefixed with `gitpod.io/#`).
+   `gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git`
 
-OR
+2. Alternatively, click the button below to launch directly:
 
-2) click the button below to launch directly as well
+   [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git)
+3. Install the Gitpod browser extension by following the instructions [here](https://www.gitpod.io/docs/browser-extension). This will add a green Gitpod button to each Git repository for easy access. Once installed, navigate to the training repository (https://github.com/sateeshperi/nextflow_tutorial.git), and click the green button.
 
-OR
+    <img src="images/gitpodbutton.png" alt="drawing" width="800"/>
 
-3) Install the Gitpod browser extension, following the instructions **[here](https://www.gitpod.io/docs/browser-extension)**. This will add a green Gitpod button to each Git repository for easy access to the environment. Then go to the git repository for the training (https://github.com/sateeshperi/nextflow_tutorial.git), and click the green button.
+Sign in to your Github account and authorize Gitpod. If using BitBucket or GitLab, sign into Gitpod and change your integration on the following page: [gitpod.io/integrations](https://gitpod.io/integrations).
 
-<img src="images/gitpodbutton.png" alt="drawing" width="800"/>
+Once signed in, Gitpod will load (skip prebuild, if asked). Remember to save the URL of your Gitpod environment for future access.
 
+## Exploring the Gitpod IDE
 
-* Login to your Github account (and allow authorization).
-* You may need to close the window at each stage and click the gitpod link again.
-* For BitBucket or GitLab, you may have to sign into Gitpod and change your integration on the following page: [gitpod.io/integrations](https://gitpod.io/integrations).
+The Gitpod environment comes with a sidebar for customizing your environment and performing basic tasks, a terminal for running programs, and a main window for viewing and editing files. The environment comes preinstalled with Nextflow, Conda, and Docker.
 
-Once you have signed in, gitpod will load (skip prebuild, if asked):
+To save your files, choose your file of interest, then either use the sidebar to select "File/Save As…", or use your keyboard shortcut to save as, then choose "Show local". This will open an explorer to choose where to save your file on your local machine.
 
-<img src="images/gitpod.png" alt="drawing" width="500"/>
+## Setting Up Your Workspace
 
-* Gitpod gives you 50 hours per month to run the environment, with up to 4 parallel workspaces at a time. So feel free to come back at any time and try the course at your own pace.
+1. Create the `varcal` environment based on the `yml` file:
 
-* It is useful to save the URL that is now your Gitpod environment. Later, we can use this to return to the same closed environment (so please take note of it now).
+   ```bash
+   mamba env update -n base -f environment.yml
+   ```
 
-> Explore your Gitpod IDE
+2. Download the reference genome and raw reads:
 
-You should see something similar to the following:
+   ```bash
+   bash data/fetch_raw_data.sh
+   ```
 
-<img src="images/gitpod_startup.png" alt="drawing" width="800"/>
+3. Trim raw reads using `trimmomatic`:
 
-* The sidebar allows you to customize your Gitpod environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.) Click the **Explorer** button to see which files are in this repository.
+   ```bash
+   bash data/trim.sh
+   ```
 
-* The terminal allows you to run all the programs in the repository, for example **nextflow, conda and docker are installed**.
+## Reopening a Gitpod Session
 
-* The main window allows you to view and edit files. Clicking on a file in the explorer will open it within the main window.
+Running workspaces are automatically stopped after 30 minutes of inactivity. You can reopen the environment by going to `gitpod.io/workspaces`, finding your previous environment, clicking the three-dot button to the right, and selecting "Open".
 
-> To save your files, choose your file of interest, then either use the left/top hand side bar (File/Save As…​) or use you’re keyboard shortcut to save as (On Mac: `CMD, shift, s`), then choose Show local. This will open up a explorer to choose where to save your file on your local machine.
+You can also reopen a previous environment by using the saved URL from your previous Gitpod environment. Environments are saved for up to two weeks.
 
-* **The GitPod comes with Nextflow, Conda and Docker pre-installed**
-
-### 1. Create `varcal` environment based on yml file
-
-```bash
-mamba env update -n base -f environment.yml
-```
-
-### 2. Download reference genome and raw reads
-
-```bash
-bash data/fetch_raw_data.sh
-```
-
-### 3. Trim raw reads using `trimmomatic`
-
-```bash
-bash data/trim.sh
-```
-
-## Reopening a Gitpod session
-
-* Any running workspace will be automatically stopped after 30 minutes. You can open the environment again by going to `gitpod.io/workspaces` and finding your previous environment, then clicking the three dot button to the right, and selecting Open.
-
-* If you save the URL from your previous Gitpod environment, you can just paste this into your browser to open the previous environment. Environments are saved for up to two weeks, but don’t rely on their existence, download any important files you want for posterity.
-
-* Alternatively, you can start a new workspace by clicking the green gitpod button, or following the Gitpod URL: gitpod.io/#https://gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git
+Alternatively, you can start a new workspace by clicking the green Gitpod button or using the Gitpod URL: `gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git`.
 
 ---
-<br>
----
+
+## <br>
+
 <details>
   <summary><b>CLICK HERE for Manual Install Instructions</b></summary>
 
 ### Nextflow Requirements
 
-* Nextflow can be used on any POSIX compatible system (Linux, OS X, etc). It requires Bash 3.2 (or later) and [Java 8 (or later, up to 15)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) to be installed.
-* For the execution in a cluster of computers the use a shared file system is required to allow the sharing of tasks input/output files.
-* Windows system is supported through WSL.
-* Nextflow is distributed as a self-installing package, which means that it does not require any special installation procedure. Installation instructions can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation)  
-  
+- Nextflow can be used on any POSIX compatible system (Linux, OS X, etc). It requires Bash 3.2 (or later) and [Java 8 (or later, up to 15)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) to be installed.
+- For the execution in a cluster of computers the use a shared file system is required to allow the sharing of tasks input/output files.
+- Windows system is supported through WSL.
+- Nextflow is distributed as a self-installing package, which means that it does not require any special installation procedure. Installation instructions can be found [here](https://www.nextflow.io/docs/latest/getstarted.html#installation)
+
 <pre>
 mkdir -p ~/bin/
 cd ~/bin/
@@ -121,103 +100,110 @@ echo 'PATH=~/bin:$PATH' >> ~/.bashrc
 which nextflow      ## should point back to ~/bin
 nextflow -v         ## check install by invoking Nextflow, getting version
 </pre>
-  
-## NF-CORE Install  
+
+## NF-CORE Install
+
 <pre>
 conda install nf-core
 # or
 pip install nf-core
 </pre>
-  
+
 ## Environment Setup
 
-*  Create `environment.yml`
+- Create `environment.yml`
 <pre>
 channels:
-  - bioconda
-  - conda-forge
-dependencies:
-  - fastqc
-  - trimmomatic
-  - bwa
-  - samtools
-  - bcftools
-  - multiqc
-  - graphviz
+
+* bioconda
+* conda-forge
+  dependencies:
+* fastqc
+* trimmomatic
+* bwa
+* samtools
+* bcftools
+* multiqc
+* graphviz
 </pre>
-  
+
 <pre>
 mamba env create -n varcal -f environment.yml
 </pre>
-  
-  
+
 ## Data Download & Setup
 
-*   **[Data Source - DataCarpentry Wrangling Genomics Lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html)**
+The data for this tutorial is sourced from the [DataCarpentry Wrangling Genomics Lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html).
 
-*  Download reference genome  
-<pre>
-cd ~/
-mkdir -p nextflow_tutorial/data/ref_genome
-cd nextflow_tutorial/data/ref_genome
-curl -L -o data/ref_genome/ecoli_rel606.fasta.gz ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/017/985/GCA_000017985.1_ASM1798v1/GCA_000017985.1_ASM1798v1_genomic.fna.gz
-gunzip data/ref_genome/ecoli_rel606.fasta.gz
-ls
-</pre>
-  
-*  Download raw data
-<pre>
-cd ~/
-mkdir -p nextflow_tutorial/data/untrimmed_fastq/
-cd nextflow_tutorial/data/untrimmed_fastq/
+- **Download the Reference Genome**
 
-curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/004/SRR2589044/SRR2589044_1.fastq.gz
-curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/004/SRR2589044/SRR2589044_2.fastq.gz
-curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_1.fastq.gz
-curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_2.fastq.gz
-curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_1.fastq.gz
-curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fastq.gz
-</pre>  
-  
-*  Trim the reads
-<pre>
-conda activate varcal
-</pre>
-  
-  
-<pre>
-cd nextflow_tutorial/data/untrimmed_fastq/
+  ```bash
+  cd ~/
+  mkdir -p nextflow_tutorial/data/ref_genome
+  cd nextflow_tutorial/data/ref_genome
+  curl -L -o ecoli_rel606.fasta.gz ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/017/985/GCA_000017985.1_ASM1798v1/GCA_000017985.1_ASM1798v1_genomic.fna.gz
+  gunzip ecoli_rel606.fasta.gz
+  ls
+  ```
 
-for infile in *_1.fastq.gz
-do
-   base=$(basename ${infile} _1.fastq.gz)
-   trimmomatic PE ${infile} ${base}_2.fastq.gz \
-                ${base}_1.trim.fastq.gz ${base}_1un.trim.fastq.gz \
-                ${base}_2.trim.fastq.gz ${base}_2un.trim.fastq.gz \
-                SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
-done
-</pre>  
-  
-<pre>
-mkdir ../trimmed_fastq
-mv *.trim* ../trimmed_fastq
-cd ../trimmed_fastq
-ls
-</pre>
-    
-## IDE
+- **Download Raw Data**
 
-IDE choice will not be discussed in this tutorial. You can use what you are comfortable with, you will need to edit text files as well as run commands from the terminal, and will need to run those commands from a cluster node at one point. Some good options are VScode, with nextflow plugins and remote-ssh module setup and working. This is beyond the scope of the tutorial at this time.
+  ```bash
+  cd ~/
+  mkdir -p nextflow_tutorial/data/untrimmed_fastq/
+  cd nextflow_tutorial/data/untrimmed_fastq/
 
-*   **[Download Visual Studio Code](https://code.visualstudio.com/Download)**
+  curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/004/SRR2589044/SRR2589044_1.fastq.gz
+  curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/004/SRR2589044/SRR2589044_2.fastq.gz
+  curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_1.fastq.gz
+  curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_2.fastq.gz
+  curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_1.fastq.gz
+  curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fastq.gz
+  ```
 
-*   [VSCode Nextflow Plugin](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
+- **Trim the Reads**
 
-*   [VSCode Remote-SSH Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)  
+  Activate your conda environment:
 
-</details>
----
-<br>
+  ```bash
+  conda activate varcal
+  ```
+
+  Then run the trimming:
+
+  ```bash
+  cd nextflow_tutorial/data/untrimmed_fastq/
+
+  for infile in *_1.fastq.gz
+  do
+     base=$(basename ${infile} _1.fastq.gz)
+     trimmomatic PE ${infile} ${base}_2.fastq.gz \
+                  ${base}_1.trim.fastq.gz ${base}_1un.trim.fastq.gz \
+                  ${base}_2.trim.fastq.gz ${base}_2un.trim.fastq.gz \
+                  SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15
+  done
+  ```
+
+  Now move the trimmed files to a new directory:
+
+  ```bash
+  mkdir ../trimmed_fastq
+  mv *.trim* ../trimmed_fastq
+  cd ../trimmed_fastq
+  ls
+  ```
+
+## Integrated Development Environment (IDE)
+
+The choice of IDE will not be covered in this tutorial. You can use the one you are most comfortable with, as you will need to edit text files as well as run commands from the terminal. At some point, you will also need to run these commands from a cluster node.
+
+Some good options include Visual Studio Code, which supports Nextflow plugins and the remote-ssh module. This setup, however, is beyond the scope of this tutorial.
+
+- [Download Visual Studio Code](https://code.visualstudio.com/Download)
+- [VSCode Nextflow Plugin](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
+- [VSCode Remote-SSH Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+
+Remember, you can choose the IDE that best suits your comfort level and requirements. The most important thing is that it allows you to effectively write and debug your Nextflow scripts.
 
 ---
 
