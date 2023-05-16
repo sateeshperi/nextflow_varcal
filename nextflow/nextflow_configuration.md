@@ -300,64 +300,6 @@ singularity.enabled = true
 
 By leveraging the power of Conda, Docker, and Singularity, you can create portable and reproducible workflows that run efficiently on various computational platforms.
 
-## Configuring software requirements
-
-Nextflow supports various technologies for managing software, including Conda, Docker, Singularity, Podman, Charliecloud, and Shifter. These technologies enable you to package tools and their dependencies into a software environment, ensuring that the tools work as long as the environment is loaded. This promotes portable and reproducible workflows. Software environment specification is managed from the process scope, allowing the use of `process` selectors to manage which processes load which software environment. Each technology also has its own scope for providing further technology-specific configuration settings.
-
-### Software configuration using Conda
-
-Conda is a software package and environment management system that runs on Linux, Windows, and Mac OS. Conda packages software into environments along with their dependencies for a specific operating system. Conda environments can be configured in several ways:
-
-- Provide a path to an existing Conda environment.
-- Provide a path to a Conda environment specification file (written in YAML).
-- Specify the software package(s) using the `<channel>::<package_name>=<version>` syntax (separated by spaces), which builds the Conda environment when the process is run.
-
-```groovy
-process {
-    conda = "/home/user/miniconda3/envs/my_conda_env"
-    withName: FASTQC {
-        conda = "environment.yml"
-    }
-    withName: SALMON {
-        conda = "bioconda::salmon=1.5.2"
-    }
-}
-```
-
-The optional `conda` scope allows you to control the creation of a Conda environment by the Conda package manager. For example, `conda.cacheDir` specifies the path where the Conda environments are stored, which is in the `conda` folder of the `work` directory by default.
-
-## Software configuration using Docker
-
-Docker is a container technology that allows you to package software into lightweight, standalone, executable containers. Docker containers run software consistently, regardless of the underlying infrastructure. To use Docker, you must provide a container image path using the `process.container` directive and enable Docker in the Docker scope with `docker.enabled = true`. You should also supply your user and group via `docker.runOptions`.
-
-```groovy
-process.container = 'quay.io/biocontainers/salmon:1.5.2--h84f40af_0'
-docker.enabled = true
-docker.runOptions = '-u $(id -u):$(id -g)'
-```
-
-## Software configuration using Singularity
-
-Singularity is another container technology often used on HPC clusters. Singularity runs processes as the user and automatically mounts certain directories in the container instance. Singularity also supports building Singularity images from Docker images, allowing Docker image paths to be used as values for `process.container`.
-
-To enable Singularity, provide a container image path using `process.container` and enable Singularity using `singularity.enabled = true`.
-
-```groovy
-process.container = 'https://depot.galaxyproject.org/singularity/salmon:1.5.2--h84f40af_0'
-singularity.enabled = true
-```
-
-> Container protocols - The following protocols are supported:
->
-> - `docker://`: download the container image from the Docker Hub and convert it to the Singularity format (default).
-> - `library://`: download the container image from the Singularity Library service.
-> - `shub://`: download the container image from the Singularity Hub.
-> - `docker-daemon://`: pull the container image from a local Docker installation and convert it to a Singularity image file.
-> - `https://`: download the Singularity image from the given URL.
-> - `file://`: use a Singularity image on local computer storage.
-
-By leveraging these tools and their configurations, you can enhance the portability, reproducibility, and scalability of your workflows. Remember that each tool or technology has specific features, advantages, and limitations, so you should choose the one that best fits your use case and the resources available to you.
-
 ## Software configuration using Podman, Charliecloud, and Shifter
 
 These are other container technologies supported by Nextflow. Their usage is similar to Docker and Singularity, and they provide additional options for running containerized applications.

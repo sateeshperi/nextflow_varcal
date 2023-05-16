@@ -410,4 +410,4 @@ This command instructs Nextflow to run your pipeline (defined in `main.nf`), spe
 
 <h5><a href="/nextflow_varcal/nextflow/nextflow_caching" style="float: left"><b>Back to:</b>NextFlow Caching</a>
 
-<a href="/nextflow_varcal/nextflow/index" style="float: right"><b>Next:</b>Table of Contents</a></h5>
+<a href="/nextflow_varcal/nextflow/nextflow_nfcore_module_create" style="float: right"><b>Next:</b>Contributing to nf-core/modules</a></h5>
