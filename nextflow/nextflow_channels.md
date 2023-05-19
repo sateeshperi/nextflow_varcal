@@ -313,6 +313,53 @@ read_ch.view()
 > /workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2589044_
 > ```
 
+### 4. **The `fromFilePairs` Channel factory**
+
+- We have seen how to process files individually using `fromPath`. In Bioinformatics we often want to process files in pairs or larger groups, such as read pairs in sequencing.
+
+For example in the `/workspace/nextflow_tutorial/data/untrimmed_fastq` directory we have three groups of read pairs:
+
+| Sample_ID  | read1                 | read2                 |
+| ---------- | --------------------- | --------------------- |
+| SRR2589044 | SRR2589044_1.fastq.gz | SRR2589044_2.fastq.gz |
+| SRR2584863 | SRR2584863_1.fastq.gz | SRR2584863_2.fastq.gz |
+| SRR2584866 | SRR2584866_1.fastq.gz | SRR2584866_2.fastq.gz |
+
+- Nextflow provides a convenient factory method for this common bioinformatics use case. The `fromFilePairs` method creates a queue channel containing a **tuple** for every set of files matching a specific pattern (e.g., `/path/to/*_{1,2}.fastq.gz`).
+
+- **A tuple is a grouping of data, represented as a Groovy List**.
+  1. The first element of the tuple emitted from `fromFilePairs` is a string based on the shared part of the filenames (i.e., the `*` part of the glob pattern).
+  2. The second element is the list of files matching the remaining part of the glob pattern (i.e., the `<string>_{1,2}.fastq.gz pattern`). This will include any files ending `_1.fastq.gz` or `_2.fastq.gz`.
+
+**Create a new `queue_pairs.nf`; add the following and `nextflow run queue_pairs.nf`:**
+
+```groovy
+read_pair_ch = Channel.fromFilePairs("/workspace/nextflow_tutorial/data/untrimmed_fastq/*_{1,2}.fastq.gz", checkIfExists: true)
+read_pair_ch.view()
+```
+
+> Output
+>
+> ```groovy
+> N E X T F L O W  ~  version 21.04.3
+> Launching `queue_pairs.nf` [nauseous_austin] - revision: eb531c1c8a
+> [SRR2589044, [nextflow_tutorial/data/untrimmed_fastq/SRR2589044_1.fastq.gz, nextflow_tutorial/data/untrimmed_fastq/SRR2589044_2.fastq.gz]]
+> [SRR2584863, [nextflow_tutorial/data/untrimmed_fastq/SRR2584863_1.fastq.gz, nextflow_tutorial/data/untrimmed_fastq/SRR2584863_2.fastq.gz]]
+> [SRR2584866, [nextflow_tutorial/data/untrimmed_fastq/SRR2584866_1.fastq.gz, nextflow_tutorial/data/untrimmed_fastq/SRR2584866_2.fastq.gz]]
+> ```
+>
+> This will produce a queue channel, `read_pair_ch` , containing three elements:
+
+- Each element is a tuple that has:
+
+  1. string value (the file prefix matched, e.g `SRR2584866`)
+  2. and a list with the two files e,g. [`/workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584866_1.fastq.gz, /workspace/nextflow_tutorial/data/untrimmed_fastq/SRR2584866_2.fastq.gz`] .
+
+- The asterisk character `*`, matches any number of characters (including none), and the `{}` braces specify a collection of subpatterns.
+- Therefore the `*_{1,2}.fastq.gz` pattern matches any file name ending in `_1.fastq.gz` or `_2.fastq.gz`.
+
+> Read more information about the channel factory `fromFilePairs` [here](https://www.nextflow.io/docs/latest/channel.html#fromfilepairs)
+
 ### 5. **The `fromSRA` Channel factory**
 
 - The `fromSRA` method makes it possible to query the [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) archive and returns a queue channel emitting the FASTQ files matching the specified selection criteria.
@@ -330,43 +377,14 @@ read_ch.view()
 
 ### Complex Multi-map Input for Channels
 
-In some cases, you might need to create more complex channels with multiple input files. You can use the `fromFilePairs` method and custom pattern matching to achieve this.
-
-For example, imagine you have the following file structure:
-
-```
-data/
-├── sample1
-│   ├── sample1_r1.fastq.gz
-│   ├── sample1_r2.fastq.gz
-│   └── sample1_metadata.txt
-└── sample2
-    ├── sample2_r1.fastq.gz
-    ├── sample2_r2.fastq.gz
-    └── sample2_metadata.txt
-```
-
-You can create a channel that maps read pairs and metadata files using the following pattern:
-
-```groovy
-Channel
-    .fromFilePairs("data/*/*_{r[1-2],metadata}.txt", size: 3)
-    .view()
-```
-
-This will produce the following output:
-
-```
-[sample1, [/path/to/data/sample1/sample1_r1.fastq.gz, /path/to/data/sample1/sample1_r2.fastq.gz, /path/to/data/sample1/sample1_metadata.txt]]
-[sample2, [/path/to/data/sample2/sample2_r1.fastq.gz, /path/to/data/sample2/sample2_r2.fastq.gz, /path/to/data/sample2/sample2_metadata.txt]]
-```
-
-This channel contains tuples with two elements:
-
-1. A string value based on the shared part of the filenames (e.g., `sample1`).
-2. A list containing the three files (e.g., `[/path/to/data/sample1/sample1_r1.fastq.gz, /path/to/data/sample1/sample1_r2.fastq.gz, /path/to/data/sample1/sample1_metadata.txt]`).
-
-The asterisk character `*` matches any number of characters (including none), and the braces `{}` specify a collection of subpatterns. Therefore, the `*_{r[1-2],metadata}.txt` pattern matches any file name ending in `_r1.fastq.gz`, `_r2.fastq.gz`, or `_metadata.txt`.
+> Quick Recap:
+>
+> > - Channels must be used to import data into Nextflow.
+> > - Nextflow has two different kinds of channels, `queue` channels and `value` channels.
+> > - Data in `value` channels can be used multiple times in workflow.
+> > - Data in `queue` channels are consumed when they are used by a process or an operator.
+> > - Channel factory methods, such as `Channel.of`, are used to create Channels.
+> > - Channel factory methods have optional parameters e.g., `checkIfExists`, that can be used to alter the creation and behaviour of a channel.
 
 ---
 
