@@ -14,7 +14,7 @@
 }
 .fancy-menu-title {
   display: block;
-  width: 156px;;
+  width: 156px;
   height: 20px;
   padding: 5px 0 0;
   background: #f3f3f3;
@@ -23,7 +23,7 @@
   font-size: 0.8em;
   font-weight: 600;
   transition: 0.3s background-color;
-  font-family: "Helvetica Neue",sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.25px;
 }
@@ -40,14 +40,15 @@
   top: 100%;
   left: 0;
   z-index: 101;
-  transition:
-    0.2s 0.2s border-top ease-out,
-    0.3s border-top-color;
+  transition: 0.2s 0.2s border-top ease-out, 0.3s border-top-color;
 }
 
-.fancy-menu-title:hover { background: #f1f1f1; }
-.fancy-menu-title:hover:before { border-top-color: #444444; }
-
+.fancy-menu-title:hover {
+  background: #f1f1f1;
+}
+.fancy-menu-title:hover:before {
+  border-top-color: #444444;
+}
 
 .fancy-menu-title:after {
   content: "";
@@ -75,12 +76,10 @@
   color: #444444;
   font-size: 0.8em;
   font-weight: 500;
-  font-family: "PT Sans Narrow",sans-serif;
+  font-family: "PT Sans Narrow", sans-serif;
   text-transform: uppercase;
 
-  transition:
-    0.5s padding,
-    0.5s background;
+  transition: 0.5s padding, 0.5s background;
 }
 
 .fancy-menu-dropdown:after {
@@ -124,18 +123,16 @@
   overflow: hidden;
   height: 30px;
   padding: 5px 10px;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   white-space: nowrap;
-  transition:
-    0.5s height cubic-bezier(.73,.32,.34,1.5),
-    0.5s padding cubic-bezier(.73,.32,.34,1.5),
-    0.5s margin cubic-bezier(.73,.32,.34,1.5),
-    0.5s 0.2s color,
+  transition: 0.5s height cubic-bezier(0.73, 0.32, 0.34, 1.5),
+    0.5s padding cubic-bezier(0.73, 0.32, 0.34, 1.5),
+    0.5s margin cubic-bezier(0.73, 0.32, 0.34, 1.5), 0.5s 0.2s color,
     0.2s background-color;
 }
 
 .fancy-menu-dropdown > *:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .fancy-hList > li:not(:hover) > .fancy-menu-dropdown > * {
@@ -144,12 +141,8 @@
   padding-top: 0;
   padding-bottom: 0;
   margin: 0;
-  color: rgba(25,25,25,0);
-  transition:
-    0.5s 0.1s height,
-    0.5s 0.1s padding,
-    0.5s 0.1s margin,
-    0.3s color,
+  color: rgba(25, 25, 25, 0);
+  transition: 0.5s 0.1s height, 0.5s 0.1s padding, 0.5s 0.1s margin, 0.3s color,
     0.6s visibility;
   z-index: 99;
 }

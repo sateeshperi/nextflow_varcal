@@ -17,8 +17,7 @@ title: Nextflow Tutorial - Variant Calling Edition
 email: perisateesh@gmail.com
 author: Sateesh Peri
 description: Nextflow Tutorial - Variant Calling Edition
-baseurl:  # the subpath of your site, e.g. /blog
-
+baseurl: # the subpath of your site, e.g. /blog
 
 # Build settings
 markdown: kramdown
@@ -30,8 +29,7 @@ highlighter: rouge
 
 whitelist:
   - jekyll-redirect-from
-
-# Exclude from processing.  # 
+# Exclude from processing.  #
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 # exclude:
