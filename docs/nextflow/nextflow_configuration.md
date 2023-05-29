@@ -3,13 +3,13 @@ layout: main
 title: Nextflow Configuration
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_configuration
+permalink: /docs/nextflow/nextflow_configuration
 ---
 
-{% include _nextflow_nextflow_configuration_toc.html %}
+{% include _docs_nextflow_nextflow_configuration_toc.html %}
 
 <hr>
-<center>This is part 10 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 10 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -329,6 +329,6 @@ Nextflow's flexibility and compatibility with a wide range of technologies make 
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_variant_calling" style="float: left"><b>Back to:</b>Nextflow Variant Calling</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_variant_calling" style="float: left"><b>Back to:</b>Nextflow Variant Calling</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_modules" style="float: right"><b>Next:</b>NextFlow Modules</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_modules" style="float: right"><b>Next:</b>NextFlow Modules</a></h5>

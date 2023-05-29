@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Useful Links
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_useful
+permalink: /docs/nextflow/nextflow_useful
 ---
 
-{% include _nextflow_nextflow_useful_toc.html %}
+{% include _docs_nextflow_nextflow_useful_toc.html %}
 
 <hr>
-<center>This is part 8 of 8 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 8 of 8 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -51,6 +51,6 @@ IDE choice will not be discussed in this tutorial. You can use what you are comf
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_install" style="float: left"><b>Back to:</b>Table of Contents</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_install" style="float: left"><b>Back to:</b>Table of Contents</a>
 
-<a href="/nextflow_varcal/nextflow/index" style="float: right"><b>Back to:</b>NextFlow Install</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/index" style="float: right"><b>Back to:</b>NextFlow Install</a></h5>

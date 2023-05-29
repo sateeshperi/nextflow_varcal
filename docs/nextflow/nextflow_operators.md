@@ -3,13 +3,13 @@ layout: main
 title: Nextflow Operators
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_operators
+permalink: /docs/nextflow/nextflow_operators
 ---
 
-{% include _nextflow_nextflow_operators_toc.html %}
+{% include _docs_nextflow_nextflow_operators_toc.html %}
 
 <hr>
-<center>This is part 8 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 8 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -580,6 +580,6 @@ Output:
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_workflow" style="float: left"><b>Back to:</b>Nextflow Workflow</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_workflow" style="float: left"><b>Back to:</b>Nextflow Workflow</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_variant_calling" style="float: right"><b>Next:</b>NextFlow Variant-Calling Pipeline</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_variant_calling" style="float: right"><b>Next:</b>NextFlow Variant-Calling Pipeline</a></h5>

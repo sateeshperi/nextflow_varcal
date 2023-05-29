@@ -3,13 +3,13 @@ layout: main
 title: Variant Calling Workflow
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_variant_calling
+permalink: /docs/nextflow/nextflow_variant_calling
 ---
 
-{% include _nextflow_nextflow_variant_calling_toc.html %}
+{% include _docs_nextflow_nextflow_variant_calling_toc.html %}
 
 <hr>
-<center>This is part 9 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 9 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -33,7 +33,7 @@ Our variant calling workflow has the following steps:
 6. Detect the single nucleotide variants (SNVs).
 7. Filter and report the SNVs in VCF (variant calling format).
 
-![](images/variant_calling_workflow.png)
+![](docs/images/variant_calling_workflow.png)
 
 - Read more about the variant-calling pipeline here -> **[Data Carpentry: Wrangling Genomics Lesson](https://datacarpentry.org/wrangling-genomics/)**
 
@@ -345,7 +345,7 @@ nextflow run variant-calling.nf -resume -with-report -with-trace -with-timeline 
 
 Your final Nextflow workflow DAG image should resemble this:
 
-![](images/variant_calling_dag.png)
+![](docs/images/variant_calling_dag.png)
 
 ---
 
@@ -359,6 +359,6 @@ Quick Recap:
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_operators" style="float: left"><b>Back to:</b>Nextflow Operators</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_operators" style="float: left"><b>Back to:</b>Nextflow Operators</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_configuration" style="float: right"><b>Next:</b>NextFlow Configuration</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_configuration" style="float: right"><b>Next:</b>NextFlow Configuration</a></h5>

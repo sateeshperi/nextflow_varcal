@@ -3,13 +3,13 @@ layout: main
 title: Nextflow Processes
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_processes
+permalink: /docs/nextflow/nextflow_processes
 ---
 
-{% include _nextflow_nextflow_processes_toc.html %}
+{% include _docs_nextflow_nextflow_processes_toc.html %}
 
 <hr>
-<center>This is part 6 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 6 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -382,7 +382,7 @@ workflow {
 - The `input` block defines which channels the process is expecting to receive input from.
 - The number of elements in input channels determine the process dependencies and the number of times a process executes.
 
-![](images/channel-process.png)
+![](docs/images/channel-process.png)
 
 - You can only define one input block at a time and it must contain one or more input declarations. The input block follows the syntax shown below:
 
@@ -924,6 +924,6 @@ We can now use the `tree results` command to examine the results directory.
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_channels" style="float: left"><b>Back to:</b>Nextflow Channels</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_channels" style="float: left"><b>Back to:</b>Nextflow Channels</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_workflow" style="float: right"><b>Next:</b>NextFlow Workflow</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_workflow" style="float: right"><b>Next:</b>NextFlow Workflow</a></h5>

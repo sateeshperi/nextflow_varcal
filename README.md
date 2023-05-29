@@ -1,4 +1,4 @@
-# [Nextflow Tutorial - Variant Calling Edition](https://sateeshperi.github.io/nextflow_varcal/nextflow/)
+# [Nextflow Tutorial - Variant Calling Edition](https://sateeshperi.github.io/nextflow_varcal/docs/nextflow/)
 
 ## Gitpod environment
 

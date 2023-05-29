@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Reporting
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_reporting
+permalink: /docs/nextflow/nextflow_reporting
 ---
 
-{% include _nextflow_nextflow_reporting_toc.html %}
+{% include _docs_nextflow_nextflow_reporting_toc.html %}
 
 <hr>
-<center>This is part 13 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 13 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -256,6 +256,6 @@ nextflow log elegant_descartes -t template.html > provenance.html
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_sub_workflows" style="float: left"><b>Back to:</b>NextFlow SubWorkflows</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_sub_workflows" style="float: left"><b>Back to:</b>NextFlow SubWorkflows</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_caching" style="float: right"><b>Next:</b>NextFlow Caching</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_caching" style="float: right"><b>Next:</b>NextFlow Caching</a></h5>

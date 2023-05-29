@@ -3,13 +3,13 @@ layout: main
 title: Nextflow Workflow
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_workflow
+permalink: /docs/nextflow/nextflow_workflow
 ---
 
-{% include _nextflow_nextflow_workflow_toc.html %}
+{% include _docs_nextflow_nextflow_workflow_toc.html %}
 
 <hr>
-<center>This is part 7 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 7 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -200,6 +200,6 @@ process BWA_ALIGN {
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_processes" style="float: left"><b>Back to:</b>Nextflow Processes</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_processes" style="float: left"><b>Back to:</b>Nextflow Processes</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_operators" style="float: right"><b>Next:</b>NextFlow Operators</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_operators" style="float: right"><b>Next:</b>NextFlow Operators</a></h5>

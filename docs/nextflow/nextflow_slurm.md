@@ -3,13 +3,13 @@ layout: main
 title: NF-Core @ HPC
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_slurm
+permalink: /docs/nextflow/nextflow_slurm
 ---
 
-{% include _nextflow_nextflow_slurm_toc.html %}
+{% include _docs_nextflow_nextflow_slurm_toc.html %}
 
 <hr>
-<center>This is part 3 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 3 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -150,6 +150,6 @@ nextflow run main.nf --custom_config_base conf/nf-core-slurm -profile test,docke
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_nfcore" style="float: left"><b>Back to:</b>NF-Core</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_nfcore" style="float: left"><b>Back to:</b>NF-Core</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_scripting" style="float: right"><b>Next:</b>Nextflow Scripting</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_scripting" style="float: right"><b>Next:</b>Nextflow Scripting</a></h5>

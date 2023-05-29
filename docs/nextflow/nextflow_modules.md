@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Modules
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_modules
+permalink: /docs/nextflow/nextflow_modules
 ---
 
-{% include _nextflow_nextflow_modules_toc.html %}
+{% include _docs_nextflow_nextflow_modules_toc.html %}
 
 <hr>
-<center>This is part 11 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 11 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -611,6 +611,6 @@ The `addParams` option can be used to extend the module parameters without affec
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_configuration" style="float: left"><b>Back to:</b>NextFlow Configuration</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_configuration" style="float: left"><b>Back to:</b>NextFlow Configuration</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_sub_workflows" style="float: right"><b>Next:</b>NextFlow SubWorkflows</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_sub_workflows" style="float: right"><b>Next:</b>NextFlow SubWorkflows</a></h5>

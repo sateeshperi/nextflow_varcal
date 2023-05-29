@@ -3,13 +3,13 @@ layout: main
 title: Introduction to NextFlow
 categories: [nextflow]
 tags: [aspen, cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_intro
+permalink: /docs/nextflow/nextflow_intro
 ---
 
-{% include _nextflow_nextflow_intro_toc.html %}
+{% include _docs_nextflow_nextflow_intro_toc.html %}
 
 <hr>
-<center>This is part 1 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 1 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -305,6 +305,6 @@ TIMESTAMP               DURATION        RUN NAME                STATUS  REVISION
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_nfcore" style="float: right"><b>Next:</b>NF-Core</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_nfcore" style="float: right"><b>Next:</b>NF-Core</a></h5>

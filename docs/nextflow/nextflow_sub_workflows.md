@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Sub-Workflows
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_sub_workflows
+permalink: /docs/nextflow/nextflow_sub_workflows
 ---
 
-{% include _nextflow_nextflow_sub_workflows_toc.html %}
+{% include _docs_nextflow_nextflow_sub_workflows_toc.html %}
 
 <hr>
-<center>This is part 12 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 12 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -351,7 +351,7 @@ nextflow run variant-calling.nf -profile docker -entry QC -with-dag read_qc_dag.
 >
 > ```
 
-![](images/read_qc_subworkflow.PNG)
+![](docs/images/read_qc_subworkflow.PNG)
 
 > `tree results/`
 >
@@ -388,6 +388,6 @@ nextflow run variant-calling.nf -profile docker -entry QC -with-dag read_qc_dag.
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_modules" style="float: left"><b>Back to:</b>NextFlow Modules</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_modules" style="float: left"><b>Back to:</b>NextFlow Modules</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_reporting" style="float: right"><b>Next:</b>NextFlow Reporting</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_reporting" style="float: right"><b>Next:</b>NextFlow Reporting</a></h5>

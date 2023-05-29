@@ -3,13 +3,13 @@ layout: main
 title: Nextflow Channels
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_channels
+permalink: /docs/nextflow/nextflow_channels
 ---
 
-{% include _nextflow_nextflow_channels_toc.html %}
+{% include _docs_nextflow_nextflow_channels_toc.html %}
 
 <hr>
-<center>This is part 5 of 14 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 5 of 14 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -21,7 +21,7 @@ cd channels
 
 - **Channels** are how Nextflow handles file management, allowing complex tasks to be split up, run in parallel, and reduces 'admin' required to get the right inputs to the right parts of the pipeline.
 
-![](images/channel-files.png)
+![](docs/images/channel-files.png)
 
 - Channels connect processes via their `inputs` and `outputs`.
 - Channels can store multiple items, such as files (e.g., fastq files) or values.
@@ -388,6 +388,6 @@ read_pair_ch.view()
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_scripting" style="float: left"><b>Back to:</b>Nextflow Scripting</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_scripting" style="float: left"><b>Back to:</b>Nextflow Scripting</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_processes" style="float: right"><b>Next:</b>NextFlow Processes</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_processes" style="float: right"><b>Next:</b>NextFlow Processes</a></h5>

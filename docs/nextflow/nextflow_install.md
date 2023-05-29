@@ -3,13 +3,13 @@ layout: main
 title: NextFlow Install
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_install
+permalink: /docs/nextflow/nextflow_install
 ---
 
-{% include _nextflow_nextflow_install_toc.html %}
+{% include _docs_nextflow_nextflow_install_toc.html %}
 
 <hr>
-<center>This chapter is a part of <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This chapter is a part of <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -207,6 +207,6 @@ Remember, you can choose the IDE that best suits your comfort level and requirem
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/index" style="float: left"><b>Back to:</b>Table of Contents</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_intro" style="float: right"><b>Next:</b>Nextflow Introduction</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_intro" style="float: right"><b>Next:</b>Nextflow Introduction</a></h5>

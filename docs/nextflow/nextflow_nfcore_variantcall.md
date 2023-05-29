@@ -3,20 +3,20 @@ layout: main
 title: nf-core/variantcall
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_nfcore_variantcall
+permalink: /docs/nextflow/nextflow_nfcore_variantcall
 ---
 
-{% include _nextflow_nextflow_nfcore_variantcall_toc.html %}
+{% include _docs_nextflow_nextflow_nfcore_variantcall_toc.html %}
 
 <hr>
-<center>This is part 15 of <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 15 of <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
 
 ## NF-Core VariantCall
 
-![](images/nf-core-variantcall_logo_light.png)
+![](docs/images/nf-core-variantcall_logo_light.png)
 
 ## Using the nf-core template
 
@@ -408,6 +408,6 @@ This command instructs Nextflow to run your pipeline (defined in `main.nf`), spe
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_caching" style="float: left"><b>Back to:</b>NextFlow Caching</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_caching" style="float: left"><b>Back to:</b>NextFlow Caching</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_nfcore_module_create" style="float: right"><b>Next:</b>Contributing to nf-core/modules</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_nfcore_module_create" style="float: right"><b>Next:</b>Contributing to nf-core/modules</a></h5>

@@ -3,13 +3,13 @@ layout: main
 title: Workflow caching and checkpointing
 categories: [nextflow]
 tags: [cluster, nextflow, workflow, bioinformatics, tutorial]
-permalink: /nextflow/nextflow_caching
+permalink: /docs/nextflow/nextflow_caching
 ---
 
-{% include _nextflow_nextflow_caching_toc.html %}
+{% include _docs_nextflow_nextflow_caching_toc.html %}
 
 <hr>
-<center>This is part 6 of 8 of a <a href="/nextflow_varcal/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
+<center>This is part 6 of 8 of a <a href="/nextflow_varcal/docs/nextflow/" target="_blank">Introduction to NextFlow</a>.</center>
 <hr>
 
 <br>
@@ -194,6 +194,6 @@ nextflow clean -f -before gigantic_minsky
 
 ---
 
-<h5><a href="/nextflow_varcal/nextflow/nextflow_reporting" style="float: left"><b>Back to:</b>NextFlow Reporting</a>
+<h5><a href="/nextflow_varcal/docs/nextflow/nextflow_reporting" style="float: left"><b>Back to:</b>NextFlow Reporting</a>
 
-<a href="/nextflow_varcal/nextflow/nextflow_nfcore_variantcall" style="float: right"><b>Next:</b>nf-core/variantcall</a></h5>
+<a href="/nextflow_varcal/docs/nextflow/nextflow_nfcore_variantcall" style="float: right"><b>Next:</b>nf-core/variantcall</a></h5>
