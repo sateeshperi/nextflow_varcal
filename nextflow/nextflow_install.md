@@ -54,6 +54,10 @@ To save your files, choose your file of interest, then either use the sidebar to
 1. Create the `varcal` environment based on the `yml` file:
 
    ```bash
+   mamba install multiqc
+   ```
+
+   ```bash
    mamba env update -n base -f environment.yml
    ```
 
